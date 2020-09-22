@@ -1,0 +1,100 @@
+Settings:
+    # Max Players in the map
+    MaxPlayers: 24
+    
+    # How much health to regenerate after getting a kill (1 = 1/2 heart)
+    HealthRegenOnKill: 20
+    
+    # Do players regenerate health
+    DoPlayersRegen: true
+    
+    # Do players lose food?
+    DoesFoodLevelChange: false
+    
+    # How much health will players have on join
+    SetHealthWhenJoinMap: 20
+    
+    # How much hunger will players have on join
+    SetHungerWhenJoinMap: 20
+    
+    # What is the max health for players (1 = 1/2 heart)
+    MaxPlayersHealth: 20
+    
+    # Players Game Mode
+    PlayersGameMode: ADVENTURE
+    
+    # Coins per kill
+    CoinsPerKill: 5.0
+    
+    # Spawn Protection time (in seconds)
+    SpawnProtectionSeconds: 1
+    
+    # Minimum minutes for pickup to spawn
+    MinimumMinutesForPickupSpawn: 2
+    
+    # Maximum minutes for pickup to spawn
+    MaximumMinutesForPickupSpawn: 4
+    
+    # Health per pickup
+    HealthPerPickup: 10.0
+    
+    # Double Damage Duration
+    DoubleDamageDurationSeconds: 10.0
+    
+    # Coins per pickup
+    CoinsPerPickup: 10.0
+    
+    # Speed Level
+    SpeedLevel: 1
+    
+    # Speed Duration
+    SpeedDurationSeconds: 10.0
+
+    # Resistance Level
+    ResistanceLevel: 1
+    
+    # Resistance Duration
+    ResistanceDurationSeconds: 10.0
+    
+    # TiersUp
+    TiersUp: 1
+    
+    # OneTap Duration
+    OneTapDurationSeconds: 10.0
+Pickups:
+    Healing: true
+    DoubleDamage: true
+    Coins: true
+    Speed: true
+    Resistance: true
+    OneTap: true
+    TiersUp: true
+Scoreboard:
+    Enabled: true
+    Title: "&f%mapname%"
+    Footer: "&ewww.<servername>.com"
+    Lines:
+    - " "
+    - "&fName: &a%name%"
+    - "&fDisplay Name: &a%displayname%"
+    - "  "
+    - "&fKills: &a%kills%"
+    - "&fDeaths: &a%deaths%"
+    - "&fCoins: &a%coins%"
+    - "   "
+    - "&fYour KS: &a%ks%"
+    - "&fTop KS: &a%topks%"
+    - "    "
+    - "&fYour Tier: &a%tier%"
+    - "&fTop Tier: &a%toptier%"
+    - "     "
+Killstreak:
+    5:
+        Coins: 10
+    10:
+        Coins: 25
+    15:
+        Coins: 50
+SpawnLocations:
+PickupLocations:
+Tiers:

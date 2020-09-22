@@ -1,0 +1,849 @@
+mainshop: main
+shops:
+    main:
+        enabled: true
+        name: "&8ArmsRace Shop"
+        rows: 6
+        data:
+            10:
+                enabled: true
+                material: BLAZE_ROD
+                quantity: 1
+                name: "&eSkills"
+                lore:
+                    - ""
+                    - "&7Click to open"
+                    - "&7The &eSkills &7shop"
+                shop: skills
+            12:
+                enabled: true
+                material: ARROW
+                quantity: 1
+                name: "&bTrails"
+                lore:
+                    - ""
+                    - "&7Click to open"
+                    - "&7The &bTrails &7shop"
+                shop: trails
+            14:
+                enabled: true
+                material: DIAMOND_SWORD
+                quantity: 1
+                name: "&cKill Effects"
+                lore:
+                    - ""
+                    - "&7Click to open"
+                    - "&7The &cKill Effects &7shop"
+                shop: killeffects
+            49:
+                enabled: true
+                material: NETHER_STAR
+                quantity: 1
+                name: "&aInformation"
+                lore:
+                    - ""
+                    - "&7Balance: &6%coins%"
+    skills:
+        enabled: true
+        name: "&8Skills Shop"
+        rows: 6
+        data:
+            10:
+                enabled: true
+                material: GOLD_SWORD
+                quantity: 1
+                name: "&eSword Launch"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eSword Launch &7skill"
+                    - ""
+                    - "&7Launch your sword"
+                    - "&7towards players"
+                    - ""
+                    - "&7Upgrade to reduce"
+                    - "&bcooldown&7!"
+                    - ""
+                    - "&7Current Level: &e%level%"
+                    - "&7Price: &e%price%"
+                levels:
+                    1:
+                        price: 1000.0
+                    2:
+                        price: 2500.0
+                    3:
+                        price: 5000.0
+                    4:
+                        price: 10000.0
+                skill: SWORD_LAUNCH
+            11:
+                enabled: true
+                material: BOW
+                quantity: 1
+                name: "&eHead Shot"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eHead Shot &7skill"
+                    - ""
+                    - "&7Head Shot a player"
+                    - "&7with a bow"
+                    - ""
+                    - "&7Upgrade to increase"
+                    - "&brate&7!"
+                    - ""
+                    - "&7Current Level: &e%level%"
+                    - "&7Price: &e%price%"
+                levels:
+                    1:
+                        price: 500.0
+                    2:
+                        price: 1000.0
+                    3:
+                        price: 2500.0
+                    4:
+                        price: 5000.0
+                skill: HEAD_SHOT
+            12:
+                enabled: true
+                material: GOLD_NUGGET
+                quantity: 1
+                name: "&eExtra Gold"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eExtra Gold &7skill"
+                    - ""
+                    - "&7Get extra gold on kills"
+                    - ""
+                    - "&7Upgrade to increase"
+                    - "&bamount&7!"
+                    - ""
+                    - "&7Current Level: &e%level%"
+                    - "&7Price: &e%price%"
+                levels:
+                    1:
+                        price: 500.0
+                    2:
+                        price: 1000.0
+                    3:
+                        price: 2000.0
+                    4:
+                        price: 4000.0
+                    5:
+                        price: 8000.0
+                skill: EXTRA_GOLD
+            13:
+                enabled: true
+                material: DIAMOND_LEGGINGS
+                quantity: 1
+                name: "&eSkip Tier"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eSkip Tier &7skill"
+                    - ""
+                    - "&7Skip a tier upon"
+                    - "&7rank up"
+                    - ""
+                    - "&7Upgrade to increase"
+                    - "&brate&7!"
+                    - ""
+                    - "&7Current Level: &e%level%"
+                    - "&7Price: &e%price%"
+                levels:
+                    1:
+                        price: 2500.0
+                    2:
+                        price: 5000.0
+                    3:
+                        price: 10000.0
+                skill: SKIP_TIER
+            14:
+                enabled: true
+                material: IRON_CHESTPLATE
+                quantity: 1
+                name: "&eSpawn Resistance"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eSpawn Resistance &7skill"
+                    - ""
+                    - "&7Spawn with resistance"
+                    - ""
+                    - "&7Upgrade to increase"
+                    - "&bduration&7!"
+                    - ""
+                    - "&7Current Level: &e%level%"
+                    - "&7Price: &e%price%"
+                levels:
+                    1:
+                        price: 1000.0
+                    2:
+                        price: 2500.0
+                    3:
+                        price: 5000.0
+                    4:
+                        price: 10000.0
+                skill: SPAWN_RESISTANCE
+            15:
+                enabled: true
+                material: GOLDEN_CARROT
+                quantity: 1
+                name: "&eExtra Health"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eExtra Health &7skill"
+                    - ""
+                    - "&7Spawn with extra health"
+                    - ""
+                    - "&7Upgrade to increase"
+                    - "&bmax health&7!"
+                    - ""
+                    - "&7Current Level: &e%level%"
+                    - "&7Price: &e%price%"
+                levels:
+                    1:
+                        price: 10000.0
+                    2:
+                        price: 25000.0
+                    3:
+                        price: 50000.0
+                skill: EXTRA_HEALTH
+            16:
+                enabled: true
+                material: GOLDEN_APPLE
+                quantity: 1
+                name: "&eSpawn Gapple"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eSpawn Gapple &7skill"
+                    - ""
+                    - "&7Spawn with a gapple"
+                    - ""
+                    - "&7Upgrade to increase"
+                    - "&brate&7!"
+                    - ""
+                    - "&7Current Level: &e%level%"
+                    - "&7Price: &e%price%"
+                levels:
+                    1:
+                        price: 1000.0
+                    2:
+                        price: 2000.0
+                    3:
+                        price: 3000.0
+                    4:
+                        price: 4000.0
+                    5:
+                        price: 5000.0
+                skill: SPAWN_GAPPLE
+            45:
+                enabled: true
+                material: ARROW
+                quantity: 1
+                name: "&cGo Back"
+                lore:
+                    - ""
+                    - "&7Click here to go back"
+                shop: main
+            49:
+                enabled: true
+                material: NETHER_STAR
+                quantity: 1
+                name: "&aInformation"
+                lore:
+                    - ""
+                    - "&7Balance: &6%coins%"
+# Available trailtypes (Please note that some of them may cause player crashes/server bugs, so test them before using them!):
+#
+# EXPLOSION_NORMAL, EXPLOSION_LARGE, EXPLOSION_HUGE, FIREWORKS_SPARK, WATER_BUBBLE, WATER_SPLASH, WATER_WAKE,
+# SUSPENDED, SUSPENDED_DEPTH, CRIT, CRIT_MAGIC, SMOKE_NORMAL, SMOKE_LARGE, SPELL, SPELL_INSTANT, SPELL_MOB,
+# SPELL_MOB_AMBIENT, SPELL_WITCH, DRIP_WATER, DRIP_LAVA, VILLAGER_ANGRY, VILLAGER_HAPPY, TOWN_AURA, NOTE, PORTAL,
+# ENCHANTMENT_TABLE, FLAME, LAVA, FOOTSTEP, CLOUD, REDSTONE, SNOWBALL, SNOW_SHOVEL, SLIME, HEART, BARRIER,
+# ITEM_CRACK, BLOCK_CRACK, BLOCK_DUST, WATER_DROP, ITEM_TAKE, MOB_APPEARANCE
+#
+# You can also add rgb to certain trails
+    trails:
+        enabled: true
+        name: "&8Trails Shop"
+        rows: 6
+        data:
+            10:
+                enabled: true
+                material: TNT
+                quantity: 1
+                name: "&eExplosing"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eExplosing &7trail"
+                    - ""
+                    - "&7A &7Common &7trail of Explosions"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1000.0
+                trailtype: EXPLOSION_NORMAL
+            11:
+                enabled: true
+                material: SNOW_BALL
+                quantity: 1
+                name: "&eSnowball"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eSnowball &7trail"
+                    - ""
+                    - "&7A &7Common &7trail of Snowballs"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1000.0
+                trailtype: SNOWBALL
+            12:
+                enabled: true
+                material: WEB
+                quantity: 1
+                name: "&eCloud"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eCloud &7trail"
+                    - ""
+                    - "&7A &7Common &7trail of Clouds"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1000.0
+                trailtype: CLOUD
+            13:
+                enabled: true
+                material: LAVA_BUCKET
+                quantity: 1
+                name: "&eLava Drip"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eLava Drip &7trail"
+                    - ""
+                    - "&7A &7Common &7trail of Lava Drips"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1000.0
+                trailtype: DRIP_LAVA
+            14:
+                enabled: true
+                material: IRON_SWORD
+                quantity: 1
+                name: "&eCrit"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eCritical &7trail"
+                    - ""
+                    - "&7A &7Common &7trail of Criticals"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1000.0
+                trailtype: CRIT
+            15:
+                enabled: true
+                material: ENCHANTED_BOOK
+                quantity: 1
+                name: "&eMob Spell"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eMob Spell &7trail"
+                    - ""
+                    - "&7A &7Common &7trail of Mob Spells"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1000.0
+                trailtype: SPELL_MOB
+                
+            16:
+                enabled: true
+                material: FLINT_AND_STEEL
+                quantity: 1
+                name: "&eSmoke"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eSmoke &7trail"
+                    - ""
+                    - "&7A &7Common &7trail of Smoke"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1000.0
+                trailtype: SMOKE_NORMAL
+            19:
+                enabled: true
+                material: WATER_BUCKET
+                quantity: 1
+                name: "&eWater Splash"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eWater Splash &7trail"
+                    - ""
+                    - "&7A &7Common &7trail of Water Splashes"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1000.0
+                trailtype: WATER_SPLASH
+            20:
+                enabled: true
+                material: DIAMOND_SWORD
+                quantity: 1
+                name: "&eMagic Crit"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eMagic Critical &7trail"
+                    - ""
+                    - "&7A &9Rare &7trail of Magic Criticals"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 2500.0
+                trailtype: CRIT_MAGIC
+            21:
+                enabled: true
+                material: ENCHANTMENT_TABLE
+                quantity: 1
+                name: "&eEnchantment Table"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eEnchantment Table &7trail"
+                    - ""
+                    - "&7A &9Rare &7trail of Enchantment Table"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 2500.0
+                trailtype: ENCHANTMENT_TABLE
+            22:
+                enabled: true
+                material: REDSTONE
+                quantity: 1
+                name: "&eRedstone"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eRedstone &7trail"
+                    - ""
+                    - "&7A &9Rare &7trail of Redstone"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 2500.0
+                trailtype: REDSTONE
+                traildata:
+                    r: 255
+                    g: 255
+                    b: 255
+            23:
+                enabled: true
+                material: FIREWORK
+                quantity: 1
+                name: "&eFirework Spark"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eFirework Spark &7trail"
+                    - ""
+                    - "&7A trail of Firework Sparks"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 2500.0
+                trailtype: FIREWORKS_SPARK
+            24:
+                enabled: true
+                material: ENDER_PORTAL_FRAME
+                quantity: 1
+                name: "&ePortal"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&ePortal &7trail"
+                    - ""
+                    - "&7A &5Epic &7trail of Portals"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 5000.0
+                trailtype: PORTAL
+            25:
+                enabled: true
+                material: FLOWER_POT_ITEM
+                quantity: 1
+                name: "&eWitch Spell"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eWitch Spell &7trail"
+                    - ""
+                    - "&7A &5Epic &7trail of Witch Spells"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 5000.0
+                trailtype: SPELL_WITCH
+            28:
+                enabled: true
+                material: BOOK
+                quantity: 1
+                name: "&eSpell"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eSpell &7trail"
+                    - ""
+                    - "&7A &5Epic &7trail of Spells"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 5000.0
+                trailtype: SPELL
+            29:
+                enabled: true
+                material: BLAZE_POWDER
+                quantity: 1
+                name: "&eFlame"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eFlame &7trail"
+                    - ""
+                    - "&7A &5Epic &7trail of Flames"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 5000.0
+                trailtype: FLAME
+            30:
+                enabled: true
+                material: GOLDEN_APPLE
+                quantity: 1
+                name: "&eHearts"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eHearts &7trail"
+                    - ""
+                    - "&7A &6Legendary &7trail of Hearts"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 10000.0
+                trailtype: HEART
+            31:
+                enabled: true
+                material: JUKEBOX
+                quantity: 1
+                name: "&eNotes"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eNotes &7trail"
+                    - ""
+                    - "&7A &6Legendary &7trail of notes"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 10000.0
+                trailtype: NOTE
+            45:
+                enabled: true
+                material: ARROW
+                quantity: 1
+                name: "&cGo Back"
+                lore:
+                    - ""
+                    - "&7Click here to go back"
+                shop: main
+            49:
+                enabled: true
+                material: NETHER_STAR
+                quantity: 1
+                name: "&aInformation"
+                lore:
+                    - ""
+                    - "&7Balance: &6%coins%"
+            50:
+                enabled: true
+                material: BARRIER
+                quantity: 1
+                name: "&cReset Trail"
+                lore:
+                    - "&7Click here to"
+                    - "&7Reset your trail"
+                price: 0.0
+                trailtype: RESET
+    killeffects:
+        enabled: true
+        name: "&8Kill Effects Shop"
+        rows: 6
+        data:
+            10:
+                enabled: true
+                material: FIREWORK_CHARGE
+                quantity: 1
+                name: "&eSquid Missile"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eSquid Missile &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Squid Missile"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1000.0
+                killeffect: SQUID_MISSILE
+            11:
+                enabled: true
+                material: WOOD_AXE
+                quantity: 1
+                name: "&eLightning Strike"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eLightning Strike &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Lightning Strike"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1000.0
+                killeffect: LIGHTNING_STRIKE
+            12:
+                enabled: true
+                material: INK_SACK
+                quantity: 1
+                name: "&eBlack Mark"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eBlack Mark &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Black Mark"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1750.0
+                killeffect: BLACK_MARK
+            13:
+                enabled: true
+                material: TNT
+                quantity: 1
+                name: "&eTNT"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eTNT &7kill effect"
+                    - ""
+                    - "&7A kill effect of a TNT"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1750.0
+                killeffect: TNT
+            14:
+                enabled: true
+                material: GOLDEN_APPLE
+                quantity: 1
+                name: "&eHeart Aura"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eHeart Aura &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Heart Aura"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 1750.0
+                killeffect: HEART_AURA
+            15:
+                enabled: true
+                material: GOLD_BOOTS
+                quantity: 1
+                name: "&eBurning Shoes"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eBurning Shoes &7kill effect"
+                    - ""
+                    - "&7A kill effect of Burning Shoes"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 2500.0
+                killeffect: BURNING_SHOES
+            16:
+                enabled: true
+                material: COOKIE
+                quantity: 1
+                name: "&eCookie Fountain"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eCookie Fountain &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Cookie Fountain"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 2500.0
+                killeffect: COOKIE_FOUNTAIN
+            19:
+                enabled: true
+                material: SADDLE
+                quantity: 1
+                name: "&ePinata"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&ePinata &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Pinata"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 3500.0
+                killeffect: PINATA
+            20:
+                enabled: true
+                material: TORCH
+                quantity: 1
+                name: "&eLast Candle"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eLast Candle &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Last Candle"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 3500.0
+                killeffect: LAST_CANDLE
+            21:
+                enabled: true
+                material: DIAMOND_SWORD
+                quantity: 1
+                name: "&eRekt"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eRekt &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Rekt Hologram"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 3500.0
+                killeffect: REKT
+            22:
+                enabled: true
+                material: SKULL_ITEM
+                quantity: 1
+                name: "&eHead Rocket"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eHead Rocket &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Head Rocket"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 5000.0
+                killeffect: HEAD_ROCKET
+            23:
+                enabled: true
+                material: FIREWORK
+                quantity: 1
+                name: "&eFirework"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eFirework &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Firework"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 5000.0
+                killeffect: FIREWORK
+            24:
+                enabled: true
+                material: NETHER_STAR
+                quantity: 1
+                name: "&eTornado"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eTornado &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Tornado"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 5000.0
+                killeffect: TORNADO
+            25:
+                enabled: true
+                material: REDSTONE
+                quantity: 1
+                name: "&eBlood"
+                lore:
+                    - ""
+                    - "&7Click to buy the"
+                    - "&eBlood &7kill effect"
+                    - ""
+                    - "&7A kill effect of a Blood"
+                    - "&7when you shoot a projectile"
+                    - ""
+                    - "&7Price: &e%price%"
+                price: 10000.0
+                killeffect: BLOOD
+            45:
+                enabled: true
+                material: ARROW
+                quantity: 1
+                name: "&cGo Back"
+                lore:
+                    - ""
+                    - "&7Click here to go back"
+                shop: main
+            49:
+                enabled: true
+                material: NETHER_STAR
+                quantity: 1
+                name: "&aInformation"
+                lore:
+                    - ""
+                    - "&7Balance: &6%coins%"
+            50:
+                enabled: true
+                material: BARRIER
+                quantity: 1
+                name: "&cReset Kill Effect"
+                lore:
+                    - "&7Click here to"
+                    - "&7Reset your kill effect"
+                price: 0.0
+                killeffect: RESET
