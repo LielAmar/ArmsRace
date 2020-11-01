@@ -9,6 +9,8 @@ import com.lielamar.armsrace.utils.packets.version.NMS_v1_13_R1;
 import com.lielamar.armsrace.utils.packets.version.NMS_v1_13_R2;
 import com.lielamar.armsrace.utils.packets.version.NMS_v1_14_R1;
 import com.lielamar.armsrace.utils.packets.version.NMS_v1_15_R1;
+import com.lielamar.armsrace.utils.packets.version.NMS_v1_16_R1;
+import com.lielamar.armsrace.utils.packets.version.NMS_v1_16_R2;
 import com.lielamar.armsrace.utils.packets.version.NMS_v1_8_R1;
 import com.lielamar.armsrace.utils.packets.version.NMS_v1_8_R2;
 import com.lielamar.armsrace.utils.packets.version.NMS_v1_8_R3;
@@ -53,6 +55,10 @@ public class PacketHandler {
 			this.nmsHandler = new NMS_v1_14_R1();
 		else if(version.equalsIgnoreCase("v1_15_r1"))
 			this.nmsHandler = new NMS_v1_15_R1();
+		else if(version.equalsIgnoreCase("v1_16_r1"))
+			this.nmsHandler = new NMS_v1_16_R1();
+		else if(version.equalsIgnoreCase("v1_16_r2"))
+			this.nmsHandler = new NMS_v1_16_R2();
 		else {
 			System.out.println("[ArmsRace] You are using an unsupported spigot version; therefore certain features of ArmsRace won't work!");
 			System.out.println("[ArmsRace] Supported Versions: 1_8_R1, 1_8_R2, 1_8_R3, 1_9_R1, 1_9_R2, 1_10_R1, 1_11_R1, 1_12_R1, 1_13_R1, 1_13_R2, 1_14_R1, 1_15_R1");
