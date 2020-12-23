@@ -21,4 +21,4 @@ Using ArmsRace is only possible through purchasing the plugin on [Spigot](https:
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
-[GNU 3](https://choosealicense.com/licenses/agpl-3.0/)
+[GPL 3](https://choosealicense.com/licenses/agpl-3.0/)
