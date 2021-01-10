@@ -1,8 +1,8 @@
 # ArmsRace
 
-[<img alt="spigot" src="https://lielamar.com/other/github_spigot.png" size=1.5>](https://www.spigotmc.org/resources/%E2%9A%94%EF%B8%8F-armsrace-minigame-pickups-shops-unlimited-maps-kits-99-configurable-1-8-1-15.78991/)
+[<img alt="spigot" src="https://lielamar.com/cdn/plugins/github_spigot.png" size=1.5>](https://www.spigotmc.org/resources/%E2%9A%94%EF%B8%8F-armsrace-minigame-pickups-shops-unlimited-maps-kits-99-configurable-1-8-1-15.78991/)
 <br>
-[<img alt="discord" src="https://lielamar.com/other/github_discord.png" size=1.5>](https://discord.gg/NzgBrqR)
+[<img alt="discord" src="https://lielamar.com/cdn/plugins/github_discord.png" size=1.5>](https://discord.gg/NzgBrqR)
 
 ## Information
 ArmsRace is a unique, dynamic, PvP-based minigame for Spigot!
