@@ -66,13 +66,13 @@ public class MapManager {
 		if(mapFile.getConfig().contains("SpawnLocations")) {
 			for(String s : mapFile.getConfig().getConfigurationSection("SpawnLocations").getKeys(false)) {
 				try {
-				locations.add(new CustomLocation(Integer.parseInt(s),new Location(
-						Bukkit.getWorld((String)mapFile.getConfig().get("SpawnLocations." + s + ".world")),
+				locations.add(new CustomLocation(Integer.parseInt(s),
+						(String)mapFile.getConfig().get("SpawnLocations." + s + ".world"),
 						mapFile.getConfig().getDouble("SpawnLocations." + s + ".x"),
 						mapFile.getConfig().getDouble("SpawnLocations." + s + ".y"),
 						mapFile.getConfig().getDouble("SpawnLocations." + s + ".z"),
 						mapFile.getConfig().getLong("SpawnLocations." + s + ".yaw"),
-						mapFile.getConfig().getLong("SpawnLocations." + s + ".pitch"))));
+						mapFile.getConfig().getLong("SpawnLocations." + s + ".pitch")));
 				} catch(Exception e) {
 					System.out.println("Couldn't load location ID: " + s + " for map: " + mapFile.getName() + ". Make sure it's an integer in the map config!");
 				}
@@ -84,13 +84,13 @@ public class MapManager {
 		if(mapFile.getConfig().contains("PickupLocations")) {
 			for(String s : mapFile.getConfig().getConfigurationSection("PickupLocations").getKeys(false)) {
 				try {
-					pickupLocations.add(new CustomLocation(Integer.parseInt(s),new Location(
-						Bukkit.getWorld((String)mapFile.getConfig().get("PickupLocations." + s + ".world")),
+					pickupLocations.add(new CustomLocation(Integer.parseInt(s),
+						(String)mapFile.getConfig().get("PickupLocations." + s + ".world"),
 						mapFile.getConfig().getDouble("PickupLocations." + s + ".x"),
 						mapFile.getConfig().getDouble("PickupLocations." + s + ".y"),
 						mapFile.getConfig().getDouble("PickupLocations." + s + ".z"),
 						mapFile.getConfig().getLong("PickupLocations." + s + ".yaw"),
-						mapFile.getConfig().getLong("PickupLocations." + s + ".pitch"))));
+						mapFile.getConfig().getLong("PickupLocations." + s + ".pitch")));
 				} catch(Exception e) {
 					System.out.println("Couldn't load pickup location ID: " + s + " for map: " + mapFile.getName() + ". Make sure it's an integer in the map config!");
 				}
