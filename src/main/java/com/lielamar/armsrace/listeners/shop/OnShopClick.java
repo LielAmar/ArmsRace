@@ -80,7 +80,7 @@ public class OnShopClick implements Listener {
 						return;
 					}
 
-					double price = item.getPrice();
+					int price = item.getPrice();
 
 					if (main.getPlayerManager().getEconomy().withdrawPlayer(p, price).transactionSuccess()) {
 						cp.setTrails(item.getTrailType(), true);
@@ -110,7 +110,7 @@ public class OnShopClick implements Listener {
 						return;
 					}
 
-					double price = item.getPrice();
+					int price = item.getPrice();
 
 					if (main.getPlayerManager().getEconomy().withdrawPlayer(p, price).transactionSuccess()) {
 						cp.setKillEffects(item.getKillEffectType(), true);

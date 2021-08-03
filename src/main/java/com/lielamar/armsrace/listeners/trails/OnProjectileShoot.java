@@ -57,6 +57,9 @@ public class OnProjectileShoot implements Listener {
 						if (trail.equalsIgnoreCase("redstone")) {
 							p.spawnParticle(Particle.REDSTONE, e.getEntity().getLocation(), 10, 0, 0, 0, new Particle.DustOptions(Color.RED, 1));
 						} else {
+							if (trail.equalsIgnoreCase("reset")) {
+								return;
+							}
 							pv.sendParticle(pl, strippedTrail, e.getEntity().getLocation(), cp.getCurrentTrailData(), main.getSettingsManager().getTrailsAmount());
 						}
 					}
