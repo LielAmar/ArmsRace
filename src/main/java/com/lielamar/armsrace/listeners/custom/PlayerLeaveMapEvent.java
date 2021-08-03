@@ -10,19 +10,19 @@ import com.lielamar.armsrace.modules.map.Map;
 
 public class PlayerLeaveMapEvent extends Event implements Cancellable {
 
-    private LeaveReason lr;
-    private Player p;
-    private CustomPlayer cp;
-    private Map map;
-    private static final HandlerList HANDLERS_LIST = new HandlerList();
-    private boolean isCancelled;
-
+	private LeaveReason lr;
+	private Player p;
+	private CustomPlayer cp;
+	private Map map;
+	private static final HandlerList HANDLERS_LIST = new HandlerList();
+	private boolean isCancelled;
+	
     public PlayerLeaveMapEvent(LeaveReason lr, Player p, CustomPlayer cp, Map map){
         this.p = p;
         this.cp = cp;
         this.isCancelled = false;
     }
-
+    
     @Override
     public boolean isCancelled() {
         return isCancelled;
@@ -43,18 +43,18 @@ public class PlayerLeaveMapEvent extends Event implements Cancellable {
     }
 
     public LeaveReason getLeaveReason() {
-        return this.lr;
+    	return this.lr;
     }
-
+    
     public Player getPlayer() {
-        return this.p;
+    	return this.p;
     }
-
+    
     public CustomPlayer getCustomPlayer() {
-        return this.cp;
+    	return this.cp;
     }
-
+    
     public Map getMap() {
-        return this.map;
+    	return this.map;
     }
 }

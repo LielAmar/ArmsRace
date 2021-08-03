@@ -13,7 +13,7 @@ public class Utils {
 
 	/**
 	 * Clears a player
-	 *
+	 * 
 	 * @param main             Main class instance
 	 * @param p                Player to clear
 	 * @param health           Health
@@ -34,23 +34,23 @@ public class Utils {
 		p.setGameMode(gamemode);
 		p.setExp(0);
 		p.setLevel(0);
-
+		
 		Bukkit.getScheduler().runTask(main, new Runnable() {
-			@Override
-			public void run() {
-				p.setFireTicks(0);
-			}
+		    @Override
+		    public void run() {
+		        p.setFireTicks(0);
+		    }
 		});
-
+		
 		main.getPlayerManager().updateSpawnProtection(p);
 	}
-
+	
 	/**
 	 * Fixes decimal point to be only 2 digits
 	 */
 	public static double fixDecimal(double d) {
 		BigDecimal bd = BigDecimal.valueOf(d);
-		bd = bd.setScale(2, RoundingMode.HALF_UP);
-		return bd.doubleValue();
+	    bd = bd.setScale(2, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
 	}
 }

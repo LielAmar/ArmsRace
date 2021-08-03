@@ -7,14 +7,14 @@ import com.lielamar.armsrace.listeners.custom.LeaveReason;
 import com.lielamar.armsrace.modules.map.Map;
 
 public class LeaveCommand extends SubCommand {
-
+	
 	@Override
 	public void onCommand(Main main, Player p, String[] args) {
 		if(!p.hasPermission("armsrace.commands.leave")) {
 			p.sendMessage(main.getMessages().noPermissions());
-			return;
+	       	return;
 		}
-
+		
 		Map map = main.getPlayerManager().getPlayer(p).getCurrentMap();
 		if(map == null) {
 			p.sendMessage(main.getMessages().youAreNotInAMap());

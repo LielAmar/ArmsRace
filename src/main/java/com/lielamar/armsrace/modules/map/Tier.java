@@ -6,12 +6,12 @@ public class Tier {
 
 	private ItemStack[] armor;
 	private ItemStack[] content;
-
+	
 	public Tier(ItemStack[] armor, ItemStack[] content) {
 		this.armor = armor;
 		this.content = content;
 	}
-
+	
 	public ItemStack[] getArmor() {
 		return armor;
 	}

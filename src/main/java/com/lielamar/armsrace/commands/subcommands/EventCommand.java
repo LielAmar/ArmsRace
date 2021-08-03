@@ -8,7 +8,7 @@ import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.map.Map;
 
 public class EventCommand extends SubCommand {
-
+	
 	@Override
 	public void onCommand(Main main, Player p, String[] args) {
 		if(args.length == 0 || args.length == 1) {
@@ -17,18 +17,18 @@ public class EventCommand extends SubCommand {
 		} else {
 			String mapName = args[0];
 			String eventName = args[1];
-
+			
 			Map map = main.getGameManager().getMapManager().getMap(mapName);
 			if(map == null) {
 				p.sendMessage(main.getMessages().couldntFindMap(mapName));
-				return;
+	        	return;
 			}
-
+			
 			if(!p.hasPermission("armsrace.commands.events")) {
 				p.sendMessage(main.getMessages().noPermissions());
-				return;
+	        	return;
 			}
-
+			
 			boolean enabled = false;
 			if(eventName.equalsIgnoreCase("doublecoins"))
 				enabled = map.setDoubleCoinsEvent(!map.isDoubleCoinsEvent());

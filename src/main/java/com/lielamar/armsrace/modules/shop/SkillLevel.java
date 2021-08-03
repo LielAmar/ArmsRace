@@ -3,9 +3,9 @@ package com.lielamar.armsrace.modules.shop;
 public class SkillLevel {
 
 	private int level;
-	private double price;
-
-	public SkillLevel(int level, double price) {
+	private int price;
+	
+	public SkillLevel(int level, int price) {
 		this.level = level;
 		this.price = price;
 	}
@@ -18,11 +18,11 @@ public class SkillLevel {
 		this.level = level;
 	}
 
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 }

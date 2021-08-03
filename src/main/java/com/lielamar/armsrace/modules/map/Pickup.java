@@ -13,13 +13,13 @@ public class Pickup {
 	private Item pickup;
 	private PickupType type;
 	private Location loc;
-
+	
 	public Pickup(Map map, PickupType type, Location loc) {
 		this.map = map;
 		this.loc = loc;
 		this.type = type;
 	}
-
+	
 	public void spawn() {
 		ItemStack item = new ItemStack(this.type.getMaterial());
 		ItemMeta meta = item.getItemMeta();
@@ -29,7 +29,7 @@ public class Pickup {
 		this.pickup = loc.getWorld().dropItem(loc, item);
 		this.pickup.setVelocity(new Vector());
 	}
-
+	
 	public Item getPickup() {
 		return pickup;
 	}
@@ -53,7 +53,7 @@ public class Pickup {
 	public void setLoc(Location loc) {
 		this.loc = loc;
 	}
-
+	
 	public String getName() {
 		return type.getName();
 	}

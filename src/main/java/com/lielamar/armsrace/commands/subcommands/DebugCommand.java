@@ -10,12 +10,12 @@ public class DebugCommand extends SubCommand{
 	@Override
 	public void onCommand(Main main, Player p, String[] args) {
 		if(args.length < 1) {
-			if(!p.hasPermission("armsrace.commands.debug")) {
-				p.sendMessage(main.getMessages().noPermissions());
-				return;
-			}
-
-			p.sendMessage(main.getMessages().invalidSubCommand());
+	        if(!p.hasPermission("armsrace.commands.debug")) {
+	        	p.sendMessage(main.getMessages().noPermissions());
+	        	return;
+	        }
+	        
+	        p.sendMessage(main.getMessages().invalidSubCommand());
 		} else {
 			if(args[0].equalsIgnoreCase("locations")) {
 				for(int i = 0; i < main.getGameManager().getMapManager().getMap(args[1].toLowerCase()).getLocations().size(); i++)

@@ -10,15 +10,15 @@ import com.lielamar.armsrace.Main;
 public class OnCookiePickup implements Listener {
 
 	private Main main;
-
+	
 	public OnCookiePickup(Main main) {
 		this.main = main;
 	}
-
+	
 	@EventHandler
 	public void onPickup(PlayerPickupItemEvent e) {
 		if(!(e.getItem().getItemStack().getType() == Material.COOKIE)) return;
-
+		
 		if(main.getKillEffectsManager().containsEntity(e.getItem()))
 			e.setCancelled(true);
 	}

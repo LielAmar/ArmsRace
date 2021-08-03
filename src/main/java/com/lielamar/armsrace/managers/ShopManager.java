@@ -26,11 +26,11 @@ public class ShopManager {
 	private Config config;
 	private Map<String, Shop> shops;
 	private String mainShop;
-
+	
 	public ShopManager(Main main, Config config) {
 		this.main = main;
 		this.config = config;
-		this.shops = new HashMap<String, Shop>();
+		this.shops = new HashMap<>();
 
 		setup();
 	}
@@ -42,15 +42,15 @@ public class ShopManager {
 	public String getMainShop() {
 		return this.mainShop;
 	}
-
+	
 	public Shop getShop(String key) {
 		return this.shops.get(key);
 	}
-
+	
 	public Map<String, Shop> getShops() {
 		return this.shops;
 	}
-
+	
 	public void setup() {
 		for(String shop : config.getConfigurationSection("shops").getKeys(false)) {
 			Shop tmpShop = new Shop((String)config.get("shops." + shop + ".name"), (boolean)config.get("shops." + shop + ".enabled"), (int)config.get("shops." + shop + ".rows"));
@@ -70,10 +70,10 @@ public class ShopManager {
 		}
 		this.mainShop = (String)config.get("mainshop");
 	}
-
+	
 	private CustomItem getItem(String shop, String id) {
 		if(!(boolean)config.get("shops." + shop + ".data." + id + ".enabled")) return null; // Don't add disabed items
-
+		
 		// Basic data (Material, quantity, name, lore)
 		Material material = XMaterial.valueOf((String)config.get("shops." + shop + ".data." + id + ".material")).parseMaterial();
 		int quantity = (int)config.get("shops." + shop + ".data." + id + ".quantity");
@@ -81,7 +81,7 @@ public class ShopManager {
 		List<String> lore = new ArrayList<>();
 		for(String s : config.getStringList("shops." + shop + ".data." + id + ".lore"))
 			lore.add(ChatColor.translateAlternateColorCodes('&', s));
-
+		
 		ItemStack item = new ItemStack(material, quantity);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(name);
@@ -93,34 +93,34 @@ public class ShopManager {
 		meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
 		meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
 		item.setItemMeta(meta);
-
-
+		
+		
 		// Action (shop to open if at all)
 		String action = "";
 		if(config.contains("shops." + shop + ".data." + id + ".shop"))
 			action = (String)config.get("shops." + shop + ".data." + id + ".shop");
-
-
+		
+		
 		// Levels (skill levels if at all)
 		List<SkillLevel> levels = new ArrayList<>();
 		if(config.contains("shops." + shop + ".data." + id + ".levels")) {
 			for(String s : config.getConfigurationSection("shops." + shop + ".data." + id + ".levels").getKeys(false)) {
-				SkillLevel level = new SkillLevel(Integer.parseInt(s), (double)config.get("shops." + shop + ".data." + id + ".levels." + s + ".price"));
+				SkillLevel level = new SkillLevel(Integer.parseInt(s), (int)config.get("shops." + shop + ".data." + id + ".levels." + s + ".price"));
 				levels.add(level);
 			}
 		}
-
+		
 		// Type of the trail (if at all)
 		String skillType = null;
 		if(config.contains("shops." + shop + ".data." + id + ".skill"))
 			skillType = (String)config.get("shops." + shop + ".data." + id + ".skill");
-
-
+		
+		
 		// Price (trail/kill effect price if at all)
-		double price = 0;
+		int price = 0;
 		if(config.contains("shops." + shop + ".data." + id + ".price"))
-			price = (double)config.get("shops." + shop + ".data." + id + ".price");
-
+			price = (int)config.get("shops." + shop + ".data." + id + ".price");
+		
 		// Type of the trail (if at all)
 		String trailType = null;
 		if(config.contains("shops." + shop + ".data." + id + ".trailtype"))
@@ -132,13 +132,13 @@ public class ShopManager {
 			trailData = new TrailData((int)config.get("shops." + shop + ".data." + id + ".traildata.r"),
 					(int)config.get("shops." + shop + ".data." + id + ".traildata.g"),
 					(int)config.get("shops." + shop + ".data." + id + ".traildata.b"));
-
-
+		
+		
 		String killeffectType = null;
 		if(config.contains("shops." + shop + ".data." + id + ".killeffect"))
 			killeffectType = (String)config.get("shops." + shop + ".data." + id + ".killeffect");
-
-
+		
+		
 		ItemType type = ItemType.GENERAL;
 		if(action.length() > 0) {
 			type = ItemType.SHOP;
@@ -149,7 +149,7 @@ public class ShopManager {
 		} else if(killeffectType != null){
 			type = ItemType.KILL_EFFECT;
 		}
-
+		
 		return new CustomItem(type, ChatColor.stripColor(name), item, action, levels, skillType, price, trailType, trailData, killeffectType);
 	}
 }

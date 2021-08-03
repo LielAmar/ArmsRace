@@ -11,7 +11,7 @@ import com.lielamar.armsrace.modules.CustomPlayer;
 public class OnPlayerQuit implements Listener {
 
 	private Main main;
-
+	
 	public OnPlayerQuit(Main main) {
 		this.main = main;
 	}

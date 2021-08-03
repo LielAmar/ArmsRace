@@ -10,11 +10,11 @@ import com.lielamar.armsrace.modules.killeffects.KillEffect;
 
 public class BurningShoesKillEffect implements KillEffect {
 
-	@Override
+	@Override	
 	public void playKillEffect(Main main, Location loc, Player victim, Player killer) {
 		new BukkitRunnable() {
 			int counter = 30;
-
+			
 			@Override
 			public void run() {
 				if(counter <= 0) {

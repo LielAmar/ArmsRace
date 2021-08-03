@@ -15,7 +15,7 @@ public class OnPlayerDeath implements Listener {
 	public OnPlayerDeath(Main main) {
 		this.main = main;
 	}
-
+	
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e) {
 		if(!(e.getEntity() instanceof Player)) return;
@@ -26,7 +26,7 @@ public class OnPlayerDeath implements Listener {
 			cpVic.setLeftMap(false);
 			cpVic.setKillstreak(0);
 		}
-
+		
 		if(cpVic.getCurrentMap() != null) {
 			cpVic.getPlayer().spigot().respawn();
 		}

@@ -10,15 +10,15 @@ import com.lielamar.armsrace.modules.map.Tier;
 
 public class PlayerTierDownEvent extends Event {
 
-    private Player p;
-    private CustomPlayer cp;
-    private Player k;
-    private CustomPlayer ck;
-    private Map map;
-    private Tier tier;
-    private int tierId;
-    private static final HandlerList HANDLERS_LIST = new HandlerList();
-
+	private Player p;
+	private CustomPlayer cp;
+	private Player k;
+	private CustomPlayer ck;
+	private Map map;
+	private Tier tier;
+	private int tierId;
+	private static final HandlerList HANDLERS_LIST = new HandlerList();
+	
     public PlayerTierDownEvent(Player p, CustomPlayer cp, Player k, CustomPlayer ck, Map map, Tier tier, int tierId){
         this.p = p;
         this.cp = cp;
@@ -38,30 +38,30 @@ public class PlayerTierDownEvent extends Event {
     }
 
     public Player getPlayer() {
-        return this.p;
+    	return this.p;
     }
-
+    
     public CustomPlayer getCustomPlayer() {
-        return this.cp;
+    	return this.cp;
     }
-
+    
     public Player getKiller() {
-        return this.k;
+    	return this.k;
     }
-
+    
     public CustomPlayer getCustomKiller() {
-        return this.ck;
+    	return this.ck;
     }
-
+    
     public Map getMap() {
-        return this.map;
+    	return this.map;
     }
-
+    
     public Tier getTier() {
-        return this.tier;
+    	return this.tier;
     }
-
+    
     public int getTierId() {
-        return this.tierId;
+    	return this.tierId;
     }
 }

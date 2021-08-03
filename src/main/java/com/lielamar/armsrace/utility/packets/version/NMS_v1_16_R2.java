@@ -26,3 +26,4 @@ public class NMS_v1_16_R2 implements PacketVersion {
 		p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
 	}
 }
+

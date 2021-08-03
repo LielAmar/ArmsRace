@@ -14,33 +14,33 @@ import com.lielamar.armsrace.modules.CustomPlayer;
 public class Spawn implements CommandExecutor {
 
 	private Main main;
-
+	
 	public Spawn(Main main) {
 		this.main = main;
 	}
-
+	
 	@Override
 	public boolean onCommand(CommandSender cs, Command cmd, String cmdLabel, String[] args) {
 		if(!(cs instanceof Player)) {
 			cs.sendMessage(main.getMessages().mustBePlayer());
 			return true;
 		}
-
+		
 		Player p = (Player)cs;
-
+		
 		if(cmd.getName().equalsIgnoreCase("spawn")) {
 			if(main.getSettingsManager().getSpawn() == null) return true;
-
+			
 			if(!cs.hasPermission("armsrace.commands.spawn")) {
 				cs.sendMessage(main.getMessages().noPermissions());
 				return true;
 			}
-
+			
 			if(main.getCombatLogManager().isCombatLog(p)) {
 				p.sendMessage(main.getMessages().youAreStillInCombat(main.getCombatLogManager().getDuration()-main.getCombatLogManager().getCombatLog(p)));
 				return true;
 			}
-
+			
 			p.sendMessage(main.getMessages().teleportingToSpawn());
 			CustomPlayer cp = main.getPlayerManager().getPlayer(p);
 			if(cp.getCurrentMap() != null)

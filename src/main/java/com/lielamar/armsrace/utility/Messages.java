@@ -10,7 +10,7 @@ public class Messages {
 
 	// This class is managing the messages. They are being loaded at the startup & reloaded after reloading the config.
 	// Messages are being updated only once and then you can simply get them via methods
-
+	
 	private final String mustBePlayer;
 	private final String youAreStillInCooldown;
 	private final String notEnoughCoins;
@@ -60,7 +60,7 @@ public class Messages {
 	private final String noLongerInCombat;
 	private final String youAreStillInCombat;
 	private final String teleportingToSpawn;
-
+	
 	public Messages(Config config) {
 		this.mustBePlayer = ChatColor.translateAlternateColorCodes('&', ((String)config.get("MustBePlayer")));
 		this.youAreStillInCooldown = ChatColor.translateAlternateColorCodes('&', ((String)config.get("YouAreStillInCooldown")));
@@ -112,7 +112,7 @@ public class Messages {
 		this.youAreStillInCombat = ChatColor.translateAlternateColorCodes('&', ((String)config.get("YouAreStillInCombat")));
 		this.teleportingToSpawn = ChatColor.translateAlternateColorCodes('&', ((String)config.get("TeleportingToSpawn")));
 	}
-
+	
 	public String mustBePlayer() { return mustBePlayer; }
 	public String youAreStillInCooldown(int seconds) { return youAreStillInCooldown.replaceAll("%seconds%", seconds + ""); }
 	public String notEnoughCoins(double coins) { return notEnoughCoins.replaceAll("%coins%", coins + ""); }

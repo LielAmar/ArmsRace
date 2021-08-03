@@ -10,15 +10,15 @@ import com.lielamar.armsrace.modules.map.Tier;
 
 public class PlayerTierUpEvent extends Event {
 
-    private Player p;
-    private CustomPlayer cp;
-    private Player v;
-    private CustomPlayer cv;
-    private Map map;
-    private Tier tier;
-    private int tierId;
-    private static final HandlerList HANDLERS_LIST = new HandlerList();
-
+	private Player p;
+	private CustomPlayer cp;
+	private Player v;
+	private CustomPlayer cv;
+	private Map map;
+	private Tier tier;
+	private int tierId;
+	private static final HandlerList HANDLERS_LIST = new HandlerList();
+	
     public PlayerTierUpEvent(Player p, CustomPlayer cp, Player v, CustomPlayer cv, Map map, Tier tier, int tierId){
         this.p = p;
         this.cp = cp;
@@ -27,7 +27,7 @@ public class PlayerTierUpEvent extends Event {
         this.tier = tier;
         this.tierId = tierId;
     }
-
+    
 
     @Override
     public HandlerList getHandlers() {
@@ -39,30 +39,30 @@ public class PlayerTierUpEvent extends Event {
     }
 
     public Player getPlayer() {
-        return this.p;
+    	return this.p;
     }
-
+    
     public CustomPlayer getCustomPlayer() {
-        return this.cp;
+    	return this.cp;
     }
 
     public Player getVictim() {
-        return this.v;
+    	return this.v;
     }
-
+    
     public CustomPlayer getCustomVictim() {
-        return this.cv;
+    	return this.cv;
     }
-
+    
     public Map getMap() {
-        return this.map;
+    	return this.map;
     }
-
+    
     public Tier getTier() {
-        return this.tier;
+    	return this.tier;
     }
-
+    
     public int getTierId() {
-        return this.tierId;
+    	return this.tierId;
     }
 }

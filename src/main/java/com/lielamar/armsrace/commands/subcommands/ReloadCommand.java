@@ -14,25 +14,25 @@ public class ReloadCommand extends SubCommand{
 	public void onCommand(Main main, Player p, String[] args) {
 		if(!p.hasPermission("armsrace.commands.reload")) {
 			p.sendMessage(main.getMessages().noPermissions());
-			return;
+	        return;
 		}
-
+		
 		for(ArmorStand as : main.getPlayerManager().getSwordLaunchAs().values()) {
 			as.remove();
 		}
-
+			
 		for(Map map : main.getGameManager().getMapManager().getMaps().values()) {
 			for(Pickup pickup : map.getPickups()) {
 				pickup.getPickup().remove();
 			}
 		}
-
+		
 		main.onDisable();
 		main.registerManagers();
 		p.sendMessage(ChatColor.GREEN + "Reloaded config of ArmsRace!");
 		return;
 	}
-
+	
 	@Override
 	public String name() {
 		return "reload";

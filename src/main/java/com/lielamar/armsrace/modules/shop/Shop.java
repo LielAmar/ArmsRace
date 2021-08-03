@@ -20,7 +20,7 @@ public class Shop {
 	private boolean enabled;
 	private Inventory inv;
 	private List<CustomItem> ci;
-
+	
 	public Shop(String name, boolean enabled, int rows) {
 		this.name = name;
 		this.enabled = enabled;
@@ -51,24 +51,24 @@ public class Shop {
 	public void setInventory(Inventory inv) {
 		this.inv = inv;
 	}
-
+	
 	public void addCustomItem(CustomItem ci) {
 		this.ci.add(ci);
 	}
-
+	
 	/**
 	 * @param cp      A {@link CustomPlayer} object
 	 * @return        A custom inventory for the given player
 	 */
 	public Inventory getCustomInventory(CustomPlayer cp) {
 		InventoryView openInventory = cp.getPlayer().getOpenInventory();
-		Inventory copy = Bukkit.createInventory(null, inv.getSize(), openInventory.getTitle());
+		Inventory copy = Bukkit.createInventory(null, inv.getSize(), ChatColor.translateAlternateColorCodes('&', name));
 		copy.setContents(inv.getContents());
-
+		
 		for(ItemStack i : copy) {
 			if(i == null || i.getType() == Material.AIR) continue;
 			CustomItem ci = getCustomItem(i);
-
+			
 			if(ci.getType() == ItemType.GENERAL) {
 				if(i.hasItemMeta() && i.getItemMeta().hasLore()) {
 					ItemMeta meta = i.getItemMeta();
@@ -107,10 +107,10 @@ public class Shop {
 		}
 		return copy;
 	}
-
+	
 	/**
 	 * Get a custom item from an ItemStack
-	 *
+	 * 
 	 * @param item - itemstack to get the custom item of
 	 * @return - the custom item
 	 */
@@ -125,7 +125,7 @@ public class Shop {
 		}
 		return null;
 	}
-
+	
 	public boolean equal(ItemStack one, ItemStack two) {
 		if(one.hasItemMeta() && two.hasItemMeta()
 				&& one.getItemMeta().hasDisplayName() && two.getItemMeta().hasDisplayName()
@@ -133,7 +133,7 @@ public class Shop {
 			return true;
 		return false;
 	}
-
+	
 	/**
 	 * @param cp      Player to calculate the price of
 	 * @param item    The linked item of a skill
@@ -151,7 +151,7 @@ public class Shop {
 				nextPrice = 0;
 		} else if(item.getType() == ItemType.SKILL) {
 			int nextLevel = cp.getSkillLevel(item.getSkillType())+1;
-
+		
 			for(SkillLevel lvl : item.getLevels()) {
 				if(lvl.getLevel() == nextLevel)
 					nextPrice = lvl.getPrice();

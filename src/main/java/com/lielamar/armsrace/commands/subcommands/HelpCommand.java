@@ -9,11 +9,11 @@ import org.bukkit.entity.Player;
 import com.lielamar.armsrace.Main;
 
 public class HelpCommand extends SubCommand {
-
+	
 	final int commands_per_page = 8;
 	Map<String, String> pluginCommands;
 	final int pages;
-
+	
 	public HelpCommand() {
 		this.pluginCommands = new HashMap<String, String>();
 		this.pluginCommands.put(ChatColor.AQUA + "- " + ChatColor.YELLOW + "/ArmsRace Map Create <Name>", "armsrace.commands.map.create");
@@ -39,23 +39,23 @@ public class HelpCommand extends SubCommand {
 		this.pluginCommands.put(ChatColor.AQUA + "- " + ChatColor.YELLOW + "/ArmsRace event <Map Name> <Event>", "armsrace.commands.events");
 		this.pages = (pluginCommands.size()/commands_per_page)+1;
 	}
-
+	
 	@Override
 	public void onCommand(Main main, Player p, String[] args) {
 		if(args.length == 0) {
-			if(!p.hasPermission("armsrace.commands.help")) {
-				p.sendMessage(main.getMessages().noPermissions());
-				return;
-			}
-
+	        if(!p.hasPermission("armsrace.commands.help")) {
+	        	p.sendMessage(main.getMessages().noPermissions());
+	        	return;
+	        }
+	        
 			sendPages(p, 0);
 		} else {
 			try {
-				if(!p.hasPermission("armsrace.commands.help")) {
-					p.sendMessage(main.getMessages().noPermissions());
-					return;
-				}
-
+		        if(!p.hasPermission("armsrace.commands.help")) {
+		        	p.sendMessage(main.getMessages().noPermissions());
+		        	return;
+		        }
+		        
 				sendPages(p, Integer.parseInt(args[0]));
 			} catch(Exception e) {
 				p.sendMessage(main.getMessages().invalidArgument());
@@ -77,18 +77,18 @@ public class HelpCommand extends SubCommand {
 	public String[] aliases() {
 		return new String[] { "help" };
 	}
-
-
+	
+	
 	/**
 	 * Sends a list of commands based on permissions
-	 *
+	 * 
 	 * @param p       Receiver of the messages
 	 */
 	public void sendPages(Player p, int page) {
 		if(page == 0) page = 1;
 		int counter = 0;
 		int skipper = (page-1)*commands_per_page;
-
+		
 		p.sendMessage(ChatColor.AQUA + "======== " + ChatColor.YELLOW + "ArmsRace (Page " + page + "/" + pages + ")" + ChatColor.AQUA + " ========");
 		for(String s : pluginCommands.keySet()) {
 			if(skipper > 0) {
@@ -97,7 +97,7 @@ public class HelpCommand extends SubCommand {
 			}
 			if(counter < page*commands_per_page) {
 				if(p.hasPermission(pluginCommands.get(s)) || s.length() == 0)
-					p.sendMessage(s);
+				p.sendMessage(s);
 				counter++;
 			}
 		}

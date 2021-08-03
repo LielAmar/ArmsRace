@@ -12,7 +12,7 @@ public class Killstreak {
 	private double coins;
 	private List<ItemStack> items;
 	private List<PotionEffect> effects;
-
+	
 	public Killstreak(int level, double coins) {
 		this.level = level;
 		this.coins = coins;
@@ -27,7 +27,7 @@ public class Killstreak {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-
+	
 	public double getCoins() {
 		return coins;
 	}

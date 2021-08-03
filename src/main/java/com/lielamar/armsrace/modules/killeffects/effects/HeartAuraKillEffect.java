@@ -12,14 +12,14 @@ import com.lielamar.armsrace.modules.killeffects.KillEffect;
 
 public class HeartAuraKillEffect implements KillEffect {
 
-	@Override
+	@Override	
 	public void playKillEffect(Main main, Location loc, Player victim, Player killer) {
 		Random rnd = new Random();
-
+		
 		new BukkitRunnable() {
-
+			
 			int counter = 40;
-
+			
 			@Override
 			public void run() {
 				if(counter <= 0) {

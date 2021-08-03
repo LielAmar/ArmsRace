@@ -22,21 +22,21 @@ public class NMS_v1_12_R1 implements PacketVersion {
 		else
 			p.spawnParticle(Particle.valueOf(trail), loc, amount, td.getR(), td.getG(), td.getB(), 0, null);
 	}
-
+	
 	public void sendTitle(Player p, String title, String subtitle, int fadeInTime, int showTime, int fadeOutTime) {
 		IChatBaseComponent icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + title + "\"}");
 		PacketPlayOutTitle packetTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, icbc, fadeInTime, showTime, fadeOutTime);
 		icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\"}");
 		PacketPlayOutTitle packetSubtitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, icbc, fadeInTime, showTime, fadeOutTime);
-
+		
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packetTitle);
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packetSubtitle);
 	}
-
+	
 	public void sendActionBar(Player p, String message) {
 		IChatBaseComponent icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
 		PacketPlayOutChat packet = new PacketPlayOutChat(icbc, ChatMessageType.GAME_INFO);
-
+		
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
 	}
 }

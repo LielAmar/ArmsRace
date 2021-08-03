@@ -6,7 +6,7 @@ public class CustomLocation {
 
 	private int id;
 	private Location loc;
-
+	
 	public CustomLocation(int id, Location loc) {
 		this.id = id;
 		this.loc = loc;

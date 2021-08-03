@@ -11,11 +11,11 @@ import com.lielamar.armsrace.Main;
 public class OnPinataPickup implements Listener {
 
 	private Main main;
-
+	
 	public OnPinataPickup(Main main) {
 		this.main = main;
 	}
-
+	
 	@EventHandler
 	public void onPickup(PlayerPickupItemEvent e) {
 		String name = e.getItem().getType().name();
@@ -27,8 +27,8 @@ public class OnPinataPickup implements Listener {
 			if (!(name.contains("DYE"))) {
 				return;
 			}
-			if (main.getKillEffectsManager().containsEntity(e.getItem()))
-				e.setCancelled(true);
+				if (main.getKillEffectsManager().containsEntity(e.getItem()))
+					e.setCancelled(true);
+			}
 		}
 	}
-}

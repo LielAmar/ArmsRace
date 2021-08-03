@@ -6,7 +6,7 @@
 
     <groupId>com.lielamar</groupId>
     <artifactId>ArmsRace</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.5</version>
     <packaging>jar</packaging>
 
     <name>ArmsRace</name>
@@ -54,7 +54,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -65,7 +64,6 @@
                 </configuration>
             </plugin>
         </plugins>
-
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -80,7 +78,6 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
-
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
@@ -95,21 +92,18 @@
             <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>
             <version>1.7</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.github.cryptomorin</groupId>
             <artifactId>XSeries</artifactId>
             <version>8.2.0</version>
             <scope>compile</scope>
         </dependency>
-
         <dependency>
             <groupId>spigot</groupId>
             <artifactId>spigot1.8</artifactId>
@@ -117,7 +111,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.8.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>spigot</groupId>
             <artifactId>spigot1.8.3</artifactId>
@@ -125,7 +118,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.8.3.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>spigot</groupId>
             <artifactId>spigot1.8.8</artifactId>
@@ -133,7 +125,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.8.8.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>spigot</groupId>
             <artifactId>spigot1.9.2</artifactId>
@@ -141,7 +132,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.9.2.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>spigot</groupId>
             <artifactId>spigot1.9.4</artifactId>
@@ -149,7 +139,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.9.4.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>spigot</groupId>
             <artifactId>spigot1.10.2</artifactId>
@@ -157,7 +146,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.10.2.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>spigot</groupId>
             <artifactId>spigot1.11.2</artifactId>
@@ -165,7 +153,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.11.2.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>spigot</groupId>
             <artifactId>spigot1.12.2</artifactId>

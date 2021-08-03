@@ -15,16 +15,16 @@ import com.lielamar.armsrace.modules.killeffects.KillEffect;
 
 public class CookieFountainKillEffect implements KillEffect {
 
-	@Override
+	@Override	
 	public void playKillEffect(Main main, Location loc, Player victim, Player killer) {
 		Random rnd = new Random();
 		Location spawnLoc = loc.add(0, 2, 0);
-
+		
 		new BukkitRunnable() {
 			int counter = 30;
 			ItemStack cookie = new ItemStack(Material.COOKIE);
 			ItemMeta meta;
-
+			
 			@Override
 			public void run() {
 				if(counter <= 0) {
@@ -37,7 +37,7 @@ public class CookieFountainKillEffect implements KillEffect {
 				cookie.setItemMeta(meta);
 				Entity ent = spawnLoc.getWorld().dropItemNaturally(spawnLoc, cookie);
 				main.getKillEffectsManager().addEntity(ent);
-
+				
 				new BukkitRunnable() {
 					@Override
 					public void run() {

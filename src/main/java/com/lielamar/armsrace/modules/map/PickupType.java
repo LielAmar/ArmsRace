@@ -18,16 +18,16 @@ public enum PickupType {
 	private final Material material;
 	private final String name;
 
-	PickupType(Main main, String key) {
+	private PickupType(Main main, String key) {
 		this.material = XMaterial.valueOf(main.getConfig().getString("Pickups." + key + ".Item")).parseMaterial();
 		this.name = ChatColor.translateAlternateColorCodes('&', main.getConfig().getString("Pickups." + key + ".Name"));
 	}
-
-	public Material getMaterial() {
-		return this.material;
-	}
-
-	public String getName() {
-		return this.name;
-	}
+	
+    public Material getMaterial() {
+        return this.material;
+    }
+    
+    public String getName() {
+    	return this.name;
+    }
 }

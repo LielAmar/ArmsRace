@@ -13,7 +13,7 @@ public class CustomScoreboard {
 		this.footer = footer;
 		this.lines = lines;
 	}
-
+	
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -29,7 +29,7 @@ public class CustomScoreboard {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	
 	public String getFooter() {
 		return footer;
 	}
@@ -44,5 +44,5 @@ public class CustomScoreboard {
 
 	public void setLines(String[] lines) {
 		this.lines = lines;
-	}
+	}	
 }

@@ -16,7 +16,7 @@ public class MapCommand extends SubCommand {
 			p.sendMessage(main.getMessages().invalidSubCommand());
 			return;
 		}
-
+		
 		// ===========================================================================
 		// ||                                  Map                                  ||
 		// ===========================================================================
@@ -35,7 +35,7 @@ public class MapCommand extends SubCommand {
 				args[0].equalsIgnoreCase("loadtier") || args[0].equalsIgnoreCase("tierload")) {
 			new MapTierHandler().handle(main, p, args);
 		}
-
+		
 		// =================================================================================
 		// ||                                  Locations                                  ||
 		// =================================================================================
@@ -46,7 +46,7 @@ public class MapCommand extends SubCommand {
 				args[0].equalsIgnoreCase("teleportlocation") || args[0].equalsIgnoreCase("locationteleport") || args[0].equalsIgnoreCase("tploc") || args[0].equalsIgnoreCase("loctp")) {
 			new MapLocationHandler().handle(main, p, args);
 		}
-
+		
 		// ==============================================================================
 		// ||                                  Pickup                                  ||
 		// ==============================================================================
@@ -57,7 +57,7 @@ public class MapCommand extends SubCommand {
 				args[0].equalsIgnoreCase("teleportpickuplocation") || args[0].equalsIgnoreCase("pickuplocationteleport") || args[0].equalsIgnoreCase("tppickuploc") || args[0].equalsIgnoreCase("pickuploctp")) {
 			new MapPickupHandler().handle(main, p, args);
 		}
-
+		
 		// =============================================================================
 		// ||                                  Error                                  ||
 		// =============================================================================

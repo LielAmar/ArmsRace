@@ -34,10 +34,10 @@ public class Map {
 	private List<Killstreak> killstreak;
 	private Tier[] tiers;
 	private CustomScoreboard sb;
-
+	
 	private CustomPlayer highestTier;
 	private CustomPlayer highestKillstreak;
-
+	
 	private int healthOnKill;
 	private boolean playersRegen;
 	private boolean foodLevelChange;
@@ -47,12 +47,12 @@ public class Map {
 	private GameMode gamemode;
 	private double coinsPerKill;
 	private int spawnProtection;
-
+	
 	private boolean healingEnabled, doubleDamageEnabled, coinsEnabled, speedEnabled, resistanceEnabled, tierUpEnabled, oneTapEnabled;
-
+	
 	private int minimumMinutesForPickupSpawn;
 	private int maximumMinutesForPickupSpawn;
-
+	
 	private double healthPerPickup;
 	private double doubleDamageDuration;
 	private double coinsPerPickup;
@@ -62,16 +62,16 @@ public class Map {
 	private double resistanceDuration;
 	private int tiersUpAmount;
 	private double oneTapDuration;
-
+	
 	private boolean doubleCoinsEvent, doubleTiersEvent;
-
+	
 	public Map(Main main, String name, int max_players, List<CustomLocation> locations, List<CustomLocation> pickupLocations, List<Killstreak> killstreak,
-			   Tier[] tiers, CustomScoreboard sb,
-			   int healthOnKill, boolean playersRegen, boolean foodLevelChange,
-			   int healthOnJoin, int hungerOnJoin, int maxHealth, GameMode gamemode, double coinsPerKill, int spawnProtection,
-			   boolean healingEnabled, boolean doubleDamageEnabled, boolean coinsEnabled, boolean speedEnabled, boolean resistanceEnabled, boolean tierUpEnabled, boolean oneTapEnabled,
-			   int minimumMinutesForPickupSpawn, int maximumMinutesForPickupSpawn, double healthPerPickup, double doubleDamageDuration, double coinsPerPickup,
-			   int speedLevel, double speedDuration, int resistanceLevel, double resistanceDuration, int tiersUpAmount, double oneTapDuration) {
+			Tier[] tiers, CustomScoreboard sb,
+			int healthOnKill, boolean playersRegen, boolean foodLevelChange,
+			int healthOnJoin, int hungerOnJoin, int maxHealth, GameMode gamemode, double coinsPerKill, int spawnProtection,
+			boolean healingEnabled, boolean doubleDamageEnabled, boolean coinsEnabled, boolean speedEnabled, boolean resistanceEnabled, boolean tierUpEnabled, boolean oneTapEnabled,
+			int minimumMinutesForPickupSpawn, int maximumMinutesForPickupSpawn, double healthPerPickup, double doubleDamageDuration, double coinsPerPickup,
+			int speedLevel, double speedDuration, int resistanceLevel, double resistanceDuration, int tiersUpAmount, double oneTapDuration) {
 		this.main = main;
 		this.name = name;
 		this.rnd = new Random();
@@ -82,10 +82,10 @@ public class Map {
 		this.pickups = new ArrayList<Pickup>();
 		this.tiers = tiers;
 		this.sb = sb;
-
+		
 		this.highestKillstreak = null;
 		this.highestTier = null;
-
+		
 		this.healthOnKill = healthOnKill;
 		this.playersRegen = playersRegen;
 		this.foodLevelChange = foodLevelChange;
@@ -95,7 +95,7 @@ public class Map {
 		this.gamemode = gamemode;
 		this.coinsPerKill = coinsPerKill;
 		this.spawnProtection = spawnProtection;
-
+		
 		this.healingEnabled = healingEnabled;
 		this.doubleDamageEnabled = doubleDamageEnabled;
 		this.coinsEnabled = coinsEnabled;
@@ -103,10 +103,10 @@ public class Map {
 		this.resistanceEnabled = resistanceEnabled;
 		this.tierUpEnabled = tierUpEnabled;
 		this.oneTapEnabled = oneTapEnabled;
-
+		
 		this.minimumMinutesForPickupSpawn = minimumMinutesForPickupSpawn;
 		this.maximumMinutesForPickupSpawn = maximumMinutesForPickupSpawn;
-
+		
 		this.healthPerPickup = healthPerPickup;
 		this.doubleDamageDuration = doubleDamageDuration;
 		this.coinsPerPickup = coinsPerPickup;
@@ -116,10 +116,10 @@ public class Map {
 		this.resistanceDuration = resistanceDuration;
 		this.tiersUpAmount = tiersUpAmount;
 		this.oneTapDuration = oneTapDuration;
-
+		
 		this.doubleCoinsEvent = false;
 		this.doubleTiersEvent = false;
-
+		
 		startPickupTimer();
 	}
 
@@ -146,7 +146,7 @@ public class Map {
 	public void setLocations(List<CustomLocation> locations) {
 		this.locations = locations;
 	}
-
+	
 	public List<CustomLocation> getPickupLocations() {
 		return pickupLocations;
 	}
@@ -154,7 +154,7 @@ public class Map {
 	public void setPickupLocations(List<CustomLocation> pickupLocations) {
 		this.pickupLocations = pickupLocations;
 	}
-
+	
 	public Tier[] getTiers() {
 		return tiers;
 	}
@@ -170,22 +170,22 @@ public class Map {
 	public void setPickups(List<Pickup> pickups) {
 		this.pickups = pickups;
 	}
-
+	
 	public List<Killstreak> getKillstreak() {
 		return killstreak;
 	}
-
+	
 	public Killstreak getKillstreak(int level) {
 		for(Killstreak ks : killstreak) {
 			if(level == ks.getLevel()) return ks;
 		}
 		return null;
 	}
-
+	
 	public void setKillstreak(List<Killstreak> killstreak) {
 		this.killstreak = killstreak;
 	}
-
+	
 	public CustomScoreboard getSb() {
 		return sb;
 	}
@@ -210,7 +210,7 @@ public class Map {
 		this.highestTier = highestTier;
 	}
 
-
+	
 	public int getHealthOnKill() {
 		return this.healthOnKill;
 	}
@@ -218,7 +218,7 @@ public class Map {
 	public void setHealthOnKill(int healthOnKill) {
 		this.healthOnKill = healthOnKill;
 	}
-
+	
 	public boolean isPlayersRegen() {
 		return playersRegen;
 	}
@@ -284,7 +284,7 @@ public class Map {
 	public void setSpawnProtection(int spawnProtection) {
 		this.spawnProtection = spawnProtection;
 	}
-
+	
 	public boolean isHealingEnabled() {
 		return healingEnabled;
 	}
@@ -356,7 +356,7 @@ public class Map {
 	public void setMaximumMinutesForPickupSpawn(int maximumMinutesForPickupSpawn) {
 		this.maximumMinutesForPickupSpawn = maximumMinutesForPickupSpawn;
 	}
-
+	
 	public double getHealthPerPickup() {
 		return healthPerPickup;
 	}
@@ -380,7 +380,7 @@ public class Map {
 	public void setCoinsPerPickup(double coinsPerPickup) {
 		this.coinsPerPickup = coinsPerPickup;
 	}
-
+	
 	public int getSpeedLevel() {
 		return speedLevel;
 	}
@@ -428,7 +428,7 @@ public class Map {
 	public void setOneTapDuration(double oneTapDuration) {
 		this.oneTapDuration = oneTapDuration;
 	}
-
+	
 	public boolean isDoubleCoinsEvent() {
 		return doubleCoinsEvent;
 	}
@@ -453,22 +453,22 @@ public class Map {
 		}
 		return null;
 	}
-
+	
 	public CustomLocation getPickupLocation(int id) {
 		for(CustomLocation cl : pickupLocations) {
 			if(cl.getId() == id) return cl;
 		}
 		return null;
 	}
-
+	
 	/**
 	 * Starts the pickup timer (spawns a pickup in random times)
 	 */
 	public void startPickupTimer() {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
-
+			
 			int time = rnd.nextInt((maximumMinutesForPickupSpawn*60) - (minimumMinutesForPickupSpawn*60) + 1) + (minimumMinutesForPickupSpawn*60);
-
+			
 			@Override
 			public void run() {
 				time = time-1;
@@ -479,7 +479,7 @@ public class Map {
 			}
 		}, 0L, 20L);
 	}
-
+	
 	/**
 	 * @param type      The type of pickup we want to check
 	 * @return          Is the pickup type valid
@@ -499,7 +499,7 @@ public class Map {
 		int type = rnd.nextInt(7-1+1)+1;
 		CustomLocation randomLoc = getRandomPickupLocation();
 		if(randomLoc == null) return;
-
+		
 		List<Pickup> removePickups = new ArrayList<Pickup>();
 		for(Pickup pickup : pickups) {
 			if(pickup == null) removePickups.add(pickup);
@@ -508,16 +508,16 @@ public class Map {
 				removePickups.add(pickup);
 			}
 		}
-
+		
 		for(Pickup pickup : removePickups) {
 			pickup.getPickup().remove();
 			pickups.remove(pickup);
 		}
-
+		
 		while(!isValidType(type)) {
 			type = rnd.nextInt(7-1+1)+1;
 		}
-
+		
 		Pickup pickup = new Pickup(this, PickupType.HEALTH, randomLoc.getLoc());
 		if(type == 1) {
 			pickup = new Pickup(this, PickupType.HEALTH, randomLoc.getLoc());
@@ -543,16 +543,16 @@ public class Map {
 			}
 		}
 	}
-
+	
 	/**
 	 * Adds a new Tier
-	 *
+	 * 
 	 * @param armor       Armor to set to the tier
 	 * @param content     Content to set to the tier
 	 */
 	public void addTier(ItemStack[] armor, ItemStack[] content) {
 		Tier[] newTiers = new Tier[this.tiers.length+1];
-
+		
 		int i = 0;
 		for(i = 0; i < this.tiers.length; i++) {
 			newTiers[i] = tiers[i];
@@ -560,10 +560,10 @@ public class Map {
 		newTiers[i] = new Tier(armor, content);
 		this.tiers = newTiers;
 	}
-
+	
 	/**
 	 * Sets a tier by id
-	 *
+	 * 
 	 * @param tier      Id of the tier to edit
 	 * @param armor     Armor to set to the tier
 	 * @param content   Content to set to the tier
@@ -571,15 +571,15 @@ public class Map {
 	public void setTier(int tier, ItemStack[] armor, ItemStack[] content) {
 		this.tiers[tier] = new Tier(armor, content);
 	}
-
+	
 	/**
 	 * Removes a tier by id
-	 *
+	 * 
 	 * @param tier     Id of tier to remove
 	 */
 	public void removeTier(int tier) {
 		Tier[] newTiers = new Tier[this.tiers.length-1];
-
+		
 		int counter = 0;
 		for(int i = 0; i < this.tiers.length; i++) {
 			if(i == tier)
@@ -590,20 +590,20 @@ public class Map {
 		}
 		this.tiers = newTiers;
 	}
-
+	
 	/**
 	 * Adds a new location by id
-	 *
+	 * 
 	 * @param id          Id of the location to add
 	 * @param location    Location to attach to the id
 	 */
 	public void addLocation(int id, Location location) {
 		locations.add(new CustomLocation(id, location));
 	}
-
+	
 	/**
 	 * Sets a location by id
-	 *
+	 * 
 	 * @param id         Id of the location to edit
 	 * @param loc        Location to attack to the id
 	 */
@@ -613,10 +613,10 @@ public class Map {
 				location.setLoc(loc);
 		}
 	}
-
+	
 	/**
 	 * Removes a location by id
-	 *
+	 * 
 	 * @param id       Id of the location to remove
 	 */
 	public void removeLocation(int id) {
@@ -635,20 +635,20 @@ public class Map {
 		}
 		System.gc();
 	}
-
+	
 	/**
 	 * Adds a new pickup location by id
-	 *
+	 * 
 	 * @param id         Id of the new location
 	 * @param location   Location to attach to the id
 	 */
 	public void addPickupLocation(int id, Location location) {
 		pickupLocations.add(new CustomLocation(id, location));
 	}
-
+	
 	/**
 	 * Sets a pickup location by id
-	 *
+	 * 
 	 * @param id      Id of the location to edit
 	 * @param loc     Location to attack to the id
 	 */
@@ -658,10 +658,10 @@ public class Map {
 				location.setLoc(loc);
 		}
 	}
-
+	
 	/**
 	 * Removes a pickup location by id
-	 *
+	 * 
 	 * @param id       Id of the location to remove
 	 */
 	public void removePickupLocation(int id) {
@@ -680,7 +680,7 @@ public class Map {
 		}
 		System.gc();
 	}
-
+	
 	/**
 	 * @return      Id of the available slot (-1 if none exists)
 	 */
@@ -690,18 +690,21 @@ public class Map {
 			if(players[i] == null)
 				slot = i;
 		}
-
+		
 		return slot;
 	}
-
+	
 	/**
 	 * @return      Random location from the CustomLocation list
 	 */
 	public CustomLocation getRandomLocation() {
+		if (locations.size() == 0) {
+			return null;
+		}
 		int i = rnd.nextInt(locations.size()-1+1)+0;
 		return getLocation(i);
 	}
-
+	
 	/**
 	 * @return      Random pickup location from the CustomLocation list
 	 */
@@ -710,36 +713,36 @@ public class Map {
 		int i = rnd.nextInt(pickupLocations.size()-1+1)+0;
 		return getPickupLocation(i);
 	}
-
+	
 	public void addPlayer(Player p) {
 		if(getLocations().size() == 0) {
 			p.sendMessage(main.getMessages().cantJoinMapBecauseNoLocations());
 			return;
 		}
-
+		
 		if(getTiers().length == 0) {
 			p.sendMessage(main.getMessages().cantJoinMapBecauseNoTiers());
 			return;
 		}
-
+		
 		CustomPlayer cp = main.getPlayerManager().getPlayer(p);
-
+		
 		if(cp.getCurrentMap() != null) {
 			p.sendMessage(main.getMessages().youAreAlreadyInAMap());
 			return;
 		}
-
+		
 		int availableSlot = this.getAvailableSlot();
 		if(availableSlot == -1) {
 			p.sendMessage(main.getMessages().noAvailableRoom());
-			return;
+        	return;
 		}
-
+		
 		PlayerJoinMapEvent e = new PlayerJoinMapEvent(p, cp, this);
 		Bukkit.getPluginManager().callEvent(e);
 		if(e.isCancelled())
 			return;
-
+		
 		this.getPlayers()[availableSlot] = cp;
 		cp.setCurrentMap(this);
 		cp.setCurrentTier(this.getTiers()[0]);
@@ -748,13 +751,13 @@ public class Map {
 
 		p.teleport(this.getRandomLocation().getLoc());
 		Utils.clearPlayer(main, p, healthOnJoin, hungerOnJoin, cp.getPlayer().getMaxHealth(), gamemode, spawnProtection);
-
+		
 		if(cp.getSkillLevel("EXTRA_HEALTH") > 0) {
 			int maxHealth = 20+main.getSettingsManager().getExtraHealthAmount().get(cp.getSkillLevel("EXTRA_HEALTH"));
 			cp.getPlayer().setMaxHealth(maxHealth);
 			cp.getPlayer().setHealth(maxHealth);
 		}
-
+		
 		if(cp.getSkillLevel("SPAWN_RESISTANCE") > 0)
 			cp.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, main.getSettingsManager().getSpawnResistanceDuration().get(cp.getSkillLevel("SPAWN_RESISTANCE"))*20, 0));
 
@@ -764,33 +767,33 @@ public class Map {
 			if(chance <= main.getSettingsManager().getSpawnGappleRate().get(cp.getSkillLevel("SPAWN_GAPPLE")))
 				cp.getPlayer().getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE));
 		}
-
+		
 		main.getPacketHandler().getNMSHandler().sendTitle(p, main.getMessages().joiningArena(), "", 20, 40, 20);
-
+		
 		main.getScoreboardManager().removePlayer(cp);
 		main.getScoreboardManager().addPlayer(cp);
 	}
-
+	
 	public void removePlayer(Player p, LeaveReason reason) {
 		CustomPlayer cp = main.getPlayerManager().getPlayer(p);
-
+		
 		if(cp.getCurrentMap() == null) {
 			p.sendMessage(main.getMessages().youAreNotInAMap());
 			return;
 		}
-
+		
 		for(int i = 0; i < this.getPlayers().length; i++) {
 			if(this.getPlayers()[i] == cp)
 				this.getPlayers()[i] = null;
 		}
-
+		
 		if(reason != LeaveReason.RELOAD) {
 			PlayerLeaveMapEvent e = new PlayerLeaveMapEvent(reason, p, cp, this);
 			Bukkit.getPluginManager().callEvent(e);
 			if(e.isCancelled())
 				return;
 		}
-
+		
 		cp.setCurrentMap(null);
 		cp.setCurrentTier(null);
 		cp.setCurrentTierId(0);
@@ -799,7 +802,7 @@ public class Map {
 		cp.getPlayer().setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
 		cp.getPlayer().setMaxHealth(20);
 		cp.getPlayer().getInventory().clear();
-
+		
 		if(this.main.getSettingsManager().getSpawn() == null) {
 			cp.getPlayer().damage(cp.getPlayer().getMaxHealth()*20);
 			cp.getPlayer().spigot().respawn();
@@ -807,9 +810,9 @@ public class Map {
 			cp.getPlayer().teleport(this.main.getSettingsManager().getSpawn());
 			Utils.clearPlayer(main, p, 20, 20, maxHealth, gamemode, spawnProtection);
 		}
-
+		
 		main.getPacketHandler().getNMSHandler().sendTitle(p, main.getMessages().leavingArena(), "", 20, 40, 20);
-
+		
 		main.getScoreboardManager().removePlayer(cp);
 		main.getScoreboardManager().addPlayer(cp);
 	}

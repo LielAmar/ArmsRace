@@ -14,18 +14,18 @@ public class JoinCommand extends SubCommand {
 			return;
 		} else {
 			String mapName = args[0];
-
+			
 			Map map = main.getGameManager().getMapManager().getMap(mapName);
 			if(map == null) {
 				p.sendMessage(main.getMessages().couldntFindMap(mapName));
-				return;
+	        	return;
 			}
-
+			
 			if(!p.hasPermission("armsrace.commands.join.*") && !p.hasPermission("armsrace.commands.join." + map.getName())) {
 				p.sendMessage(main.getMessages().noPermissions());
-				return;
+	        	return;
 			}
-
+			
 			map.addPlayer(p);
 			return;
 		}
@@ -40,7 +40,7 @@ public class JoinCommand extends SubCommand {
 	public String info() {
 		return "ArmsRace join";
 	}
-
+	
 	@Override
 	public String[] aliases() {
 		return new String[] { "j" };

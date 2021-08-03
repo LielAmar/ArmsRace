@@ -16,8 +16,8 @@ CombatLogDuration: 15
 # that aren't in an arena/their arena doesn't have a scoreboard!
 Scoreboard:
     Enabled: true
-    Title: "&fArmsRace"
-    Footer: "&ewww.<servername>.com"
+    Title: "   &e&lArmsRace   "
+    Footer: "&ewww.spigotmc.org"
     Lines:
     - " "
     - "&fName: &a%name%"

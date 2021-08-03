@@ -10,7 +10,7 @@ import com.lielamar.armsrace.Main;
 public class OnDurabilityChange implements Listener {
 
 	private Main main;
-
+	
 	public OnDurabilityChange(Main main) {
 		this.main = main;
 	}

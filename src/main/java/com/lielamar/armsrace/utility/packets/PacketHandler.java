@@ -14,7 +14,6 @@ public class PacketHandler {
 			version = Bukkit.getServer().getClass().getPackage().getName().toString().split("\\.")[3];
 		} catch (Exception e) {
 			e.printStackTrace();
-			return;
 		}
 
 		System.out.println("[ArmsRace] Your version: " + version);
@@ -56,7 +55,7 @@ public class PacketHandler {
 			this.nmsHandler = null;
 		}
 	}
-
+	
 	/**
 	 * @return     A {@link PacketVersion} object depending on the server version
 	 */

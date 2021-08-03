@@ -11,23 +11,23 @@ import com.lielamar.armsrace.Main;
 public class OnTNTKillEffect implements Listener {
 
 	private Main main;
-
+	
 	public OnTNTKillEffect(Main main) {
 		this.main = main;
 	}
-
+	
 	@EventHandler
 	public void onTNT(EntityExplodeEvent e) {
 		if(!(e.getEntity() instanceof TNTPrimed)) return;
-
+		
 		if(main.getKillEffectsManager().containsEntity(e.getEntity()))
 			e.blockList().clear();
 	}
-
+	
 	@EventHandler
 	public void onDamageTNT(EntityDamageByEntityEvent e) {
 		if(!(e.getDamager() instanceof TNTPrimed)) return;
-
+		
 		if(main.getKillEffectsManager().containsEntity(e.getDamager())) {
 			e.setCancelled(true);
 		}

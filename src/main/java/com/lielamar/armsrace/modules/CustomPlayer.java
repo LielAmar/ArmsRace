@@ -24,7 +24,7 @@ public class CustomPlayer {
 
 	private Main main;
 	private Player p;
-
+	
 	// In Game Variables
 	private com.lielamar.armsrace.modules.map.Map currentMap;
 	private Tier currentTier;
@@ -33,43 +33,43 @@ public class CustomPlayer {
 	private int killstreak;
 	private Player lastDamager;
 	private Long swordLaunch;
-
+	
 	// Data Save Variables
 	private LinkedTreeMap<String, Double> kills;
 	private LinkedTreeMap<String, Double> deaths;
 	private LinkedTreeMap<String, Double> hightier;
-
+	
 	private LinkedTreeMap<String, Double> skills;
-
+	
 	private String currenttrail;
 	private LinkedTreeMap<String, Boolean> trails;
 	private LinkedTreeMap<Character, Integer> currenttraildata;
-
+	
 	private String currentkilleffect;
 	private LinkedTreeMap<String, Boolean> killeffects;
-
+	
 	private File path;
 	private File f;
-
+	
 	public CustomPlayer(Main main, Player p) {
 		this.main = main;
 		this.p = p;
-
+		
 		this.currentTier = null;
 		this.currentTierId = -1;
 		this.setLeftMap(false);
 		this.killstreak = 0;
 		this.lastDamager = null;
 		this.swordLaunch = (long) -1;
-
+		
 		this.path = new File(this.main.getDataFolder() + "/players/");
 		if(!this.path.exists())
 			this.path.mkdir();
 		this.f = new File(path.getPath() + "/" + this.p.getUniqueId().toString() + ".json");
-
+		
 		setup();
 	}
-
+	
 	public Player getPlayer() {
 		return p;
 	}
@@ -77,26 +77,26 @@ public class CustomPlayer {
 	public void setPlayer(Player p) {
 		this.p = p;
 	}
-
+	
 	public Tier getCurrentTier() {
 		return this.currentTier;
 	}
-
+	
 	public void setCurrentTier(Tier tier) {
 		this.currentTier = tier;
 		if(this.currentMap == null) return;
-
+		
 		if(tier != null) {
 			this.p.getInventory().setArmorContents(tier.getArmor());
 			this.p.getInventory().setContents(tier.getContent());
 		}
 		this.p.updateInventory();
 	}
-
+	
 	public int getCurrentTierId() {
 		return this.currentTierId;
 	}
-
+	
 	public void setCurrentTierId(int tier) {
 		this.currentTierId = tier;
 		p.setLevel(tier);
@@ -104,7 +104,7 @@ public class CustomPlayer {
 		if(this.currentMap.getHighestTier() == null || this.currentMap.getHighestTier().getCurrentTierId() < this.getCurrentTierId())
 			this.currentMap.setHighestTier(this);
 	}
-
+	
 	public boolean isLeftMap() {
 		return LeftMap;
 	}
@@ -112,54 +112,54 @@ public class CustomPlayer {
 	public void setLeftMap(boolean leftMap) {
 		LeftMap = leftMap;
 	}
-
+	
 	public int getKillstreak() {
 		return killstreak;
 	}
-
+	
 	public void setSkillLevel(String skill, int level) {
 		double lvl = (double)level;
 		this.skills.put(skill, lvl);
 		save();
 	}
-
+	
 	public boolean setTrails(String trail, boolean value) {
 		this.trails.put(trail, value);
 		save();
 		return value;
 	}
-
+	
 	public void setCurrentTrail(String trail) {
 		this.currenttrail = trail;
 		save();
 	}
-
+	
 	public String getCurrentTrail() {
 		return this.currenttrail;
 	}
-
+	
 	public void setCurrentTrailData(TrailData td) {
 		this.currenttraildata.put('r', td.getR());
 		this.currenttraildata.put('g', td.getG());
 		this.currenttraildata.put('b', td.getB());
 		save();
 	}
-
+	
 	public boolean setKillEffects(String killeffect, boolean value) {
 		this.killeffects.put(killeffect, value);
 		save();
 		return value;
 	}
-
+	
 	public void setCurrentKillEffect(String killeffect) {
 		this.currentkilleffect = killeffect;
 		save();
 	}
-
+	
 	public String getCurrentKillEffect() {
 		return this.currentkilleffect;
 	}
-
+	
 	public Player getLastDamager() {
 		return lastDamager;
 	}
@@ -175,15 +175,15 @@ public class CustomPlayer {
 	public void setSwordLaunch(Long swordLaunch) {
 		this.swordLaunch = swordLaunch;
 	}
-
+	
 	public com.lielamar.armsrace.modules.map.Map getCurrentMap() {
 		return this.currentMap;
 	}
-
+	
 	public void setCurrentMap(com.lielamar.armsrace.modules.map.Map map) {
 		this.currentMap = map;
 	}
-
+	
 	public File getFile() {
 		return f;
 	}
@@ -191,7 +191,7 @@ public class CustomPlayer {
 	public void setFile(File f) {
 		this.f = f;
 	}
-
+	
 	public int getCoins() {
 		return (int)main.getPlayerManager().getEconomy().getBalance(this.p);
 	}
@@ -200,26 +200,26 @@ public class CustomPlayer {
 		main.getPlayerManager().getEconomy().withdrawPlayer(this.p, getCoins());
 		return main.getPlayerManager().getEconomy().depositPlayer(this.p, coins).balance;
 	}
-
+	
 	public double giveCoins(double coins) {
 		return main.getPlayerManager().getEconomy().depositPlayer(this.p, coins).balance;
 	}
-
+	
 	public double takeCoins(double coins) {
 		return main.getPlayerManager().getEconomy().withdrawPlayer(this.p, coins).balance;
 	}
-
+	
 	public double getKills(String mapName) {
 		if(!this.kills.containsKey(mapName))
 			this.kills.put(mapName, 0.0);
 		return this.kills.get(mapName);
 	}
-
+	
 	private void setKills(String mapName, double kills) {
 		this.kills.put(mapName, kills);
 		save();
 	}
-
+	
 	public void addKill(String mapName) {
 		this.setKills(mapName, getKills(mapName)+1);
 	}
@@ -229,20 +229,20 @@ public class CustomPlayer {
 			this.deaths.put(mapName, 0.0);
 		return this.deaths.get(mapName);
 	}
-
+	
 	private void setDeaths(String mapName, double deaths) {
 		this.deaths.put(mapName, deaths);
 		save();
 	}
-
+	
 	public void addDeath(String mapName) {
 		this.setDeaths(mapName, getDeaths(mapName)+1);
 	}
-
+	
 	public boolean containsHightier(String mapName) {
 		return this.hightier.containsKey(mapName);
 	}
-
+	
 	public double getHightier(String mapName) {
 		return this.hightier.get(mapName);
 	}
@@ -251,7 +251,7 @@ public class CustomPlayer {
 		this.hightier.put(mapName, tier);
 		save();
 	}
-
+	
 	/**
 	 * @param skill    Name of skill
 	 * @return         Level of a given skill
@@ -264,9 +264,8 @@ public class CustomPlayer {
 		this.skills.put(skill, 0.0);
 		return 0;
 	}
-
+	
 	/**
-	 * @param skill    Name of trail
 	 * @return         Whether or not the player has the trail
 	 */
 	public boolean hasTrail(String trail) {
@@ -274,7 +273,7 @@ public class CustomPlayer {
 			return this.trails.get(trail);
 		return setTrails(trail, false);
 	}
-
+	
 	/**
 	 * @return         Current player's trail data
 	 */
@@ -285,10 +284,9 @@ public class CustomPlayer {
 			return new TrailData(this.currenttraildata.get('r'), this.currenttraildata.get('g'), this.currenttraildata.get('b'));
 		return null;
 	}
-
-
+	
+	
 	/**
-	 * @param skill    Name of killeffect
 	 * @return         Whether or not the player has the killeffect
 	 */
 	public boolean hasKilleffect(String killeffect) {
@@ -296,10 +294,10 @@ public class CustomPlayer {
 			return this.killeffects.get(killeffect);
 		return setKillEffects(killeffect, false);
 	}
-
+	
 	/**
 	 * Sets player's killstreak
-	 *
+	 * 
 	 * @param killstreak     Killstreak level
 	 */
 	public void setKillstreak(int killstreak) {
@@ -307,7 +305,7 @@ public class CustomPlayer {
 		if(this.currentMap == null) return;
 		if(this.currentMap.getHighestKillstreak() == null || this.currentMap.getHighestKillstreak().getKillstreak() < this.getKillstreak())
 			this.currentMap.setHighestKillstreak(this);
-
+		
 		Killstreak ks = this.currentMap.getKillstreak(this.killstreak);
 		if(ks != null) {
 			for(ItemStack item : ks.getItems())
@@ -318,7 +316,7 @@ public class CustomPlayer {
 			this.p.sendMessage(main.getMessages().killStreakReward(ks));
 		}
 	}
-
+	
 	/**
 	 * @return       Sum of kills from available maps
 	 */
@@ -329,7 +327,7 @@ public class CustomPlayer {
 		}
 		return sum;
 	}
-
+	
 	/**
 	 * @return       Sum of deaths from available maps
 	 */
@@ -340,24 +338,24 @@ public class CustomPlayer {
 		}
 		return sum;
 	}
-
+	
 
 	/**
 	 * Sets up the player's data
 	 */
 	public void setup() {
-		this.kills = new LinkedTreeMap <String, Double>();
-		this.deaths = new LinkedTreeMap <String, Double>();
-		this.hightier = new LinkedTreeMap <String, Double>();
-		this.skills = new LinkedTreeMap <String, Double>();
-
+		this.kills = new LinkedTreeMap<>();
+		this.deaths = new LinkedTreeMap<>();
+		this.hightier = new LinkedTreeMap<>();
+		this.skills = new LinkedTreeMap<>();
+		
 		this.currenttrail = "";
-		this.trails = new LinkedTreeMap <String, Boolean>();
-		this.currenttraildata = new LinkedTreeMap <Character, Integer>();
-
+		this.trails = new LinkedTreeMap<>();
+		this.currenttraildata = new LinkedTreeMap<>();
+		
 		this.currentkilleffect = "";
-		this.killeffects = new LinkedTreeMap<String, Boolean>();
-
+		this.killeffects = new LinkedTreeMap<>();
+		
 		if(!this.f.exists()) {
 			save();
 		} else {
@@ -365,26 +363,26 @@ public class CustomPlayer {
 			save();
 		}
 	}
-
+	
 	/**
 	 * Save the JSON file
 	 */
 	public void save() {
 		try {
-			Map<String, Object> values = new HashMap<String, Object>();
+			Map<String, Object> values = new HashMap<>();
 			values.put("name", p.getName());
 			values.put("skills", this.skills);
 			values.put("kills", this.kills);
 			values.put("deaths", this.deaths);
 			values.put("hightier", this.hightier);
-
+			
 			values.put("currenttrail", this.currenttrail);
 			values.put("trails", this.trails);
 			values.put("currenttraildata", this.currenttraildata);
-
+			
 			values.put("currentkilleffect", this.currentkilleffect);
 			values.put("killeffects", this.killeffects);
-
+			
 			Writer writer = new FileWriter(this.f);
 			new Gson().toJson(values, writer);
 			writer.close();
@@ -392,7 +390,7 @@ public class CustomPlayer {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Load the JSON file
 	 */
@@ -400,49 +398,49 @@ public class CustomPlayer {
 	public void load() {
 		try {
 			Gson gson = new Gson();
-			Reader reader = Files.newBufferedReader(this.f.toPath());
-			Map<?, ?> values = gson.fromJson(reader, Map.class);
-
-			if(values.containsKey("kills")) {
-				this.kills = (LinkedTreeMap<String, Double>) values.get("kills");
+		    Reader reader = Files.newBufferedReader(this.f.toPath());
+		    Map<?, ?> values = gson.fromJson(reader, Map.class);
+		    
+		    if(values.containsKey("kills")) {
+		    	this.kills = (LinkedTreeMap<String, Double>) values.get("kills");
+			}   
+		    
+		    if(values.containsKey("deaths")) {
+		    	this.deaths = (LinkedTreeMap<String, Double>) values.get("deaths");
 			}
+		    
+		    if(values.containsKey("hightier")) {
+		    	this.hightier = (LinkedTreeMap<String, Double>) values.get("hightier");
+		    }
+		    
+		  
+		    if(values.containsKey("skills")) {
+		    	this.skills = (LinkedTreeMap<String, Double>) values.get("skills");  
+		    }
+		    
+		    
+		    if(values.containsKey("currenttrail")) {
+		    	this.currenttrail = (String) values.get("currenttrail");
+		    }
+		    
+		    if(values.containsKey("trails")) {
+		    	this.trails = (LinkedTreeMap<String, Boolean>) values.get("trails");  
+		    }
+		    
+		    if(values.containsKey("currenttraildata")) {
+		    	this.currenttraildata = (LinkedTreeMap<Character, Integer>) values.get("currenttraildata");
+		    }
+		    
+		    
+		    if(values.containsKey("currentkilleffect")) {
+		    	this.currentkilleffect = (String) values.get("currentkilleffect");
+		    }
+		    
+		    if(values.containsKey("killeffects")) {
+		    	this.killeffects = (LinkedTreeMap<String, Boolean>) values.get("killeffects");
+		    }
 
-			if(values.containsKey("deaths")) {
-				this.deaths = (LinkedTreeMap<String, Double>) values.get("deaths");
-			}
-
-			if(values.containsKey("hightier")) {
-				this.hightier = (LinkedTreeMap<String, Double>) values.get("hightier");
-			}
-
-
-			if(values.containsKey("skills")) {
-				this.skills = (LinkedTreeMap<String, Double>) values.get("skills");
-			}
-
-
-			if(values.containsKey("currenttrail")) {
-				this.currenttrail = (String) values.get("currenttrail");
-			}
-
-			if(values.containsKey("trails")) {
-				this.trails = (LinkedTreeMap<String, Boolean>) values.get("trails");
-			}
-
-			if(values.containsKey("currenttraildata")) {
-				this.currenttraildata = (LinkedTreeMap<Character, Integer>) values.get("currenttraildata");
-			}
-
-
-			if(values.containsKey("currentkilleffect")) {
-				this.currentkilleffect = (String) values.get("currentkilleffect");
-			}
-
-			if(values.containsKey("killeffects")) {
-				this.killeffects = (LinkedTreeMap<String, Boolean>) values.get("killeffects");
-			}
-
-			reader.close();
+		    reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

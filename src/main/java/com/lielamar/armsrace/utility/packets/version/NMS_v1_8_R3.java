@@ -31,7 +31,7 @@ public class NMS_v1_8_R3 implements PacketVersion {
 		PacketPlayOutTitle packetTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, icbc, fadeInTime, showTime, fadeOutTime);
 		icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\"}");
 		PacketPlayOutTitle packetSubtitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, icbc, fadeInTime, showTime, fadeOutTime);
-
+		
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packetTitle);
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packetSubtitle);
 	}
@@ -39,7 +39,7 @@ public class NMS_v1_8_R3 implements PacketVersion {
 	public void sendActionBar(Player p, String message) {
 		IChatBaseComponent icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
 		PacketPlayOutChat packet = new PacketPlayOutChat(icbc, (byte)2);
-
+		
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
 	}
 }

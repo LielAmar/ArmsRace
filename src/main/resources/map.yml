@@ -72,7 +72,7 @@ Pickups:
 Scoreboard:
     Enabled: true
     Title: "&f%mapname%"
-    Footer: "&ewww.<servername>.com"
+    Footer: "&ewww.spigotmc.org"
     Lines:
     - " "
     - "&fName: &a%name%"

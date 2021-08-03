@@ -50,7 +50,7 @@ shops:
         data:
             10:
                 enabled: true
-                material: GOLD_SWORD
+                material: GOLDEN_SWORD
                 quantity: 1
                 name: "&eSword Launch"
                 lore:
@@ -68,13 +68,13 @@ shops:
                     - "&7Price: &e%price%"
                 levels:
                     1:
-                        price: 1000.0
+                        price: 1000
                     2:
-                        price: 2500.0
+                        price: 2500
                     3:
-                        price: 5000.0
+                        price: 5000
                     4:
-                        price: 10000.0
+                        price: 10000
                 skill: SWORD_LAUNCH
             11:
                 enabled: true
@@ -96,13 +96,13 @@ shops:
                     - "&7Price: &e%price%"
                 levels:
                     1:
-                        price: 500.0
+                        price: 500
                     2:
-                        price: 1000.0
+                        price: 1000
                     3:
-                        price: 2500.0
+                        price: 2500
                     4:
-                        price: 5000.0
+                        price: 5000
                 skill: HEAD_SHOT
             12:
                 enabled: true
@@ -123,15 +123,15 @@ shops:
                     - "&7Price: &e%price%"
                 levels:
                     1:
-                        price: 500.0
+                        price: 500
                     2:
-                        price: 1000.0
+                        price: 1000
                     3:
-                        price: 2000.0
+                        price: 2000
                     4:
-                        price: 4000.0
+                        price: 4000
                     5:
-                        price: 8000.0
+                        price: 8000
                 skill: EXTRA_GOLD
             13:
                 enabled: true
@@ -153,11 +153,11 @@ shops:
                     - "&7Price: &e%price%"
                 levels:
                     1:
-                        price: 2500.0
+                        price: 2500
                     2:
-                        price: 5000.0
+                        price: 5000
                     3:
-                        price: 10000.0
+                        price: 10000
                 skill: SKIP_TIER
             14:
                 enabled: true
@@ -178,13 +178,13 @@ shops:
                     - "&7Price: &e%price%"
                 levels:
                     1:
-                        price: 1000.0
+                        price: 1000
                     2:
-                        price: 2500.0
+                        price: 2500
                     3:
-                        price: 5000.0
+                        price: 5000
                     4:
-                        price: 10000.0
+                        price: 10000
                 skill: SPAWN_RESISTANCE
             15:
                 enabled: true
@@ -205,11 +205,11 @@ shops:
                     - "&7Price: &e%price%"
                 levels:
                     1:
-                        price: 10000.0
+                        price: 10000
                     2:
-                        price: 25000.0
+                        price: 25000
                     3:
-                        price: 50000.0
+                        price: 50000
                 skill: EXTRA_HEALTH
             16:
                 enabled: true
@@ -230,15 +230,15 @@ shops:
                     - "&7Price: &e%price%"
                 levels:
                     1:
-                        price: 1000.0
+                        price: 1000
                     2:
-                        price: 2000.0
+                        price: 2000
                     3:
-                        price: 3000.0
+                        price: 3000
                     4:
-                        price: 4000.0
+                        price: 4000
                     5:
-                        price: 5000.0
+                        price: 5000
                 skill: SPAWN_GAPPLE
             45:
                 enabled: true
@@ -285,11 +285,11 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1000.0
+                price: 1000
                 trailtype: EXPLOSION_NORMAL
             11:
                 enabled: true
-                material: SNOW_BALL
+                material: SNOWBALL
                 quantity: 1
                 name: "&eSnowball"
                 lore:
@@ -301,11 +301,11 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1000.0
+                price: 1000
                 trailtype: SNOWBALL
             12:
                 enabled: true
-                material: WEB
+                material: COBWEB
                 quantity: 1
                 name: "&eCloud"
                 lore:
@@ -317,7 +317,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1000.0
+                price: 1000
                 trailtype: CLOUD
             13:
                 enabled: true
@@ -333,7 +333,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1000.0
+                price: 1000
                 trailtype: DRIP_LAVA
             14:
                 enabled: true
@@ -349,7 +349,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1000.0
+                price: 1000
                 trailtype: CRIT
             15:
                 enabled: true
@@ -365,7 +365,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1000.0
+                price: 1000
                 trailtype: SPELL_MOB
                 
             16:
@@ -382,7 +382,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1000.0
+                price: 1000
                 trailtype: SMOKE_NORMAL
             19:
                 enabled: true
@@ -398,7 +398,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1000.0
+                price: 1000
                 trailtype: WATER_SPLASH
             20:
                 enabled: true
@@ -414,11 +414,11 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 2500.0
+                price: 2500
                 trailtype: CRIT_MAGIC
             21:
                 enabled: true
-                material: ENCHANTMENT_TABLE
+                material: ENCHANTING_TABLE
                 quantity: 1
                 name: "&eEnchantment Table"
                 lore:
@@ -430,7 +430,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 2500.0
+                price: 2500
                 trailtype: ENCHANTMENT_TABLE
             22:
                 enabled: true
@@ -446,7 +446,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 2500.0
+                price: 2500
                 trailtype: REDSTONE
                 traildata:
                     r: 255
@@ -454,7 +454,7 @@ shops:
                     b: 255
             23:
                 enabled: true
-                material: FIREWORK
+                material: FIREWORK_ROCKET
                 quantity: 1
                 name: "&eFirework Spark"
                 lore:
@@ -466,11 +466,11 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 2500.0
+                price: 2500
                 trailtype: FIREWORKS_SPARK
             24:
                 enabled: true
-                material: ENDER_PORTAL_FRAME
+                material: END_PORTAL_FRAME
                 quantity: 1
                 name: "&ePortal"
                 lore:
@@ -482,11 +482,11 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 5000.0
+                price: 5000
                 trailtype: PORTAL
             25:
                 enabled: true
-                material: FLOWER_POT_ITEM
+                material: FLOWER_POT
                 quantity: 1
                 name: "&eWitch Spell"
                 lore:
@@ -498,7 +498,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 5000.0
+                price: 5000
                 trailtype: SPELL_WITCH
             28:
                 enabled: true
@@ -514,7 +514,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 5000.0
+                price: 5000
                 trailtype: SPELL
             29:
                 enabled: true
@@ -530,7 +530,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 5000.0
+                price: 5000
                 trailtype: FLAME
             30:
                 enabled: true
@@ -546,7 +546,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 10000.0
+                price: 10000
                 trailtype: HEART
             31:
                 enabled: true
@@ -562,7 +562,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 10000.0
+                price: 10000
                 trailtype: NOTE
             45:
                 enabled: true
@@ -589,7 +589,7 @@ shops:
                 lore:
                     - "&7Click here to"
                     - "&7Reset your trail"
-                price: 0.0
+                price: 0
                 trailtype: RESET
     killeffects:
         enabled: true
@@ -598,7 +598,7 @@ shops:
         data:
             10:
                 enabled: true
-                material: FIREWORK_CHARGE
+                material: FIRE_CHARGE
                 quantity: 1
                 name: "&eSquid Missile"
                 lore:
@@ -610,11 +610,11 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1000.0
+                price: 1000
                 killeffect: SQUID_MISSILE
             11:
                 enabled: true
-                material: WOOD_AXE
+                material: WOODEN_AXE
                 quantity: 1
                 name: "&eLightning Strike"
                 lore:
@@ -626,11 +626,11 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1000.0
+                price: 1000
                 killeffect: LIGHTNING_STRIKE
             12:
                 enabled: true
-                material: INK_SACK
+                material: BLACK_DYE
                 quantity: 1
                 name: "&eBlack Mark"
                 lore:
@@ -642,7 +642,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1750.0
+                price: 1750
                 killeffect: BLACK_MARK
             13:
                 enabled: true
@@ -658,7 +658,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1750.0
+                price: 1750
                 killeffect: TNT
             14:
                 enabled: true
@@ -674,11 +674,11 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 1750.0
+                price: 1750
                 killeffect: HEART_AURA
             15:
                 enabled: true
-                material: GOLD_BOOTS
+                material: GOLDEN_BOOTS
                 quantity: 1
                 name: "&eBurning Shoes"
                 lore:
@@ -690,7 +690,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 2500.0
+                price: 2500
                 killeffect: BURNING_SHOES
             16:
                 enabled: true
@@ -706,7 +706,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 2500.0
+                price: 2500
                 killeffect: COOKIE_FOUNTAIN
             19:
                 enabled: true
@@ -722,7 +722,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 3500.0
+                price: 3500
                 killeffect: PINATA
             20:
                 enabled: true
@@ -738,7 +738,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 3500.0
+                price: 3500
                 killeffect: LAST_CANDLE
             21:
                 enabled: true
@@ -754,11 +754,11 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 3500.0
+                price: 3500
                 killeffect: REKT
             22:
                 enabled: true
-                material: SKULL_ITEM
+                material: PLAYER_HEAD
                 quantity: 1
                 name: "&eHead Rocket"
                 lore:
@@ -770,11 +770,11 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 5000.0
+                price: 5000
                 killeffect: HEAD_ROCKET
             23:
                 enabled: true
-                material: FIREWORK
+                material: FIREWORK_ROCKET
                 quantity: 1
                 name: "&eFirework"
                 lore:
@@ -786,7 +786,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 5000.0
+                price: 5000
                 killeffect: FIREWORK
             24:
                 enabled: true
@@ -802,7 +802,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 5000.0
+                price: 5000
                 killeffect: TORNADO
             25:
                 enabled: true
@@ -818,7 +818,7 @@ shops:
                     - "&7when you shoot a projectile"
                     - ""
                     - "&7Price: &e%price%"
-                price: 10000.0
+                price: 10000
                 killeffect: BLOOD
             45:
                 enabled: true
@@ -845,5 +845,5 @@ shops:
                 lore:
                     - "&7Click here to"
                     - "&7Reset your kill effect"
-                price: 0.0
+                price: 0
                 killeffect: RESET

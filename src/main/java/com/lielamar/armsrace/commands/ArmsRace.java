@@ -28,8 +28,8 @@ public class ArmsRace implements CommandExecutor {
     private Main main;
 
     public ArmsRace(Main main) {
-        this.main = main;
-        setup();
+    	this.main = main;
+    	setup();
     }
 
     public String armsrace = "armsrace";
@@ -57,15 +57,15 @@ public class ArmsRace implements CommandExecutor {
         }
 
         Player p = (Player) cs;
-
+        
         if(cmd.getName().equalsIgnoreCase(armsrace)) {
             if(args.length == 0) {
                 if(!p.hasPermission("armsrace.commands.help")) {
-                    p.sendMessage(main.getMessages().noPermissions());
-                    return true;
+                	p.sendMessage(main.getMessages().noPermissions());
+                	return true;
                 }
-
-                get("help").onCommand(main, p, new String[0]);
+                
+            	get("help").onCommand(main, p, new String[0]);
                 return true;
             }
 
@@ -80,9 +80,9 @@ public class ArmsRace implements CommandExecutor {
 
             arrayList.addAll(Arrays.asList(args));
             arrayList.remove(0);
-
+            
             String arguments[] = new String[arrayList.size()];
-
+            
             try{
                 target.onCommand(main, p, arrayList.toArray(arguments));
             }catch (Exception e){

@@ -18,14 +18,14 @@ public class RektKillEffect implements KillEffect {
 //		Material oldType = b.getType();
 //		b.setType(Material.TORCH);
 //		b.setData((byte)2, true);
-
+		
 		ArmorStand as = (ArmorStand) loc.getWorld().spawnEntity(loc.add(0, -0.5, 0), EntityType.ARMOR_STAND);
-
+		
 		as.setVisible(false);
 		as.setGravity(false);
 		as.setCustomNameVisible(true);
 		as.setCustomName(ChatColor.GRAY + killer.getName() + ChatColor.YELLOW + " has #rekt " + ChatColor.GRAY + victim.getName() + ChatColor.YELLOW + " here");
-
+		
 		new BukkitRunnable() {
 			@Override
 			public void run() {
