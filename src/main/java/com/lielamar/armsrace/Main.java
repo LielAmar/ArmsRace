@@ -14,6 +14,7 @@ import com.lielamar.armsrace.listeners.map.*;
 import com.lielamar.armsrace.listeners.shop.OnShopClick;
 import com.lielamar.armsrace.listeners.skills.OnSwordLaunch;
 import com.lielamar.armsrace.listeners.trails.OnProjectileShoot;
+import com.lielamar.armsrace.modules.CustomPlayer;
 import com.lielamar.armsrace.modules.map.Map;
 import com.lielamar.armsrace.utility.Messages;
 import com.lielamar.armsrace.utility.Utils;
@@ -35,7 +36,6 @@ import com.lielamar.armsrace.managers.SettingsManager;
 import com.lielamar.armsrace.managers.ShopManager;
 import com.lielamar.armsrace.managers.files.BukkitFileManager;
 import com.lielamar.armsrace.managers.files.MapsFileManager;
-import com.lielamar.armsrace.modules.CustomPlayer;
 import com.lielamar.armsrace.modules.map.Pickup;
 
 public class Main extends JavaPlugin {
@@ -60,6 +60,7 @@ public class Main extends JavaPlugin {
 		
 		Location spawn = getSettingsManager().getSpawn();
 		if(spawn != null) {
+			System.out.println(spawn.toString());
 			for(Player pl : Bukkit.getOnlinePlayers()) {
 				CustomPlayer cpl = playerManager.getPlayer(pl);
 				scoreboardManager.addPlayer(cpl);

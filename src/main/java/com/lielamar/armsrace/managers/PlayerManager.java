@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -33,8 +34,13 @@ public class PlayerManager {
 		this.main = main;
 		
 	    RegisteredServiceProvider<Economy> economyProvider = main.getServer().getServicesManager().getRegistration(Economy.class);
-	    if (economyProvider != null)
+	    if(economyProvider != null)
 	        econ = economyProvider.getProvider();
+	    else {
+	    	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "An economy plugin was not detected. Disabling ArmsRace!");
+	    	Bukkit.getPluginManager().disablePlugin(main);
+	    	return;
+		}
 	    
 		this.spawnProtection = new HashMap<>();
 		this.doubleDamage = new ArrayList<>();

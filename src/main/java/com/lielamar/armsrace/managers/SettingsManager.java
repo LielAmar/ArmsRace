@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import com.lielamar.armsrace.Main;
+import org.bukkit.World;
 
 public class SettingsManager {
 
@@ -37,7 +38,10 @@ public class SettingsManager {
 		
 		spawn = null;
 		if(this.main.getConfig().getBoolean("Spawn.enabled")) {
-			this.spawn = new Location(Bukkit.getWorld(this.main.getConfig().getString("Spawn.world")),
+			World world = Bukkit.getWorld(this.main.getConfig().getString("Spawn.world", Bukkit.getWorlds().get(0).getName()));
+			if(world == null) world = Bukkit.getWorlds().get(0);
+
+			this.spawn = new Location(world,
 					this.main.getConfig().getDouble("Spawn.x"),
 					this.main.getConfig().getDouble("Spawn.y"),
 					this.main.getConfig().getDouble("Spawn.z"),

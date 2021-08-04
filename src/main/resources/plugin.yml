@@ -5,7 +5,7 @@ api-version: 1.13
 author: Liel Amar
 website: www.lielamar.com
 description: The ArmsRace plugin made by Liel Amar
-dependencies: [Vault]
+depend: [Vault]
 
 commands:
     armsrace:
