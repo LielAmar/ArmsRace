@@ -12,10 +12,14 @@ public class NMS_v1_13_R1 implements PacketVersion {
 
 	@Override
 	public void sendParticle(Player p, String trail, Location loc, TrailData td, int amount) {
-		if (td == null)
-			p.spawnParticle(Particle.valueOf(trail), loc, amount, 0, 0, 0, 0, null);
-		else
-			p.spawnParticle(Particle.valueOf(trail), loc, amount, td.getR(), td.getG(), td.getB(), 0, null);
+		try {
+			if(td == null)
+				p.spawnParticle(Particle.valueOf(trail), loc, amount, 0, 0, 0, 0, null);
+			else
+				p.spawnParticle(Particle.valueOf(trail), loc, amount, td.getR(), td.getG(), td.getB(), 0, null);
+		} catch(IllegalArgumentException ignored) {
+			// Particle not found in enum
+		}
 	}
 
 	public void sendTitle(Player p, String title, String subtitle, int fadeInTime, int showTime, int fadeOutTime) {

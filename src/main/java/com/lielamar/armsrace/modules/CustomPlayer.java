@@ -98,6 +98,8 @@ public class CustomPlayer {
 	}
 	
 	public void setCurrentTierId(int tier) {
+		if(tier < 0) tier = 0;
+
 		this.currentTierId = tier;
 		p.setLevel(tier);
 		if(this.currentMap == null) return;

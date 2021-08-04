@@ -6,10 +6,7 @@ import com.lielamar.armsrace.listeners.OnDurabilityChange;
 import com.lielamar.armsrace.listeners.OnPlayerDeath;
 import com.lielamar.armsrace.listeners.OnPlayerJoin;
 import com.lielamar.armsrace.listeners.OnPlayerQuit;
-import com.lielamar.armsrace.listeners.killeffects.OnCookiePickup;
-import com.lielamar.armsrace.listeners.killeffects.OnDamageByLightning;
-import com.lielamar.armsrace.listeners.killeffects.OnPinataPickup;
-import com.lielamar.armsrace.listeners.killeffects.OnTNTKillEffect;
+import com.lielamar.armsrace.listeners.killeffects.*;
 import com.lielamar.armsrace.listeners.map.*;
 import com.lielamar.armsrace.listeners.shop.OnShopClick;
 import com.lielamar.armsrace.listeners.skills.OnSwordLaunch;
@@ -108,6 +105,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new OnCookiePickup(this), this);
 		pm.registerEvents(new OnPinataPickup(this), this);
 		pm.registerEvents(new OnDamageByLightning(this), this);
+		pm.registerEvents(new OnDamageByFirework(this), this);
 		
 		// Per map events
 		pm.registerEvents(new OnBlock(this), this);

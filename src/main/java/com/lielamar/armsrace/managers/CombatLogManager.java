@@ -33,15 +33,13 @@ public class CombatLogManager {
 				if(players.size() == 0) return;
 				
 				long current = System.currentTimeMillis();
-				
-			    Iterator<Entry<UUID, Long>> it = players.entrySet().iterator();
-			    while (it.hasNext()) {
-			        Map.Entry<UUID, Long> pair = it.next();
-					if(((current-pair.getValue())/1000) > combatLogDuration) {
+
+				for(Entry<UUID, Long> pair : players.entrySet()) {
+					if(((current - pair.getValue()) / 1000) > combatLogDuration) {
 						players.remove(pair.getKey());
 						Bukkit.getPlayer(pair.getKey()).sendMessage(main.getMessages().noLongerInCombat());
 					}
-			    }
+				}
 			}
 			
 		}.runTaskTimer(main, 5L, 5L);
