@@ -23,6 +23,6 @@ public class OnPlayerJoin implements Listener {
 		main.getScoreboardManager().addPlayer(cp);
 		
 		if(this.main.getSettingsManager().getSpawn() != null) 
-			p.getPlayer().teleport(this.main.getSettingsManager().getSpawn());
+			p.teleport(this.main.getSettingsManager().getSpawn());
 	}
 }
