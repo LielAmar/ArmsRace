@@ -1,13 +1,12 @@
 package com.lielamar.armsrace.managers;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.lielamar.armsrace.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-
-import com.lielamar.armsrace.Main;
 import org.bukkit.World;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SettingsManager {
 
@@ -49,13 +48,13 @@ public class SettingsManager {
 					(float)this.main.getConfig().getDouble("Spawn.pitch"));
 		}
 		
-		swordLaunchCooldown = new HashMap<Integer, Integer>();
-		headShotRate = new HashMap<Integer, Integer>();
-		extraGoldAmount = new HashMap<Integer, Integer>();
-		skipTierRate = new HashMap<Integer, Integer>();
-		spawnResistanceDuration = new HashMap<Integer, Integer>();
-		extraHealthAmount = new HashMap<Integer, Integer>();
-		spawnGappleRate = new HashMap<Integer, Integer>();
+		swordLaunchCooldown = new HashMap<>();
+		headShotRate = new HashMap<>();
+		extraGoldAmount = new HashMap<>();
+		skipTierRate = new HashMap<>();
+		spawnResistanceDuration = new HashMap<>();
+		extraHealthAmount = new HashMap<>();
+		spawnGappleRate = new HashMap<>();
 		
 		this.trailsAmount = main.getConfig().getInt("Trails.Amount");
 		this.trailsSpeed = main.getConfig().getInt("Trails.Speed");
