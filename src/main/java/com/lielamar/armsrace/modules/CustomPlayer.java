@@ -306,7 +306,7 @@ public class CustomPlayer {
     /**
      * @return Sum of kills from available maps
      */
-    public double getKills() {
+    public int getKills() {
         int sum = 0;
         for (String s : this.kills.keySet()) {
             sum += this.kills.get(s);
@@ -317,7 +317,7 @@ public class CustomPlayer {
     /**
      * @return Sum of deaths from available maps
      */
-    public double getDeaths() {
+    public int getDeaths() {
         int sum = 0;
         for (String s : this.deaths.keySet()) {
             sum += this.deaths.get(s);
