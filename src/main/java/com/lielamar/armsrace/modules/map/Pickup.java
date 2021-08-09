@@ -27,6 +27,8 @@ public class Pickup {
 		meta.addEnchant(Enchantment.DURABILITY, 1, false);
 		item.setItemMeta(meta);
 		this.pickup = loc.getWorld().dropItem(loc, item);
+		this.pickup.setCustomName(type.getName());
+		this.pickup.setCustomNameVisible(true);
 		this.pickup.setVelocity(new Vector());
 	}
 	

@@ -11,23 +11,24 @@ import org.bukkit.entity.Player;
 public class NMS_v1_17_R1 implements PacketVersion {
 
     @Override
-    public void sendParticle(Player p, String trail, Location loc, TrailData td, int amount) {
+    public void sendParticle(Player player, String trail, Location location, TrailData trailData, int amount) {
         try {
-            if(td == null)
-                p.spawnParticle(Particle.valueOf(trail), loc, amount, 0, 0, 0, 0, null);
-            else
-                p.spawnParticle(Particle.valueOf(trail), loc, amount, td.getR(), td.getG(), td.getB(), 0, null);
-        } catch(IllegalArgumentException ignored) {
+            if (trailData == null) {
+                trailData = new TrailData(0, 0, 0);
+            }
+            player.spawnParticle(Particle.valueOf(trail), location, amount, trailData.getRed(), trailData.getGreen(), trailData.getBlue(), null);
+        } catch (IllegalArgumentException ignored) {
             // Particle not found in enum
         }
     }
 
-    public void sendTitle(Player p, String title, String subtitle, int fadeInTime, int showTime, int fadeOutTime) {
-        p.sendTitle(title, subtitle, fadeInTime, showTime, fadeOutTime);
+    public void sendTitle(Player player, String title, String subtitle, int fadeIn, int fade, int fadeOut) {
+        player.sendTitle(title, subtitle, fadeIn, fade, fadeOut);
     }
 
-    public void sendActionBar(Player p, String message) {
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
+    public void sendActionBar(Player player, String message) {
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
     }
+
 }
 

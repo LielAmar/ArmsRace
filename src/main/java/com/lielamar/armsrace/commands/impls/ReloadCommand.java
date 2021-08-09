@@ -1,4 +1,4 @@
-package com.lielamar.armsrace.commands.subcommands;
+package com.lielamar.armsrace.commands.impls;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.ArmorStand;

@@ -7,9 +7,10 @@ import com.lielamar.armsrace.modules.shop.TrailData;
 
 public interface PacketVersion {
 
-	public void sendParticle(Player p, String trail, Location loc, TrailData td, int amount);
+	void sendParticle(Player player, String trail, Location location, TrailData trailData, int amount);
 	
-	public void sendTitle(Player p, String title, String subtitle, int fadeInTime, int showTime, int fadeOutTime);
+	void sendTitle(Player player, String title, String subtitle, int fadeIn, int fade, int fadeOut);
 	
-	public void sendActionBar(Player p, String message);
+	void sendActionBar(Player player, String message);
+
 }

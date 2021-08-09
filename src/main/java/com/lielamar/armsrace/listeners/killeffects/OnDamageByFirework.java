@@ -2,7 +2,6 @@ package com.lielamar.armsrace.listeners.killeffects;
 
 import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.CustomPlayer;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,21 +11,24 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public class OnDamageByFirework implements Listener {
 
-    private Main main;
+    private final Main plugin;
 
-    public OnDamageByFirework(Main main) {
-        this.main = main;
+    public OnDamageByFirework(Main plugin) {
+        this.plugin = plugin;
     }
 
     @EventHandler
-    public void onLightning(EntityDamageByEntityEvent e) {
-        if(!(e.getEntity() instanceof Player)) return;
-        if(!(e.getDamager() instanceof Firework)) return;
-        if(e.getCause() != EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) return;
-        Player p = (Player)e.getEntity();
+    public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
+        if (!(event.getEntity() instanceof Player || event.getDamager() instanceof Firework) || event.getCause() != EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
+            return;
+        }
 
-        CustomPlayer cp = main.getPlayerManager().getPlayer(p);
-        if(cp.getCurrentMap() != null)
-            e.setCancelled(true);
+        Player player = (Player) event.getEntity();
+        CustomPlayer customPlayer = plugin.getPlayerManager().getPlayer(player);
+
+        if (customPlayer.getCurrentMap() != null) {
+            event.setCancelled(true);
+        }
     }
+
 }

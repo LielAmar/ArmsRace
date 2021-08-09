@@ -3,10 +3,8 @@ package com.lielamar.armsrace.modules.map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.lielamar.armsrace.listeners.custom.LeaveReason;
-import com.lielamar.armsrace.listeners.custom.PlayerJoinMapEvent;
-import com.lielamar.armsrace.listeners.custom.PlayerLeaveMapEvent;
+import com.lielamar.armsrace.api.events.PlayerJoinMapEvent;
+import com.lielamar.armsrace.api.events.PlayerLeaveMapEvent;
 import com.lielamar.armsrace.utility.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -33,7 +31,7 @@ public class Map {
 	private List<Pickup> pickups;
 	private List<Killstreak> killstreak;
 	private Tier[] tiers;
-	private CustomScoreboard sb;
+	private CustomScoreboard scoreboard;
 	
 	private CustomPlayer highestTier;
 	private CustomPlayer highestKillstreak;
@@ -81,7 +79,7 @@ public class Map {
 		this.killstreak = killstreak;
 		this.pickups = new ArrayList<Pickup>();
 		this.tiers = tiers;
-		this.sb = sb;
+		this.scoreboard = sb;
 		
 		this.highestKillstreak = null;
 		this.highestTier = null;
@@ -186,12 +184,12 @@ public class Map {
 		this.killstreak = killstreak;
 	}
 	
-	public CustomScoreboard getSb() {
-		return sb;
+	public CustomScoreboard getCustomScoreboard() {
+		return scoreboard;
 	}
 
-	public void setSb(CustomScoreboard sb) {
-		this.sb = sb;
+	public void setScoreboard(CustomScoreboard scoreboard) {
+		this.scoreboard = scoreboard;
 	}
 
 	public CustomPlayer getHighestKillstreak() {
@@ -504,7 +502,7 @@ public class Map {
 		for(Pickup pickup : pickups) {
 			if(pickup == null) removePickups.add(pickup);
 			if(pickup.getLoc() == null) removePickups.add(pickup);
-			if(pickup.getLoc() != randomLoc.getLoc()) {
+			if(pickup.getLoc() != randomLoc.getLocation()) {
 				removePickups.add(pickup);
 			}
 		}
@@ -518,21 +516,21 @@ public class Map {
 			type = rnd.nextInt(7-1+1)+1;
 		}
 		
-		Pickup pickup = new Pickup(this, PickupType.HEALTH, randomLoc.getLoc());
+		Pickup pickup = new Pickup(this, PickupType.HEALTH, randomLoc.getLocation());
 		if(type == 1) {
-			pickup = new Pickup(this, PickupType.HEALTH, randomLoc.getLoc());
+			pickup = new Pickup(this, PickupType.HEALTH, randomLoc.getLocation());
 		} if(type == 2) {
-			pickup = new Pickup(this, PickupType.DOUBLE_DAMAGE, randomLoc.getLoc());
+			pickup = new Pickup(this, PickupType.DOUBLE_DAMAGE, randomLoc.getLocation());
 		} if(type == 3) {
-			pickup = new Pickup(this, PickupType.COINS, randomLoc.getLoc());
+			pickup = new Pickup(this, PickupType.COINS, randomLoc.getLocation());
 		} if(type == 4) {
-			pickup = new Pickup(this, PickupType.SPEED, randomLoc.getLoc());
+			pickup = new Pickup(this, PickupType.SPEED, randomLoc.getLocation());
 		} if(type == 5) {
-			pickup = new Pickup(this, PickupType.RESISTANCE, randomLoc.getLoc());
+			pickup = new Pickup(this, PickupType.RESISTANCE, randomLoc.getLocation());
 		} if(type == 6) {
-			pickup = new Pickup(this, PickupType.TIER_UP, randomLoc.getLoc());
+			pickup = new Pickup(this, PickupType.TIER_UP, randomLoc.getLocation());
 		} if(type == 7) {
-			pickup = new Pickup(this, PickupType.ONE_TAP, randomLoc.getLoc());
+			pickup = new Pickup(this, PickupType.ONE_TAP, randomLoc.getLocation());
 		}
 
 		pickup.spawn();
@@ -610,7 +608,7 @@ public class Map {
 	public void setLocation(int id, Location loc) {
 		for(CustomLocation location : this.locations) {
 			if(location.getId() == id)
-				location.setLoc(loc);
+				location.setLocation(loc);
 		}
 	}
 	
@@ -655,7 +653,7 @@ public class Map {
 	public void setPickupLocation(int id, Location loc) {
 		for(CustomLocation location : this.pickupLocations) {
 			if(location.getId() == id)
-				location.setLoc(loc);
+				location.setLocation(loc);
 		}
 	}
 	
@@ -749,8 +747,8 @@ public class Map {
 		cp.setCurrentTierId(0);
 		cp.setKillstreak(0);
 
-		p.teleport(this.getRandomLocation().getLoc());
-		Utils.clearPlayer(main, p, healthOnJoin, hungerOnJoin, cp.getPlayer().getMaxHealth(), gamemode, spawnProtection);
+		p.teleport(this.getRandomLocation().getLocation());
+		Utils.clearPlayer(main, p, healthOnJoin, hungerOnJoin, cp.getPlayer().getMaxHealth(), gamemode);
 		
 		if(cp.getSkillLevel("EXTRA_HEALTH") > 0) {
 			int maxHealth = 20+main.getSettingsManager().getExtraHealthAmount().get(cp.getSkillLevel("EXTRA_HEALTH"));
@@ -774,7 +772,7 @@ public class Map {
 		main.getScoreboardManager().addPlayer(cp);
 	}
 	
-	public void removePlayer(Player p, LeaveReason reason) {
+	public void removePlayer(Player p, PlayerLeaveMapEvent.LeaveReason reason) {
 		CustomPlayer cp = main.getPlayerManager().getPlayer(p);
 		
 		if(cp.getCurrentMap() == null) {
@@ -787,7 +785,7 @@ public class Map {
 				this.getPlayers()[i] = null;
 		}
 		
-		if(reason != LeaveReason.RELOAD) {
+		if(reason != PlayerLeaveMapEvent.LeaveReason.RELOAD) {
 			PlayerLeaveMapEvent e = new PlayerLeaveMapEvent(reason, p, cp, this);
 			Bukkit.getPluginManager().callEvent(e);
 			if(e.isCancelled())
@@ -808,7 +806,7 @@ public class Map {
 			cp.getPlayer().spigot().respawn();
 		} else {
 			cp.getPlayer().teleport(this.main.getSettingsManager().getSpawn());
-			Utils.clearPlayer(main, p, 20, 20, maxHealth, gamemode, spawnProtection);
+			Utils.clearPlayer(main, p, 20, 20, maxHealth, gamemode);
 		}
 		
 		main.getPacketHandler().getNMSHandler().sendTitle(p, main.getMessages().leavingArena(), "", 20, 40, 20);

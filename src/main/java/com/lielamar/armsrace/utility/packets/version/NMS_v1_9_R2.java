@@ -1,45 +1,45 @@
 package com.lielamar.armsrace.utility.packets.version;
 
+import com.lielamar.armsrace.modules.shop.TrailData;
 import com.lielamar.armsrace.utility.packets.PacketVersion;
+import net.minecraft.server.v1_9_R2.ChatComponentText;
+import net.minecraft.server.v1_9_R2.Packet;
+import net.minecraft.server.v1_9_R2.PacketPlayOutChat;
+import net.minecraft.server.v1_9_R2.PacketPlayOutTitle;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import com.lielamar.armsrace.modules.shop.TrailData;
-
-import net.minecraft.server.v1_9_R2.IChatBaseComponent;
-import net.minecraft.server.v1_9_R2.PacketPlayOutChat;
-import net.minecraft.server.v1_9_R2.PacketPlayOutTitle;
-
 public class NMS_v1_9_R2 implements PacketVersion {
 
 	@Override
-	public void sendParticle(Player p, String trail, Location loc, TrailData td, int amount) {
+	public void sendParticle(Player player, String trail, Location location, TrailData trailData, int amount) {
 		try {
-			if(td == null)
-				p.spawnParticle(Particle.valueOf(trail), loc, amount, 0, 0, 0, 0, null);
-			else
-				p.spawnParticle(Particle.valueOf(trail), loc, amount, td.getR(), td.getG(), td.getB(), 0, null);
-		} catch(IllegalArgumentException ignored) {
+			if (trailData == null) {
+				trailData = new TrailData(0, 0, 0);
+			}
+			player.spawnParticle(Particle.valueOf(trail), location, amount, trailData.getRed(), trailData.getGreen(), trailData.getBlue(), null);
+		} catch (IllegalArgumentException ignored) {
 			// Particle not found in enum
 		}
 	}
-	
-	public void sendTitle(Player p, String title, String subtitle, int fadeInTime, int showTime, int fadeOutTime) {
-		IChatBaseComponent icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + title + "\"}");
-		PacketPlayOutTitle packetTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, icbc, fadeInTime, showTime, fadeOutTime);
-		icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\"}");
-		PacketPlayOutTitle packetSubtitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, icbc, fadeInTime, showTime, fadeOutTime);
-		
-		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packetTitle);
-		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packetSubtitle);
+
+	public void sendTitle(Player player, String title, String subtitle, int fadeIn, int fade, int fadeOut) {
+		sendPacket(player, getTitlePacket(PacketPlayOutTitle.EnumTitleAction.TITLE, title, fadeIn, fade, fadeOut));
+		sendPacket(player, getTitlePacket(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, subtitle, fadeIn, fade, fadeOut));
 	}
-	
-	public void sendActionBar(Player p, String message) {
-		IChatBaseComponent icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
-		PacketPlayOutChat packet = new PacketPlayOutChat(icbc, (byte)2);
-		
-		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
+
+	public void sendActionBar(Player player, String message) {
+		sendPacket(player, new PacketPlayOutChat(new ChatComponentText(message), (byte) 2));
 	}
+
+	private void sendPacket(Player player, Packet<?> packet) {
+		((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+	}
+
+	private PacketPlayOutTitle getTitlePacket(PacketPlayOutTitle.EnumTitleAction titleAction, String text, int fadeIn, int fade, int fadeOut) {
+		return new PacketPlayOutTitle(titleAction, new ChatComponentText(text != null ? text : ""), fadeIn, fade, fadeOut);
+	}
+
 }

@@ -1,26 +1,25 @@
-package com.lielamar.armsrace.commands.subcommands.handlers;
+package com.lielamar.armsrace.commands.impls.handlers;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.managers.files.MapFile;
-import com.lielamar.armsrace.modules.CustomLocation;
 import com.lielamar.armsrace.modules.map.Map;
 
-public class MapPickupHandler {
+public class MapTierHandler {
 
 	/**
-	 * Handles adding, setting, deleting, and listing maps' pickups locations
+	 * Handles adding, setting, deleting, listing and loading maps' tiers
 	 * 
 	 * @param main      Instance of {@link Main}
 	 * @param p         Command sender
 	 * @param args      Command arguments
 	 */
 	public void handle(Main main, Player p, String[] args) {
-		if(args[0].equalsIgnoreCase("addpickuplocation")) {
+	if(args[0].equalsIgnoreCase("addtier")) {
 			
-	        if(!p.hasPermission("armsrace.commands.map.addpickuplocation")) {
+	        if(!p.hasPermission("armsrace.commands.map.addtier")) {
 	        	p.sendMessage(main.getMessages().noPermissions());
 	        	return;
 	        }
@@ -40,52 +39,18 @@ public class MapPickupHandler {
 			
 			MapFile mapFile = main.getMapsFileManager().getMap(name);
 			
-			int id = 0;
-			if(mapFile.getConfig().contains("PickupLocations")) id = mapFile.getConfig().getConfigurationSection("PickupLocations").getKeys(false).size();
-			mapFile.addPickupLocation(id, p.getLocation());
+			int nextTier = 0;
+			if(mapFile.getConfig().contains("Tiers")) nextTier = mapFile.getConfig().getConfigurationSection("Tiers").getKeys(false).size();
+			mapFile.addTier(p.getInventory().getArmorContents(), p.getInventory().getContents(), nextTier);
 			
-			p.sendMessage(ChatColor.GREEN + "Saved your current location as pickup location number " + id + " for map " + name + "!");
+			
+			p.sendMessage(ChatColor.GREEN + "Saved your current layout as tier number " + nextTier + " for map " + name + "!");
 			return;
 		}
 		
-		if(args[0].equalsIgnoreCase("setpickuplocation")) {
+		if(args[0].equalsIgnoreCase("settier")) {
 			
-	        if(!p.hasPermission("armsrace.commands.map.setpickuplocation")) {
-	        	p.sendMessage(main.getMessages().noPermissions());
-	        	return;
-	        }
-			
-			if(args.length == 1 || args.length == 2) {
-				p.sendMessage(main.getMessages().invalidSubCommand());
-				return;
-			}
-			
-			String name = args[1].toLowerCase();
-			
-			boolean exists = main.getMapsFileManager().existsMap(name);
-			if(!exists) {
-				p.sendMessage(main.getMessages().couldntFindMap(name));
-				return;
-			}
-			
-			MapFile mapFile = main.getMapsFileManager().getMap(name);
-
-			try {
-				int id = Integer.parseInt(args[2]);
-				
-				mapFile.setPickupLocation(id, p.getLocation());
-				
-				p.sendMessage(ChatColor.GREEN + "Saved your current location as pickup location number " + id + " for map " + name + "!");
-				return;
-			} catch(Exception e) {
-				p.sendMessage(main.getMessages().invalidArgument());
-				return;
-			}
-		}
-		
-		if(args[0].equalsIgnoreCase("removepickuplocation") || args[0].equalsIgnoreCase("delpickuplocation") || args[0].equalsIgnoreCase("deletepickuplocation")) {
-			
-	        if(!p.hasPermission("armsrace.commands.map.deletepickuplocation")) {
+	        if(!p.hasPermission("armsrace.commands.map.settier")) {
 	        	p.sendMessage(main.getMessages().noPermissions());
 	        	return;
 	        }
@@ -108,9 +73,9 @@ public class MapPickupHandler {
 			try {
 				int tier = Integer.parseInt(args[2]);
 				
-				mapFile.removePickupLocation(tier);
+				mapFile.setTier(p.getInventory().getArmorContents(), p.getInventory().getContents(), tier);
 				
-				p.sendMessage(ChatColor.RED + "Deleted pickup location number " + tier + " for map " + name + "!");
+				p.sendMessage(ChatColor.GREEN + "Saved your current layout as tier number " + tier + " for map " + name + "!");
 				return;
 			} catch(Exception e) {
 				p.sendMessage(main.getMessages().invalidArgument());
@@ -118,10 +83,44 @@ public class MapPickupHandler {
 			}
 		}
 		
-		if(args[0].equalsIgnoreCase("listpickuplocations") || args[0].equalsIgnoreCase("listpickuplocation") ||
-				args[0].equalsIgnoreCase("pickuplocationlist") || args[0].equalsIgnoreCase("pickuploclist") || args[0].equalsIgnoreCase("listpickuploc")) {
+		if(args[0].equalsIgnoreCase("removetier") || args[0].equalsIgnoreCase("deltier") || args[0].equalsIgnoreCase("deletetier")) {
 			
-	        if(!p.hasPermission("armsrace.commands.map.listpickuplocations")) {
+	        if(!p.hasPermission("armsrace.commands.map.deletetier")) {
+	        	p.sendMessage(main.getMessages().noPermissions());
+	        	return;
+	        }
+			
+			if(args.length == 1 || args.length == 2) {
+				p.sendMessage(main.getMessages().invalidSubCommand());
+				return;
+			}
+			
+			String name = args[1].toLowerCase();
+			
+			boolean exists = main.getMapsFileManager().existsMap(name);
+			if(!exists) {
+				p.sendMessage(main.getMessages().couldntFindMap(name));
+				return;
+			}
+			
+			MapFile mapFile = main.getMapsFileManager().getMap(name);
+
+			try {
+				int tier = Integer.parseInt(args[2]);
+				
+				mapFile.removeTier(tier);
+				
+				p.sendMessage(ChatColor.RED + "Deleted tier number " + tier + " for map " + name + "!");
+				return;
+			} catch(Exception e) {
+				p.sendMessage(main.getMessages().invalidArgument());
+				return;
+			}
+		}
+		
+		if(args[0].equalsIgnoreCase("listtier") || args[0].equalsIgnoreCase("tierlist")) {
+			
+	        if(!p.hasPermission("armsrace.commands.map.listtier")) {
 	        	p.sendMessage(main.getMessages().noPermissions());
 	        	return;
 	        }
@@ -140,21 +139,15 @@ public class MapPickupHandler {
 			}
 
 			Map map = main.getGameManager().getMapManager().getMap(name);
-			for(CustomLocation cl : map.getPickupLocations()) {
-				p.sendMessage(ChatColor.AQUA + "" + cl.getId() + ": " + ChatColor.YELLOW + "World: " + cl.getLoc().getWorld().getName().toString() + ", X:"
-						+ cl.getLoc().getX() + ", Y:"
-						+ cl.getLoc().getY() + ", Z: "
-						+ cl.getLoc().getZ() + ", Yaw: "
-						+ cl.getLoc().getYaw() + ", Pitch: "
-						+ cl.getLoc().getPitch() + "");
+			for(int i = 0; i < map.getTiers().length; i++) {
+				p.sendMessage(ChatColor.AQUA + "" + i + ": " + ChatColor.YELLOW + map.getTiers()[i].getContent().toString());
 			}
 			return;
 		}
 		
-		if(args[0].equalsIgnoreCase("teleportpickuplocation") || args[0].equalsIgnoreCase("pickuplocationteleport") ||
-				args[0].equalsIgnoreCase("tppickuploc") || args[0].equalsIgnoreCase("pickuploctp")) {
+		if(args[0].equalsIgnoreCase("loadtier") || args[0].equalsIgnoreCase("tierload")) {
 			
-	        if(!p.hasPermission("armsrace.commands.map.teleportpickuplocation")) {
+	        if(!p.hasPermission("armsrace.commands.map.loadtier")) {
 	        	p.sendMessage(main.getMessages().noPermissions());
 	        	return;
 	        }
@@ -173,18 +166,12 @@ public class MapPickupHandler {
 			}
 			
 			try {
-				int id = Integer.parseInt(args[2]);
+				int tier = Integer.parseInt(args[2]);
 				
 				Map map = main.getGameManager().getMapManager().getMap(name);
-				
-				CustomLocation cl = map.getPickupLocation(id);
-				if(cl == null) {
-					p.sendMessage(main.getMessages().invalidArgument());
-					return;
-				}
-				
-				p.teleport(cl.getLoc());
-				p.sendMessage(ChatColor.GREEN + "Teleporting to pickup location number " + id + " of map " + name + "!");
+				p.getInventory().setContents(map.getTiers()[tier].getContent());
+				p.getInventory().setArmorContents(map.getTiers()[tier].getArmor());
+				p.sendMessage(ChatColor.GREEN + "Loading tier " + tier + " of map " + name + "!");
 				return;
 			} catch(Exception e) {
 				p.sendMessage(main.getMessages().invalidArgument());

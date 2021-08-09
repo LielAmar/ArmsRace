@@ -1,4 +1,4 @@
-package com.lielamar.armsrace.commands.subcommands.handlers;
+package com.lielamar.armsrace.commands.impls.handlers;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

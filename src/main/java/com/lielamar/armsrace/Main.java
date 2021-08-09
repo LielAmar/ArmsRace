@@ -1,7 +1,8 @@
 package com.lielamar.armsrace;
 
-import com.lielamar.armsrace.commands.ArmsRace;
-import com.lielamar.armsrace.commands.Spawn;
+import com.lielamar.armsrace.commands.ArmsRaceCommand;
+import com.lielamar.armsrace.commands.SpawnCommand;
+import com.lielamar.armsrace.hook.PlaceholderAPIHook;
 import com.lielamar.armsrace.listeners.OnDurabilityChange;
 import com.lielamar.armsrace.listeners.OnPlayerDeath;
 import com.lielamar.armsrace.listeners.OnPlayerJoin;
@@ -13,6 +14,7 @@ import com.lielamar.armsrace.listeners.skills.OnSwordLaunch;
 import com.lielamar.armsrace.listeners.trails.OnProjectileShoot;
 import com.lielamar.armsrace.modules.CustomPlayer;
 import com.lielamar.armsrace.modules.map.Map;
+import com.lielamar.armsrace.utility.APIUtils;
 import com.lielamar.armsrace.utility.Messages;
 import com.lielamar.armsrace.utility.Utils;
 import com.lielamar.armsrace.utility.packets.PacketHandler;
@@ -36,156 +38,183 @@ import com.lielamar.armsrace.managers.files.MapsFileManager;
 import com.lielamar.armsrace.modules.map.Pickup;
 
 public class Main extends JavaPlugin {
-	
-	private BukkitFileManager bfm; // File manager
-	private Messages messages; // Messages instance
-	private PacketHandler packetHandler;
-	private SettingsManager settingsManager; // Settings manager instance
-	private ShopManager shopManager; // Shop Manager instance
-	private KillEffectsManager killEffectsManager; // Kill Effects Manager instance
-	private GameManager gameManager; // Game Manager instance
-	private MapsFileManager mapsFileManager; // Maps File Manager instance
-	private PlayerManager playerManager; // Player manager
-	private ScoreboardManager scoreboardManager; // Scoreboard manager
-	private CombatLogManager combatlogManager; // Combat Log Manager
-	
-	@Override
-	public void onEnable() {
-		registerManagers();
-		registerEvents();
-		registerCommands();
-		
-		Location spawn = getSettingsManager().getSpawn();
-		if(spawn != null) {
-			System.out.println(spawn.toString());
-			for(Player pl : Bukkit.getOnlinePlayers()) {
-				CustomPlayer cpl = playerManager.getPlayer(pl);
-				scoreboardManager.addPlayer(cpl);
-				Utils.clearPlayer(this, pl, 20, 20, 20, GameMode.ADVENTURE, 0);
-				pl.teleport(spawn);
-			}
-		}
-	}
-	
-	@Override
-	public void onDisable() {
-		for(ArmorStand as : this.playerManager.getSwordLaunchAs().values()) {
-			as.remove();
-		}
-			
-		for(Map map : gameManager.getMapManager().getMaps().values()) {
-			for(Pickup pickup : map.getPickups()) {
-				pickup.getPickup().remove();
-			}
-		}
-		
-		destoryManagers();
-	}
 
-	private void registerEvents() {
-		PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new OnPlayerJoin(this), this);
-		pm.registerEvents(new OnPlayerQuit(this), this);
-		
-		// General Events
-		pm.registerEvents(new OnDurabilityChange(this), this);
-		pm.registerEvents(new OnPlayerDeath(this), this);
-		
-		// Shop events
-		pm.registerEvents(new OnShopClick(this), this);
-	
-		// Skills
-		pm.registerEvents(new OnSwordLaunch(this), this);
-		
-		// Trails
-		pm.registerEvents(new OnProjectileShoot(this), this);
-		
-		// Kill effects
-		pm.registerEvents(new OnTNTKillEffect(this), this);
-		pm.registerEvents(new OnCookiePickup(this), this);
-		pm.registerEvents(new OnPinataPickup(this), this);
-		pm.registerEvents(new OnDamageByLightning(this), this);
-		pm.registerEvents(new OnDamageByFirework(this), this);
-		
-		// Per map events
-		pm.registerEvents(new OnBlock(this), this);
-		pm.registerEvents(new OnFoodChange(this), this);
-		pm.registerEvents(new OnHealthRegenerate(this), this);
-		pm.registerEvents(new OnPlayerKill(this), this);
-		pm.registerEvents(new OnDrop(this), this);
-		pm.registerEvents(new OnPickup(this), this);
-		pm.registerEvents(new OnSpawnProtection(this), this);
-		pm.registerEvents(new OnDoubleDamage(this), this);
-	}
-	
-	private void registerCommands() {
-		getCommand("armsrace").setExecutor(new ArmsRace(this));
-		getCommand("spawn").setExecutor(new Spawn(this));
-	}
-	
+    private BukkitFileManager bfm; // File manager
+    private Messages messages; // Messages instance
+    private PacketHandler packetHandler;
+    private SettingsManager settingsManager; // Settings manager instance
+    private ShopManager shopManager; // Shop Manager instance
+    private KillEffectsManager killEffectsManager; // Kill Effects Manager instance
+    private GameManager gameManager; // Game Manager instance
+    private MapsFileManager mapsFileManager; // Maps File Manager instance
+    private PlayerManager playerManager; // Player manager
+    private ScoreboardManager scoreboardManager; // Scoreboard manager
+    private CombatLogManager combatlogManager; // Combat Log Manager
 
-	public void registerManagers() {
-		saveDefaultConfig();
-		
-		this.bfm = new BukkitFileManager(this);
+    @Override
+    public void onEnable() {
+        registerManagers();
+        registerEvents();
+        registerCommands();
+        registerHook();
+        initPlayers();
+    }
 
-		this.messages = new Messages(this.bfm.getConfig("messages"));
-		
-		this.packetHandler = new PacketHandler();
-		
-		this.settingsManager = new SettingsManager(this);
-		
-		this.shopManager = new ShopManager(this, this.bfm.getConfig("shop"));
-		
-		this.killEffectsManager = new KillEffectsManager();
-		
-		this.mapsFileManager = new MapsFileManager(this);
-		
-		this.gameManager = new GameManager(this);	
-		this.gameManager.getMapManager().loadMaps();
-	
-		this.playerManager = new PlayerManager(this);
-		
-		this.scoreboardManager = new ScoreboardManager(this);
-		
-		this.combatlogManager = new CombatLogManager(this);
-	}
-	
-	private void destoryManagers() {
-		saveDefaultConfig();
-		
-		this.bfm = null;
+    @Override
+    public void onDisable() {
+        for (ArmorStand armorStand : this.playerManager.getSwordLaunchAs().values()) {
+            armorStand.remove();
+        }
 
-		this.messages = null;
-		
-		this.packetHandler = null;
-		
-		this.settingsManager = null;
-		
-		this.shopManager = null;
-		
-		this.killEffectsManager = null;
-		
-		this.mapsFileManager = null;
-		
-		this.gameManager = null;
-		
-		this.playerManager = null;
-		
-		this.scoreboardManager = null;
-		
-		this.combatlogManager = null;
-	}
-	
-	public BukkitFileManager getBukkitFileManager() { return this.bfm; }
-	public Messages getMessages() { return this.messages; }
-	public PacketHandler getPacketHandler() { return this.packetHandler; }
-	public SettingsManager getSettingsManager() { return this.settingsManager; }
-	public ShopManager getShopManager() { return this.shopManager; }
-	public KillEffectsManager getKillEffectsManager() { return this.killEffectsManager; }
-	public MapsFileManager getMapsFileManager() { return this.mapsFileManager; }
-	public GameManager getGameManager() { return this.gameManager; }
-	public PlayerManager getPlayerManager() { return this.playerManager; }
-	public ScoreboardManager getScoreboardManager() { return this.scoreboardManager; }
-	public CombatLogManager getCombatLogManager() { return this.combatlogManager; }
+        for (Map map : gameManager.getMapManager().getMaps().values()) {
+            for (Pickup pickup : map.getPickups()) {
+                pickup.getPickup().remove();
+            }
+        }
+
+        destroyManagers();
+    }
+
+    public void registerManagers() {
+        saveDefaultConfig();
+
+        this.bfm = new BukkitFileManager(this);
+        this.messages = new Messages(this.bfm.getConfig("messages"));
+        this.packetHandler = new PacketHandler();
+        this.settingsManager = new SettingsManager(this);
+        this.shopManager = new ShopManager(this, this.bfm.getConfig("shop"));
+        this.killEffectsManager = new KillEffectsManager();
+        this.mapsFileManager = new MapsFileManager(this);
+        this.gameManager = new GameManager(this);
+        this.gameManager.getMapManager().loadMaps();
+        this.playerManager = new PlayerManager(this);
+        this.scoreboardManager = new ScoreboardManager(this);
+        this.combatlogManager = new CombatLogManager(this);
+    }
+
+    private void registerEvents() {
+        PluginManager manager = Bukkit.getPluginManager();
+
+        // Default Events
+        manager.registerEvents(new OnPlayerJoin(this), this);
+        manager.registerEvents(new OnPlayerQuit(this), this);
+
+        // General Events
+        manager.registerEvents(new OnDurabilityChange(this), this);
+        manager.registerEvents(new OnPlayerDeath(this), this);
+
+        // Shop events
+        manager.registerEvents(new OnShopClick(this), this);
+
+        // Skills
+        manager.registerEvents(new OnSwordLaunch(this), this);
+
+        // Trails
+        manager.registerEvents(new OnProjectileShoot(this), this);
+
+        // Kill effects
+        manager.registerEvents(new OnTNTKillEffect(this), this);
+        manager.registerEvents(new OnCookiePickup(this), this);
+        manager.registerEvents(new OnPinataPickup(this), this);
+        manager.registerEvents(new OnDamageByLightning(this), this);
+        manager.registerEvents(new OnDamageByFirework(this), this);
+
+        // Per map events
+        manager.registerEvents(new OnBlock(this), this);
+        manager.registerEvents(new OnFoodChange(this), this);
+        manager.registerEvents(new OnHealthRegenerate(this), this);
+        manager.registerEvents(new OnPlayerKill(this), this);
+        manager.registerEvents(new OnDrop(this), this);
+        manager.registerEvents(new OnPickup(this), this);
+        manager.registerEvents(new OnSpawnProtection(this), this);
+        manager.registerEvents(new OnDoubleDamage(this), this);
+    }
+
+    private void registerCommands() {
+        getCommand("armsrace").setExecutor(new ArmsRaceCommand(this));
+        getCommand("spawn").setExecutor(new SpawnCommand(this));
+    }
+
+    private void registerHook() {
+        if (APIUtils.isPlaceholderAPI()) {
+            PlaceholderAPIHook placeholderAPIHook = new PlaceholderAPIHook(this);
+            placeholderAPIHook.register();
+        }
+    }
+
+    private void initPlayers() {
+        playerManager.getPlayers().values().forEach(this::initPlayer);
+    }
+
+    private void initPlayer(CustomPlayer customPlayer) {
+        Location spawn = getSettingsManager().getSpawn();
+        Player player = customPlayer.getPlayer();
+
+        scoreboardManager.addPlayer(customPlayer);
+        Utils.clearPlayer(this, player, 20, 20, 20, GameMode.ADVENTURE);
+
+        if (spawn != null) {
+            player.teleport(spawn);
+        }
+    }
+
+    private void destroyManagers() {
+        saveDefaultConfig();
+
+        this.bfm = null;
+        this.messages = null;
+        this.packetHandler = null;
+        this.settingsManager = null;
+        this.shopManager = null;
+        this.killEffectsManager = null;
+        this.mapsFileManager = null;
+        this.gameManager = null;
+        this.playerManager = null;
+        this.scoreboardManager = null;
+        this.combatlogManager = null;
+    }
+
+    public BukkitFileManager getBukkitFileManager() {
+        return this.bfm;
+    }
+
+    public Messages getMessages() {
+        return this.messages;
+    }
+
+    public PacketHandler getPacketHandler() {
+        return this.packetHandler;
+    }
+
+    public SettingsManager getSettingsManager() {
+        return this.settingsManager;
+    }
+
+    public ShopManager getShopManager() {
+        return this.shopManager;
+    }
+
+    public KillEffectsManager getKillEffectsManager() {
+        return this.killEffectsManager;
+    }
+
+    public MapsFileManager getMapsFileManager() {
+        return this.mapsFileManager;
+    }
+
+    public GameManager getGameManager() {
+        return this.gameManager;
+    }
+
+    public PlayerManager getPlayerManager() {
+        return this.playerManager;
+    }
+
+    public ScoreboardManager getScoreboardManager() {
+        return this.scoreboardManager;
+    }
+
+    public CombatLogManager getCombatLogManager() {
+        return this.combatlogManager;
+    }
 }

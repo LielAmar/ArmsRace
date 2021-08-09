@@ -5,13 +5,17 @@ import org.bukkit.Location;
 
 public class CustomLocation {
 
-	private int id;
+	public int id;
 	private String world;
 	private double x;
 	private double y;
 	private double z;
 	private float yaw;
 	private float pitch;
+
+	public CustomLocation(int id, Location location) {
+		this(id, location.getWorld().getName(), location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
+	}
 
 	public CustomLocation(int id, String world, double x, double y, double z, float yaw, float pitch) {
 		this.id = id;
@@ -23,28 +27,25 @@ public class CustomLocation {
 		this.pitch = pitch;
 	}
 
-	public CustomLocation(int id, Location loc) {
-		this(id, loc.getWorld().getName(), loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
+	public Location getLocation() {
+		return new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
 	}
 
-	public int getId() {
-		return id;
+	public void setLocation(Location location) {
+		this.world = location.getWorld().getName();
+		this.x = location.getX();
+		this.y = location.getY();
+		this.z = location.getZ();
+		this.yaw = location.getYaw();
+		this.pitch = location.getPitch();
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Location getLoc() {
-		return new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
+	public int getId() {
+		return id;
 	}
 
-	public void setLoc(Location loc) {
-		this.world = loc.getWorld().getName();
-		this.x = loc.getX();
-		this.y = loc.getY();
-		this.z = loc.getZ();
-		this.yaw = loc.getYaw();
-		this.pitch = loc.getPitch();
-	}
 }

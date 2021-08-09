@@ -25,4 +25,5 @@ public class SkillLevel {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
 }

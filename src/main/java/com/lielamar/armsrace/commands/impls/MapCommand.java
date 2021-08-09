@@ -1,12 +1,12 @@
-package com.lielamar.armsrace.commands.subcommands;
+package com.lielamar.armsrace.commands.impls;
 
 import org.bukkit.entity.Player;
 
 import com.lielamar.armsrace.Main;
-import com.lielamar.armsrace.commands.subcommands.handlers.MapCreationHandler;
-import com.lielamar.armsrace.commands.subcommands.handlers.MapLocationHandler;
-import com.lielamar.armsrace.commands.subcommands.handlers.MapPickupHandler;
-import com.lielamar.armsrace.commands.subcommands.handlers.MapTierHandler;
+import com.lielamar.armsrace.commands.impls.handlers.MapCreationHandler;
+import com.lielamar.armsrace.commands.impls.handlers.MapLocationHandler;
+import com.lielamar.armsrace.commands.impls.handlers.MapPickupHandler;
+import com.lielamar.armsrace.commands.impls.handlers.MapTierHandler;
 
 public class MapCommand extends SubCommand {
 

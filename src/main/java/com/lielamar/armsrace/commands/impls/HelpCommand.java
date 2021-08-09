@@ -1,4 +1,4 @@
-package com.lielamar.armsrace.commands.subcommands;
+package com.lielamar.armsrace.commands.impls;
 
 import java.util.HashMap;
 import java.util.Map;

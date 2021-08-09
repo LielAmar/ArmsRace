@@ -1,10 +1,9 @@
-package com.lielamar.armsrace.commands.subcommands;
-
-import org.bukkit.entity.Player;
+package com.lielamar.armsrace.commands.impls;
 
 import com.lielamar.armsrace.Main;
-import com.lielamar.armsrace.listeners.custom.LeaveReason;
+import com.lielamar.armsrace.api.events.PlayerLeaveMapEvent;
 import com.lielamar.armsrace.modules.map.Map;
+import org.bukkit.entity.Player;
 
 public class LeaveCommand extends SubCommand {
 	
@@ -20,7 +19,7 @@ public class LeaveCommand extends SubCommand {
 			p.sendMessage(main.getMessages().youAreNotInAMap());
 			return;
 		}
-		map.removePlayer(p, LeaveReason.LEAVE_COMMAND);
+		map.removePlayer(p, PlayerLeaveMapEvent.LeaveReason.LEAVE_COMMAND);
 		return;
 	}
 

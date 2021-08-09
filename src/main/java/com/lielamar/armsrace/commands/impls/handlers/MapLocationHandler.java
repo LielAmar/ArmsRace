@@ -1,4 +1,4 @@
-package com.lielamar.armsrace.commands.subcommands.handlers;
+package com.lielamar.armsrace.commands.impls.handlers;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -140,12 +140,12 @@ public class MapLocationHandler {
 
 			Map map = main.getGameManager().getMapManager().getMap(name);
 			for(CustomLocation cl : map.getLocations()) {
-				p.sendMessage(ChatColor.AQUA + "" + cl.getId() + ": " + ChatColor.YELLOW + "World: " + cl.getLoc().getWorld().getName().toString() + ", X:"
-						+ cl.getLoc().getX() + ", Y:"
-						+ cl.getLoc().getY() + ", Z: "
-						+ cl.getLoc().getZ() + ", Yaw: "
-						+ cl.getLoc().getYaw() + ", Pitch: "
-						+ cl.getLoc().getPitch() + "");
+				p.sendMessage(ChatColor.AQUA + "" + cl.getId() + ": " + ChatColor.YELLOW + "World: " + cl.getLocation().getWorld().getName().toString() + ", X:"
+						+ cl.getLocation().getX() + ", Y:"
+						+ cl.getLocation().getY() + ", Z: "
+						+ cl.getLocation().getZ() + ", Yaw: "
+						+ cl.getLocation().getYaw() + ", Pitch: "
+						+ cl.getLocation().getPitch() + "");
 			}
 			return;
 		}
@@ -181,7 +181,7 @@ public class MapLocationHandler {
 					return;
 				}
 				
-				p.teleport(cl.getLoc());
+				p.teleport(cl.getLocation());
 				p.sendMessage(ChatColor.GREEN + "Teleporting to location number " + id + " of map " + name + "!");
 				return;
 			} catch(Exception e) {

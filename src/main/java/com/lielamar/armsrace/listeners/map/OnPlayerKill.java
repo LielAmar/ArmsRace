@@ -1,11 +1,13 @@
 package com.lielamar.armsrace.listeners.map;
 
-import java.util.Random;
-
 import com.cryptomorin.xseries.XSound;
-import com.lielamar.armsrace.listeners.custom.LeaveReason;
-import com.lielamar.armsrace.listeners.custom.PlayerTierDownEvent;
-import com.lielamar.armsrace.listeners.custom.PlayerTierUpEvent;
+import com.lielamar.armsrace.Main;
+import com.lielamar.armsrace.api.events.PlayerLeaveMapEvent;
+import com.lielamar.armsrace.api.events.PlayerTierDownEvent;
+import com.lielamar.armsrace.api.events.PlayerTierUpEvent;
+import com.lielamar.armsrace.modules.CustomPlayer;
+import com.lielamar.armsrace.modules.killeffects.KillEffect;
+import com.lielamar.armsrace.modules.map.Map;
 import com.lielamar.armsrace.utility.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -23,10 +25,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import com.lielamar.armsrace.Main;
-import com.lielamar.armsrace.modules.CustomPlayer;
-import com.lielamar.armsrace.modules.killeffects.KillEffect;
-import com.lielamar.armsrace.modules.map.Map;
+import java.util.Random;
 
 public class OnPlayerKill implements Listener {
 
@@ -137,7 +136,7 @@ public class OnPlayerKill implements Listener {
 					handleKill(cp, cpKiller);
 				}
 			}
-			map.removePlayer(p, LeaveReason.QUIT_GAME);
+			map.removePlayer(p, PlayerLeaveMapEvent.LeaveReason.QUIT_GAME);
 		}
 	}
 	
@@ -155,12 +154,12 @@ public class OnPlayerKill implements Listener {
 		if(map == null) return;
 		
 		// Kill event (Victim)
-		cpVic.getPlayer().teleport(map.getRandomLocation().getLoc());
+		cpVic.getPlayer().teleport(map.getRandomLocation().getLocation());
 		cpVic.addDeath(map.getName());
 		cpVic.getPlayer().setFireTicks(0);
 		cpVic.setKillstreak(0);
 		
-		Utils.clearPlayer(main, cpVic.getPlayer(), map.getHealthOnJoin(), map.getHungerOnJoin(), cpVic.getPlayer().getMaxHealth(), map.getGamemode(), map.getSpawnProtection());
+		Utils.clearPlayer(main, cpVic.getPlayer(), map.getHealthOnJoin(), map.getHungerOnJoin(), cpVic.getPlayer().getMaxHealth(), map.getGamemode());
 		
 		int maxHealth = 20;
 		if(cpVic.getSkillLevel("EXTRA_HEALTH") > 0)
@@ -229,7 +228,7 @@ public class OnPlayerKill implements Listener {
 			newHealth = cpKiller.getPlayer().getMaxHealth();
 		cpKiller.getPlayer().setHealth(newHealth);
 		cpKiller.addKill(map.getName());
-		cpKiller.setKillstreak(cpKiller.getKillstreak() + 1);
+		cpKiller.setKillstreak(cpKiller.getKillStreak() + 1);
 		
 		// Amount of tiers to skip
 		int counter = 1;
@@ -252,9 +251,9 @@ public class OnPlayerKill implements Listener {
 			counter--;
 		}
 		
-		if (!cpKiller.containsHightier(map.getName())
-				|| cpKiller.getCurrentTierId() > cpKiller.getHightier(map.getName()))
-			cpKiller.setHightier(map.getName(), cpKiller.getCurrentTierId());
+		if (!cpKiller.containsHighTier(map.getName())
+				|| cpKiller.getCurrentTierId() > cpKiller.getHighTier(map.getName()))
+			cpKiller.setHighTier(map.getName(), cpKiller.getCurrentTierId());
 
 		main.getPacketHandler().getNMSHandler().sendActionBar(cpKiller.getPlayer(),
 				main.getMessages().kill(cpVic.getPlayer().getName()));

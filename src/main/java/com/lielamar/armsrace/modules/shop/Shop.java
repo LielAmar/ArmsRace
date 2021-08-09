@@ -1,162 +1,144 @@
 package com.lielamar.armsrace.modules.shop;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.lielamar.armsrace.modules.CustomPlayer;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.lielamar.armsrace.modules.CustomPlayer;
-
-import net.md_5.bungee.api.ChatColor;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Shop {
 
-	private String name;
-	private boolean enabled;
-	private Inventory inv;
-	private List<CustomItem> ci;
-	
-	public Shop(String name, boolean enabled, int rows) {
-		this.name = name;
-		this.enabled = enabled;
-		this.inv = Bukkit.createInventory(null, rows*9, ChatColor.translateAlternateColorCodes('&', name));
-		this.ci = new ArrayList<>();
-	}
+    private String name;
+    private boolean enabled;
+    private Inventory inventory;
 
-	public String getName() {
-		return name;
-	}
+    private final List<CustomItem> customItems = new LinkedList<>();
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Shop(String name, boolean enabled, int rows) {
+        this.name = name;
+        this.enabled = enabled;
+        this.inventory = Bukkit.createInventory(null, rows * 9, ChatColor.translateAlternateColorCodes('&', name));
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    /**
+     * @param customPlayer A {@link CustomPlayer} object
+     * @return A custom inventory for the given player
+     */
+    public Inventory getCustomInventory(CustomPlayer customPlayer) {
+        Inventory copyInventory = Bukkit.createInventory(null, inventory.getSize(), ChatColor.translateAlternateColorCodes('&', name));
+        copyInventory.setContents(inventory.getContents());
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+        for (ItemStack itemStack : copyInventory) {
+            if (itemStack == null || itemStack.getType() == Material.AIR) {
+                continue;
+            }
 
-	public Inventory getInventory() {
-		return this.inv;
-	}
+            CustomItem customItem = getCustomItem(itemStack);
+            if (customItem.getType() == ItemType.GENERAL) {
+                setLore(itemStack, line -> line.replace("%coins%", "" + customPlayer.getCoins()));
+            } else if (customItem.getType() == ItemType.SKILL) {
+                setLore(itemStack, line -> line.replace("%price%", "" + customPlayer.getCoins())
+                        .replace("%level%", "" + customPlayer.getSkillLevel(customItem.getSkillType())));
+            } else if (customItem.getType() == ItemType.PROJECTILE || customItem.getType() == ItemType.KILL_EFFECT) {
+                setLore(itemStack, line -> line.replace("%price%", "" + nextPrice(customPlayer, customItem)));
+            }
+        }
 
-	public void setInventory(Inventory inv) {
-		this.inv = inv;
-	}
-	
-	public void addCustomItem(CustomItem ci) {
-		this.ci.add(ci);
-	}
-	
-	/**
-	 * @param cp      A {@link CustomPlayer} object
-	 * @return        A custom inventory for the given player
-	 */
-	public Inventory getCustomInventory(CustomPlayer cp) {
-		InventoryView openInventory = cp.getPlayer().getOpenInventory();
-		Inventory copy = Bukkit.createInventory(null, inv.getSize(), ChatColor.translateAlternateColorCodes('&', name));
-		copy.setContents(inv.getContents());
-		
-		for(ItemStack i : copy) {
-			if(i == null || i.getType() == Material.AIR) continue;
-			CustomItem ci = getCustomItem(i);
-			
-			if(ci.getType() == ItemType.GENERAL) {
-				if(i.hasItemMeta() && i.getItemMeta().hasLore()) {
-					ItemMeta meta = i.getItemMeta();
-					List<String> lore = new ArrayList<>();
-					for(String s : meta.getLore())
-						lore.add(s.replaceAll("%coins%", cp.getCoins() + ""));
-					meta.setLore(lore);
-					i.setItemMeta(meta);
-				}
-			} if(ci.getType() == ItemType.SKILL) {
-				if(i.hasItemMeta() && i.getItemMeta().hasLore()) {
-					ItemMeta meta = i.getItemMeta();
-					List<String> lore = new ArrayList<>();
-					for(String s : meta.getLore())
-						lore.add(s.replaceAll("%price%", nextPrice(cp, ci) + "").replaceAll("%level%", cp.getSkillLevel(ci.getSkillType()) + ""));
-					meta.setLore(lore);
-					i.setItemMeta(meta);
-				}
-			} else if(ci.getType() == ItemType.PROJECTILE) {
-				if(i.hasItemMeta() && i.getItemMeta().hasLore()) {
-					ItemMeta meta = i.getItemMeta();
-					List<String> lore = new ArrayList<>();
-					for(String s : meta.getLore())
-						lore.add(s.replaceAll("%price%", nextPrice(cp, ci) + ""));
-					meta.setLore(lore);
-					i.setItemMeta(meta);
-				}
-			} else if(ci.getType() == ItemType.KILL_EFFECT) {
-				ItemMeta meta = i.getItemMeta();
-				List<String> lore = new ArrayList<>();
-				for(String s : meta.getLore())
-					lore.add(s.replaceAll("%price%", nextPrice(cp, ci) + ""));
-				meta.setLore(lore);
-				i.setItemMeta(meta);
-			}
-		}
-		return copy;
-	}
-	
-	/**
-	 * Get a custom item from an ItemStack
-	 * 
-	 * @param item - itemstack to get the custom item of
-	 * @return - the custom item
-	 */
-	/**
-	 * @param item      An ItemStack object
-	 * @return          A {@link CustomItem} object
-	 */
-	public CustomItem getCustomItem(ItemStack item) {
-		for(CustomItem ci : ci) {
-			if(equal(ci.getItem(), item))
-				return ci;
-		}
-		return null;
-	}
-	
-	public boolean equal(ItemStack one, ItemStack two) {
-		if(one.hasItemMeta() && two.hasItemMeta()
-				&& one.getItemMeta().hasDisplayName() && two.getItemMeta().hasDisplayName()
-				&& one.getItemMeta().getDisplayName().equalsIgnoreCase(two.getItemMeta().getDisplayName()))
-			return true;
-		return false;
-	}
-	
-	/**
-	 * @param cp      Player to calculate the price of
-	 * @param item    The linked item of a skill
-	 * @return        Next price of a skill
-	 */
-	public double nextPrice(CustomPlayer cp, CustomItem item) {
-		double nextPrice = item.getPrice();
-		if(item.getType() == ItemType.PROJECTILE) {
-			boolean hasTrail = cp.hasTrail(item.getTrailType());
-			if(hasTrail)
-				nextPrice = 0;
-		} else if(item.getType() == ItemType.KILL_EFFECT) {
-			boolean hasTrail = cp.hasKilleffect(item.getKillEffectType());
-			if(hasTrail)
-				nextPrice = 0;
-		} else if(item.getType() == ItemType.SKILL) {
-			int nextLevel = cp.getSkillLevel(item.getSkillType())+1;
-		
-			for(SkillLevel lvl : item.getLevels()) {
-				if(lvl.getLevel() == nextLevel)
-					nextPrice = lvl.getPrice();
-			}
-		}
-		return nextPrice;
-	}
+        return copyInventory;
+    }
+
+    public void setLore(ItemStack itemStack, Function<String, String> mapper) {
+        ItemMeta itemMeta = itemStack.getItemMeta();
+
+        if (itemMeta == null) {
+            return;
+        }
+
+        itemMeta.setLore(itemMeta.getLore() != null ? itemMeta.getLore().stream()
+                .map(mapper)
+                .collect(Collectors.toList()) : new LinkedList<>());
+        itemStack.setItemMeta(itemMeta);
+    }
+
+    /**
+     * Get a custom item from an ItemStack
+     *
+     * @param item - itemStack to get the custom item of
+     * @return - the custom item
+     */
+    public CustomItem getCustomItem(ItemStack item) {
+        for (CustomItem customItem : customItems) {
+            if (equals(customItem.getItem(), item))
+                return customItem;
+        }
+        return null;
+    }
+
+    /**
+     * @param cp   Player to calculate the price of
+     * @param item The linked item of a skill
+     * @return Next price of a skill
+     */
+    public double nextPrice(CustomPlayer cp, CustomItem item) {
+        double nextPrice = item.getPrice();
+        if (item.getType() == ItemType.PROJECTILE) {
+            boolean hasTrail = cp.hasTrail(item.getTrailType());
+            if (hasTrail)
+                nextPrice = 0;
+        } else if (item.getType() == ItemType.KILL_EFFECT) {
+            boolean hasTrail = cp.hasKilleffect(item.getKillEffectType());
+            if (hasTrail)
+                nextPrice = 0;
+        } else if (item.getType() == ItemType.SKILL) {
+            int nextLevel = cp.getSkillLevel(item.getSkillType()) + 1;
+
+            for (SkillLevel lvl : item.getLevels()) {
+                if (lvl.getLevel() == nextLevel)
+                    nextPrice = lvl.getPrice();
+            }
+        }
+        return nextPrice;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Inventory getInventory() {
+        return this.inventory;
+    }
+
+    public void setInventory(Inventory inv) {
+        this.inventory = inv;
+    }
+
+    public void addCustomItem(CustomItem customItem) {
+        this.customItems.add(customItem);
+    }
+
+    public boolean equals(ItemStack one, ItemStack two) {
+        return one.hasItemMeta() && two.hasItemMeta()
+                && Objects.equals(one.getItemMeta().getDisplayName(), two.getItemMeta().getDisplayName());
+    }
+
 }

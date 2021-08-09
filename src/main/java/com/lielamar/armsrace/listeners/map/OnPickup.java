@@ -124,8 +124,8 @@ public class OnPickup implements Listener {
 							cp.getPlayer().sendMessage(main.getMessages().youWerePromoted(cp.getCurrentTierId()));
 						cp.setCurrentTier(map.getTiers()[cp.getCurrentTierId()]);
 						
-						if(!cp.containsHightier(map.getName()) || cp.getCurrentTierId() > cp.getHightier(map.getName()))
-							cp.setHightier(map.getName(), cp.getCurrentTierId());
+						if(!cp.containsHighTier(map.getName()) || cp.getCurrentTierId() > cp.getHighTier(map.getName()))
+							cp.setHighTier(map.getName(), cp.getCurrentTierId());
 					
 						counter++;
 					}
