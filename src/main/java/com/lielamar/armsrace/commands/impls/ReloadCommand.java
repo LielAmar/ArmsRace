@@ -1,5 +1,6 @@
 package com.lielamar.armsrace.commands.impls;
 
+import com.lielamar.armsrace.api.events.PlayerLeaveMapEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
@@ -22,6 +23,7 @@ public class ReloadCommand extends SubCommand{
 		}
 			
 		for(Map map : main.getGameManager().getMapManager().getMaps().values()) {
+			map.removePlayer(p, PlayerLeaveMapEvent.LeaveReason.RELOAD);
 			for(Pickup pickup : map.getPickups()) {
 				pickup.getPickup().remove();
 			}
