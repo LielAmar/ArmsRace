@@ -55,7 +55,11 @@ public class ScoreboardManager {
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         Objective objective = scoreboard.registerNewObjective("ArmsRace", "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective.setDisplayName(ChatColor.translateAlternateColorCodes('&', title.replaceAll("%mapname%", customPlayer.getCurrentMap().getName())));
+        if (customPlayer.getCurrentMap() != null) {
+            customScoreboard = customPlayer.getCurrentMap().getCustomScoreboard();
+            title = customScoreboard.title.replace("%mapname%", customPlayer.getCurrentMap().getName());
+        }
+        objective.setDisplayName(ChatColor.translateAlternateColorCodes('&', title.replaceAll("%mapname%", title)));
 
         Score footer = objective.getScore(ChatColor.translateAlternateColorCodes('&', customScoreboard.footer));
         footer.setScore(0);
