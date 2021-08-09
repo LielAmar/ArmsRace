@@ -1,11 +1,11 @@
 name: ArmsRace
 main: com.lielamar.armsrace.Main
-version: 1.6
+version: 1.8
 api-version: 1.13
 author: Liel Amar
 website: www.lielamar.com
 description: The ArmsRace plugin made by Liel Amar
-depend: [Vault]
+softdepend: [Vault, PlaceholderAPI]
 
 commands:
     armsrace:
