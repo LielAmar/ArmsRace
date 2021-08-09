@@ -231,7 +231,7 @@ public class CustomPlayer {
         return this.highTier.containsKey(mapName);
     }
 
-    public double getHighTier(String mapName) {
+    public int getHighTier(String mapName) {
         return this.highTier.get(mapName);
     }
 
