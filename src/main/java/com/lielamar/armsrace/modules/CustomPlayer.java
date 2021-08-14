@@ -131,6 +131,9 @@ public class CustomPlayer {
     }
 
     public String getCurrentTrail() {
+        if (currentTrail.isEmpty()) {
+            return "None";
+        }
         return this.currentTrail;
     }
 
@@ -153,6 +156,9 @@ public class CustomPlayer {
     }
 
     public String getCurrentKillEffect() {
+        if (currentKillEffect.isEmpty()) {
+            return "None";
+        }
         return this.currentKillEffect;
     }
 
