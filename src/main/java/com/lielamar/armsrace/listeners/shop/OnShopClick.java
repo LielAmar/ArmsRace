@@ -1,25 +1,25 @@
 package com.lielamar.armsrace.listeners.shop;
 
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.CustomPlayer;
 import com.lielamar.armsrace.modules.shop.CustomItem;
 import com.lielamar.armsrace.modules.shop.ItemType;
 import com.lielamar.armsrace.modules.shop.Shop;
 import com.lielamar.armsrace.modules.shop.SkillLevel;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 public class OnShopClick implements Listener {
 
-	private Main main;
+	private final Main main;
+
 	public OnShopClick(Main main) {
 		this.main = main;
 	}
-	
+
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
 		if (e.getInventory() == null) return;
@@ -28,6 +28,7 @@ public class OnShopClick implements Listener {
 
 		Player p = (Player) e.getWhoClicked();
 		CustomPlayer cp = main.getPlayerManager().getPlayer(p);
+		double money = main.getPlayerManager().getEconomy().getBalance(p);
 
 		for (Shop s : main.getShopManager().getShops().values()) {
 			if (e.getView().getTitle().equals(ChatColor.translateAlternateColorCodes('&', s.getName()))) {
@@ -60,15 +61,15 @@ public class OnShopClick implements Listener {
 					if (cp.getSkillLevel(item.getSkillType()) >= nextPlayerLevel.getLevel())
 						return;
 
-					if (main.getPlayerManager().getEconomy().withdrawPlayer(p, nextPlayerLevel.getPrice()).transactionSuccess()) {
-						cp.setSkillLevel(item.getSkillType(), nextPlayerLevel.getLevel());
-						p.sendMessage(main.getMessages().purchasedSkill(ChatColor.stripColor(item.getName()), nextPlayerLevel.getLevel(), nextPlayerLevel.getPrice()));
-						p.closeInventory();
-					} else {
+					if (money < nextPlayerLevel.getPrice()) {
 						p.sendMessage(main.getMessages().notEnoughCoins(nextPlayerLevel.getPrice()));
 						p.closeInventory();
 						return;
 					}
+					main.getPlayerManager().getEconomy().withdrawPlayer(p, nextPlayerLevel.getPrice()).transactionSuccess();
+					cp.setSkillLevel(item.getSkillType(), nextPlayerLevel.getLevel());
+					p.sendMessage(main.getMessages().purchasedSkill(ChatColor.stripColor(item.getName()), nextPlayerLevel.getLevel(), nextPlayerLevel.getPrice()));
+					p.closeInventory();
 				} else if (item.getType() == ItemType.PROJECTILE) {
 					if (item.getTrailType() == null) return;
 
@@ -81,24 +82,20 @@ public class OnShopClick implements Listener {
 					}
 
 					int price = item.getPrice();
-
-					if (main.getPlayerManager().getEconomy().withdrawPlayer(p, price).transactionSuccess()) {
-						cp.setTrails(item.getTrailType(), true);
-						cp.setCurrentTrail(item.getTrailType());
-
-						if (item.getTrailData() != null)
-							cp.setCurrentTrailData(item.getTrailData());
-
-						if (price > 0)
-							p.sendMessage(main.getMessages().purchasedTrail(ChatColor.stripColor(item.getName()), price));
-						p.sendMessage(main.getMessages().trailChangedTo(ChatColor.stripColor(item.getName())));
-						p.closeInventory();
-						return;
-					} else {
+					if (money < price) {
 						p.sendMessage(main.getMessages().notEnoughCoins(price));
 						p.closeInventory();
 						return;
 					}
+					p.sendMessage(main.getMessages().purchasedTrail(ChatColor.stripColor(item.getName()), price));
+					p.sendMessage(main.getMessages().trailChangedTo(ChatColor.stripColor(item.getName())));
+					p.closeInventory();
+					main.getPlayerManager().getEconomy().withdrawPlayer(p, price).transactionSuccess();
+					cp.setTrails(item.getTrailType(), true);
+					cp.setCurrentTrail(item.getTrailType());
+
+					if (item.getTrailData() != null)
+						cp.setCurrentTrailData(item.getTrailData());
 				} else if (item.getType() == ItemType.KILL_EFFECT) {
 					if (item.getKillEffectType() == null) return;
 
@@ -111,21 +108,18 @@ public class OnShopClick implements Listener {
 					}
 
 					int price = item.getPrice();
-
-					if (main.getPlayerManager().getEconomy().withdrawPlayer(p, price).transactionSuccess()) {
-						cp.setKillEffects(item.getKillEffectType(), true);
-						cp.setCurrentKillEffect(item.getKillEffectType());
-
-						if (price > 0)
-							p.sendMessage(main.getMessages().purchasedKillEffect(ChatColor.stripColor(item.getName()), price));
-						p.sendMessage(main.getMessages().killEffectChangedTo(ChatColor.stripColor(item.getName())));
-						p.closeInventory();
-						return;
-					} else {
+					if (money < price) {
 						p.sendMessage(main.getMessages().notEnoughCoins(price));
 						p.closeInventory();
 						return;
 					}
+					main.getPlayerManager().getEconomy().withdrawPlayer(p, price).transactionSuccess();
+					cp.setKillEffects(item.getKillEffectType(), true);
+					cp.setCurrentKillEffect(item.getKillEffectType());
+					p.sendMessage(main.getMessages().purchasedKillEffect(ChatColor.stripColor(item.getName()), price));
+					p.sendMessage(main.getMessages().killEffectChangedTo(ChatColor.stripColor(item.getName())));
+					p.closeInventory();
+					return;
 				}
 			}
 		}
