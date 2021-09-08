@@ -1,6 +1,7 @@
 package com.lielamar.armsrace.listeners.trails;
 
-import com.lielamar.armsrace.utility.ParticleEffect;
+import com.lielamar.armsrace.Main;
+import com.lielamar.armsrace.modules.CustomPlayer;
 import com.lielamar.armsrace.utility.packets.PacketVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,37 +16,34 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.lielamar.armsrace.Main;
-import com.lielamar.armsrace.modules.CustomPlayer;
-
 public class OnProjectileShoot implements Listener {
 
-	private Main main;
-	
+	private final Main main;
+
 	public OnProjectileShoot(Main main) {
 		this.main = main;
 	}
-	
+
 	@EventHandler
 	public void onProjectile(ProjectileLaunchEvent e) {
 		String version = Bukkit.getVersion();
 		Projectile proj = e.getEntity();
-		if(!(proj.getShooter() instanceof Player)) return;
-		
+		if (!(proj.getShooter() instanceof Player)) return;
+
 		Player p = (Player) proj.getShooter();
 		CustomPlayer cp = main.getPlayerManager().getPlayer(p);
-		
-		if(cp.getCurrentMap() == null) return;
-		
+
+		if (cp.getCurrentMap() == null) return;
+
 		String trail = cp.getCurrentTrail();
-		if(trail.length() < 0 || trail.equalsIgnoreCase("reset")) return;
-		
+		if (trail.length() < 0 || trail.equalsIgnoreCase("reset")) return;
+
 		PacketVersion pv = main.getPacketHandler().getNMSHandler();
-		if(pv == null) return;
-		
+		if (pv == null) return;
+
 		new BukkitRunnable() {
 			String strippedTrail = ChatColor.stripColor(trail);
-			
+
 			@Override
 			public void run() {
 				if (e.getEntity() == null) this.cancel();
@@ -67,12 +65,12 @@ public class OnProjectileShoot implements Listener {
 			}
 		}.runTaskTimerAsynchronously(main, 0L, main.getSettingsManager().getTrailsSpeed());
 	}
-	
+
 	@EventHandler
 	public void onProjectileHit(EntityDamageByEntityEvent e) {
-		if(!(e.getEntity() instanceof LivingEntity)) return;
-		if(!(e.getDamager() instanceof Projectile)) return;
-		
+		if (!(e.getEntity() instanceof LivingEntity)) return;
+		if (!(e.getDamager() instanceof Projectile)) return;
+
 		e.getDamager().remove();
 	}
 }

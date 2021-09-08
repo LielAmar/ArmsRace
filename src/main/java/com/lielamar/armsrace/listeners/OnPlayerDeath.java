@@ -10,24 +10,24 @@ import com.lielamar.armsrace.modules.CustomPlayer;
 
 public class OnPlayerDeath implements Listener {
 
-	private Main main;
+	private final Main main;
 
 	public OnPlayerDeath(Main main) {
 		this.main = main;
 	}
-	
+
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e) {
-		if(!(e.getEntity() instanceof Player)) return;
+		if (!(e.getEntity() instanceof Player)) return;
 
 		CustomPlayer cpVic = main.getPlayerManager().getPlayer(e.getEntity());
-		if(cpVic.isLeftMap()) {
+		if (cpVic.isLeftMap()) {
 			e.setDeathMessage(null);
 			cpVic.setLeftMap(false);
 			cpVic.setKillstreak(0);
 		}
-		
-		if(cpVic.getCurrentMap() != null) {
+
+		if (cpVic.getCurrentMap() != null) {
 			cpVic.getPlayer().spigot().respawn();
 		}
 	}

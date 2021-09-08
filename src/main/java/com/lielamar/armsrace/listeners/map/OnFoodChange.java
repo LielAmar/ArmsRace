@@ -9,19 +9,19 @@ import com.lielamar.armsrace.Main;
 
 public class OnFoodChange implements Listener {
 
-	private Main main;
-	
+	private final Main main;
+
 	public OnFoodChange(Main main) {
 		this.main = main;
 	}
-	
+
 	@EventHandler
 	public void onFood(FoodLevelChangeEvent e) {
-		Player p = (Player)e.getEntity();
-		
-		if(main.getPlayerManager().getPlayer(p).getCurrentMap() == null) return;
-		
-		if(!main.getPlayerManager().getPlayer(p).getCurrentMap().isFoodLevelChange())
+		Player p = (Player) e.getEntity();
+
+		if (main.getPlayerManager().getPlayer(p).getCurrentMap() == null) return;
+
+		if (!main.getPlayerManager().getPlayer(p).getCurrentMap().isFoodLevelChange())
 			e.setCancelled(true);
 	}
 }

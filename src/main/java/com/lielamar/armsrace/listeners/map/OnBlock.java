@@ -9,7 +9,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 public class OnBlock implements Listener {
 
-    private Main main;
+    private final Main main;
 
     public OnBlock(Main main) {
         this.main = main;
@@ -19,15 +19,15 @@ public class OnBlock implements Listener {
     public void onBlockBreak(BlockBreakEvent e) {
         Player p = e.getPlayer();
 
-        if(main.getPlayerManager().getPlayer(p).getCurrentMap() == null) return;
-         e.setCancelled(true);
+        if (main.getPlayerManager().getPlayer(p).getCurrentMap() == null) return;
+        e.setCancelled(true);
     }
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent e) {
         Player p = e.getPlayer();
 
-        if(main.getPlayerManager().getPlayer(p).getCurrentMap() == null) return;
+        if (main.getPlayerManager().getPlayer(p).getCurrentMap() == null) return;
         e.setCancelled(true);
     }
 }

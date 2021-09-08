@@ -10,26 +10,26 @@ import com.lielamar.armsrace.modules.CustomPlayer;
 
 public class OnDoubleDamage implements Listener {
 
-	private Main main;
-	
+	private final Main main;
+
 	public OnDoubleDamage(Main main) {
 		this.main = main;
 	}
-	
+
 	@EventHandler
 	public void DoubleDamage(EntityDamageByEntityEvent e) {
-		if(!(e.getEntity() instanceof Player)) return;
-		if(!(e.getDamager() instanceof Player)) return;
-	
-		Player p = (Player)e.getEntity();
+		if (!(e.getEntity() instanceof Player)) return;
+		if (!(e.getDamager() instanceof Player)) return;
+
+		Player p = (Player) e.getEntity();
 		CustomPlayer cp = main.getPlayerManager().getPlayer(p);
-		CustomPlayer cDamager = main.getPlayerManager().getPlayer((Player)e.getDamager());
-		
-		if(cp.getCurrentMap() == null || cDamager.getCurrentMap() == null) return;
-		if(cp.getCurrentMap() != cDamager.getCurrentMap()) return;
-		
-		if(main.getPlayerManager().containsDoubleDamage(cDamager.getPlayer())) {
-			e.setDamage(e.getDamage()*2);
+		CustomPlayer cDamager = main.getPlayerManager().getPlayer((Player) e.getDamager());
+
+		if (cp.getCurrentMap() == null || cDamager.getCurrentMap() == null) return;
+		if (cp.getCurrentMap() != cDamager.getCurrentMap()) return;
+
+		if (main.getPlayerManager().containsDoubleDamage(cDamager.getPlayer())) {
+			e.setDamage(e.getDamage() * 2);
 		}
 	}
 }

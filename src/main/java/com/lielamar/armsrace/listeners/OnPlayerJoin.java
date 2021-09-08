@@ -10,19 +10,19 @@ import com.lielamar.armsrace.modules.CustomPlayer;
 
 public class OnPlayerJoin implements Listener {
 
-	private Main main;
-	
+	private final Main main;
+
 	public OnPlayerJoin(Main main) {
 		this.main = main;
 	}
-	
+
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		CustomPlayer cp = main.getPlayerManager().addPlayer(p);
 		main.getScoreboardManager().addPlayer(cp);
-		
-		if(this.main.getSettingsManager().getSpawn() != null) 
+
+		if (this.main.getSettingsManager().getSpawn() != null)
 			p.teleport(this.main.getSettingsManager().getSpawn());
 	}
 }

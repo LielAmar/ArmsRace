@@ -9,17 +9,17 @@ import com.lielamar.armsrace.Main;
 
 public class OnDrop implements Listener {
 
-	private Main main;
-	
+	private final Main main;
+
 	public OnDrop(Main main) {
 		this.main = main;
 	}
-	
+
 	@EventHandler
 	public void onDrop(PlayerDropItemEvent e) {
 		Player p = e.getPlayer();
-		
-		if(main.getPlayerManager().getPlayer(p).getCurrentMap() == null) return;
+
+		if (main.getPlayerManager().getPlayer(p).getCurrentMap() == null) return;
 		e.setCancelled(true);
 	}
 }
