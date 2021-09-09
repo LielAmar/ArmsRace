@@ -12,14 +12,14 @@ import org.bukkit.inventory.ItemStack;
 
 public class MapFile {
 
-	
-	private Main main;
-	private String name;
-	
-	private File file;
+
+	private final Main main;
+	private final String name;
+
+	private final File file;
 	private YamlConfiguration config;
 
-	
+
 	public MapFile(Main main, String name, File file) {
 		this.main = main;
 		this.name = name;
@@ -41,7 +41,11 @@ public class MapFile {
 	}
 
 	public void saveConfig() {
-		try { getConfig().save(this.file); } catch (IOException e) { e.printStackTrace(); }
+		try {
+			getConfig().save(this.file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void saveDefaultConfig() {
@@ -64,7 +68,7 @@ public class MapFile {
 		Reader isReader;
 		try {
 			isReader = new InputStreamReader(main.getResource("map.yml"), "UTF8");
-			
+
 			if (isReader != null) {
 				this.config = YamlConfiguration.loadConfiguration(isReader);
 				this.config.save(this.file);
@@ -73,7 +77,7 @@ public class MapFile {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void set(String key, Object object) {
 		getConfig().set(key, object);
 	}
@@ -84,20 +88,20 @@ public class MapFile {
 		this.saveConfig();
 		main.getGameManager().getMapManager().getMap(this.getName()).addTier(armor, content); // Add new tier to map via MapManager
 	}
-	
+
 	public void setTier(ItemStack[] armor, ItemStack[] content, int id) {
 		this.set("Tiers." + id + ".armor", armor);
 		this.set("Tiers." + id + ".content", content);
 		this.saveConfig();
 		main.getGameManager().getMapManager().getMap(this.getName()).setTier(id, armor, content);  // Update the tier in map via MapManager
 	}
-	
+
 	public void removeTier(int id) {
 		int i = 0;
-		for(i = 0; i < this.getConfig().getConfigurationSection("Tiers").getKeys(false).size()-1; i++) {
-			if(i >= id) {
-				this.set("Tiers." + (i) + ".armor", this.config.get("Tiers." + (i+1) + ".armor"));
-				this.set("Tiers." + (i) + ".content", this.config.get("Tiers." + (i+1) + ".content"));
+		for (i = 0; i < this.getConfig().getConfigurationSection("Tiers").getKeys(false).size() - 1; i++) {
+			if (i >= id) {
+				this.set("Tiers." + (i) + ".armor", this.config.get("Tiers." + (i + 1) + ".armor"));
+				this.set("Tiers." + (i) + ".content", this.config.get("Tiers." + (i + 1) + ".content"));
 			}
 		}
 		this.set("Tiers." + i, null);
@@ -130,18 +134,18 @@ public class MapFile {
 	public void removeLocation(int id) {
 		boolean changed = false;
 		int i = 0;
-		for(i = 0; i < getConfig().getConfigurationSection("SpawnLocations").getKeys(false).size(); i++) {
-			if(i == id)
+		for (i = 0; i < getConfig().getConfigurationSection("SpawnLocations").getKeys(false).size(); i++) {
+			if (i == id)
 				changed = true;
-			if(changed)
-				this.getConfig().set("SpawnLocations." + (i-1), getConfig().get("SpawnLocation." + i));
+			if (changed)
+				this.getConfig().set("SpawnLocations." + (i - 1), getConfig().get("SpawnLocation." + i));
 		}
-		
+
 		this.getConfig().set("SpawnLocations." + i, null);
 		this.saveConfig();
 		main.getGameManager().getMapManager().getMap(this.getName()).removeLocation(id); // Remove the location from the map via MapManager
 	}
-	
+
 	public void addPickupLocation(int id, Location loc) {
 		this.getConfig().set("PickupLocations." + id + ".world", loc.getWorld().getName().toString());
 		this.getConfig().set("PickupLocations." + id + ".x", loc.getX());
@@ -152,7 +156,7 @@ public class MapFile {
 		this.saveConfig();
 		main.getGameManager().getMapManager().getMap(this.getName()).addPickupLocation(id, loc); // Add a location to the map via MapManager
 	}
-	
+
 	public void setPickupLocation(int id, Location loc) {
 		this.getConfig().set("PickupLocations." + id + ".world", loc.getWorld().getName().toString());
 		this.getConfig().set("PickupLocations." + id + ".x", loc.getX());
@@ -167,13 +171,13 @@ public class MapFile {
 	public void removePickupLocation(int id) {
 		boolean changed = false;
 		int i = 0;
-		for(i = 0; i < getConfig().getConfigurationSection("PickupLocations").getKeys(false).size(); i++) {
-			if(i == id)
+		for (i = 0; i < getConfig().getConfigurationSection("PickupLocations").getKeys(false).size(); i++) {
+			if (i == id)
 				changed = true;
-			if(changed)
-				this.getConfig().set("PickupLocations." + (i-1), getConfig().get("PickupLocations." + i));
+			if (changed)
+				this.getConfig().set("PickupLocations." + (i - 1), getConfig().get("PickupLocations." + i));
 		}
-		
+
 		this.getConfig().set("PickupLocations." + i, null);
 		this.saveConfig();
 		main.getGameManager().getMapManager().getMap(this.getName()).removePickupLocation(id); // Remove the location from the map via MapManager

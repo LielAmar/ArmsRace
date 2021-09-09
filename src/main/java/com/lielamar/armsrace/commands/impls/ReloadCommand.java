@@ -9,32 +9,32 @@ import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.map.Map;
 import com.lielamar.armsrace.modules.map.Pickup;
 
-public class ReloadCommand extends SubCommand{
+public class ReloadCommand extends SubCommand {
 
 	@Override
 	public void onCommand(Main main, Player p, String[] args) {
-		if(!p.hasPermission("armsrace.commands.reload")) {
+		if (!p.hasPermission("armsrace.commands.reload")) {
 			p.sendMessage(main.getMessages().noPermissions());
-	        return;
+			return;
 		}
-		
-		for(ArmorStand as : main.getPlayerManager().getSwordLaunchAs().values()) {
+
+		for (ArmorStand as : main.getPlayerManager().getSwordLaunchAs().values()) {
 			as.remove();
 		}
-			
-		for(Map map : main.getGameManager().getMapManager().getMaps().values()) {
+
+		for (Map map : main.getGameManager().getMapManager().getMaps().values()) {
 			map.removePlayer(p, PlayerLeaveMapEvent.LeaveReason.RELOAD);
-			for(Pickup pickup : map.getPickups()) {
+			for (Pickup pickup : map.getPickups()) {
 				pickup.getPickup().remove();
 			}
 		}
-		
+
 		main.onDisable();
 		main.registerManagers();
 		p.sendMessage(ChatColor.GREEN + "Reloaded config of ArmsRace!");
 		return;
 	}
-	
+
 	@Override
 	public String name() {
 		return "reload";
@@ -47,6 +47,6 @@ public class ReloadCommand extends SubCommand{
 
 	@Override
 	public String[] aliases() {
-		return new String[] { "reload" };
+		return new String[]{"reload"};
 	}
 }

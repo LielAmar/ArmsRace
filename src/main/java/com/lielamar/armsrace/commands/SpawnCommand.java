@@ -51,5 +51,4 @@ public class SpawnCommand implements CommandExecutor {
         player.sendMessage(plugin.getMessages().teleportingToSpawn());
         return true;
     }
-
 }

@@ -8,37 +8,37 @@ import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.map.Map;
 
 public class EventCommand extends SubCommand {
-	
+
 	@Override
 	public void onCommand(Main main, Player p, String[] args) {
-		if(args.length == 0 || args.length == 1) {
+		if (args.length == 0 || args.length == 1) {
 			p.sendMessage(main.getMessages().invalidArgument());
 			return;
 		} else {
 			String mapName = args[0];
 			String eventName = args[1];
-			
+
 			Map map = main.getGameManager().getMapManager().getMap(mapName);
-			if(map == null) {
+			if (map == null) {
 				p.sendMessage(main.getMessages().couldntFindMap(mapName));
-	        	return;
+				return;
 			}
-			
-			if(!p.hasPermission("armsrace.commands.events")) {
+
+			if (!p.hasPermission("armsrace.commands.events")) {
 				p.sendMessage(main.getMessages().noPermissions());
-	        	return;
+				return;
 			}
-			
+
 			boolean enabled = false;
-			if(eventName.equalsIgnoreCase("doublecoins"))
+			if (eventName.equalsIgnoreCase("doublecoins"))
 				enabled = map.setDoubleCoinsEvent(!map.isDoubleCoinsEvent());
-			else if(eventName.equalsIgnoreCase("doubletiers"))
+			else if (eventName.equalsIgnoreCase("doubletiers"))
 				enabled = map.setDoubleTiersEvent(!map.isDoubleTiersEvent());
 			else {
 				p.sendMessage(ChatColor.AQUA + "Available events: DoubleCoins, DoubleTiers");
 				return;
 			}
-			if(enabled) {
+			if (enabled) {
 				p.sendMessage(main.getMessages().eventEnabled(eventName));
 				Bukkit.broadcastMessage(main.getMessages().eventEnabledAnnounce(eventName));
 			} else {
@@ -61,6 +61,6 @@ public class EventCommand extends SubCommand {
 
 	@Override
 	public String[] aliases() {
-		return new String[] { "events" };
+		return new String[]{"events"};
 	}
 }

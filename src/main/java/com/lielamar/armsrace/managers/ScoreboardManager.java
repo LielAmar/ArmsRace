@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ScoreboardManager {
 
-    private Main main;
+    private final Main main;
     private CustomScoreboard customScoreboard;
 
     public ScoreboardManager(Main main) {

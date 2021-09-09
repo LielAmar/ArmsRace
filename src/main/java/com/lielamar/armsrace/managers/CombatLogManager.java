@@ -10,9 +10,9 @@ import java.util.Map.Entry;
 
 public class CombatLogManager {
 
-    private Main main;
+    private final Main main;
 
-    private int combatLogDuration;
+    private final int combatLogDuration;
     private Map<UUID, Long> players;
 
     public CombatLogManager(Main main) {
@@ -20,7 +20,7 @@ public class CombatLogManager {
         this.combatLogDuration = this.main.getConfig().getInt("CombatLogDuration");
         if (this.combatLogDuration <= 0) return;
 
-        this.players = new HashMap<>();
+        this.players = new LinkedHashMap<>();
 
         new BukkitRunnable() {
             @Override

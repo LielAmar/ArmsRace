@@ -1,35 +1,20 @@
 package com.lielamar.armsrace.managers;
 
+import com.lielamar.armsrace.modules.killeffects.KillEffect;
+import com.lielamar.armsrace.modules.killeffects.effects.*;
+import org.bukkit.entity.Entity;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lielamar.armsrace.modules.killeffects.KillEffect;
-import org.bukkit.entity.Entity;
-
-import com.lielamar.armsrace.modules.killeffects.effects.BlackMarkKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.BloodKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.BurningShoesKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.CookieFountainKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.FireworkKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.HeadRocketKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.HeartAuraKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.LastCandleKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.LightningKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.PinataKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.RektKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.SquidMissileKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.TNTKillEffect;
-import com.lielamar.armsrace.modules.killeffects.effects.TornadoKillEffect;
-
 public class KillEffectsManager {
 
-	private Map<String, KillEffect> killEffects;
-	private List<Entity> entities;
+	private final Map<String, KillEffect> killEffects;
+	private final List<Entity> entities;
 	
 	public KillEffectsManager() {
-		this.killEffects = new HashMap<>();
+		this.killEffects = new LinkedHashMap<>();
 		this.entities = new ArrayList<>();
 		
 		this.killEffects.put("SQUID_MISSILE", new SquidMissileKillEffect());

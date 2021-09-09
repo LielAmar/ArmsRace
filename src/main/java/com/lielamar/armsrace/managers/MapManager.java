@@ -50,7 +50,6 @@ public class MapManager {
      * @param mapFile A {@link MapFile} object to load from
      * @return A {@link Map} object
      */
-    @SuppressWarnings("unchecked")
     public Map loadMap(MapFile mapFile) {
         // Load locations
         List<CustomLocation> locations = new LinkedList<>();

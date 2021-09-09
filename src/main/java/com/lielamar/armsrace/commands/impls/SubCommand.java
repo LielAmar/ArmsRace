@@ -19,5 +19,4 @@ public abstract class SubCommand {
     public boolean equals(String name) {
         return name().equalsIgnoreCase(name) || Arrays.stream(aliases()).anyMatch(aliases -> aliases.equalsIgnoreCase(name));
     }
-
 }

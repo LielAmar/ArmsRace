@@ -84,5 +84,4 @@ public class ArmsRaceCommand implements CommandExecutor {
                 .findFirst()
                 .orElse(null);
     }
-
 }

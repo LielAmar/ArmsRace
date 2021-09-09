@@ -26,12 +26,12 @@ public class PinataKillEffect implements KillEffect {
 	public void playKillEffect(Main main, Location loc, Player victim, Player killer) {
 		Random rnd = new Random();
 		Location spawnLoc = loc.add(0, 2, 0);
-		
-		for(int i = 0; i < 14; i++) {
-			if(rnd.nextBoolean()) {
+
+		for (int i = 0; i < 14; i++) {
+			if (rnd.nextBoolean()) {
 
 				List<String> newMaterials = new ArrayList<>(Arrays.asList("WHITE_DYE", "ORANGE_DYE", "MAGENTA_DYE", "LIGHT_BLUE_DYE", "YELLOW_DYE", "LIME_DYE", "PINK_DYE", "GRAY_DYE", "LIGHT_GRAY_DYE", "CYAN_DYE", "PURPLE_DYE", "BLUE_DYE", "BROWN_DYE", "GREEN_DYE", "RED_DYE", "BLACK_DYE"));
-				List<Integer> legacyDurabilities = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13,14, 15));
+				List<Integer> legacyDurabilities = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15));
 				ItemStack item;
 				String version = Bukkit.getVersion();
 				if (version.contains("1.8") || version.contains("1.9") || version.contains("1.10") || version.contains("1.11") || version.contains("1.12")) {
@@ -42,10 +42,10 @@ public class PinataKillEffect implements KillEffect {
 				ItemMeta meta = item.getItemMeta();
 				meta.setDisplayName("1");
 				item.setItemMeta(meta);
-				
+
 				Entity ent = spawnLoc.getWorld().dropItemNaturally(spawnLoc, item);
 				main.getKillEffectsManager().addEntity(ent);
-				
+
 				new BukkitRunnable() {
 					@Override
 					public void run() {
@@ -55,10 +55,10 @@ public class PinataKillEffect implements KillEffect {
 			}
 		}
 
-		for(int i = 0; i < 14; i++) {
-			if(rnd.nextBoolean()) {
+		for (int i = 0; i < 14; i++) {
+			if (rnd.nextBoolean()) {
 				List<String> newMaterials = new ArrayList<>(Arrays.asList("WHITE_DYE", "ORANGE_DYE", "MAGENTA_DYE", "LIGHT_BLUE_DYE", "YELLOW_DYE", "LIME_DYE", "PINK_DYE", "GRAY_DYE", "LIGHT_GRAY_DYE", "CYAN_DYE", "PURPLE_DYE", "BLUE_DYE", "BROWN_DYE", "GREEN_DYE", "RED_DYE", "BLACK_DYE"));
-				List<Integer> legacyDurabilities = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13,14, 15));
+				List<Integer> legacyDurabilities = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15));
 				ItemStack item;
 				String version = Bukkit.getVersion();
 				if (version.contains("1.8") || version.contains("1.9") || version.contains("1.10") || version.contains("1.11") || version.contains("1.12")) {
@@ -69,10 +69,10 @@ public class PinataKillEffect implements KillEffect {
 				ItemMeta meta = item.getItemMeta();
 				meta.setDisplayName("1");
 				item.setItemMeta(meta);
-				
+
 				Entity ent = spawnLoc.getWorld().dropItemNaturally(spawnLoc, item);
 				main.getKillEffectsManager().addEntity(ent);
-				
+
 				new BukkitRunnable() {
 					@Override
 					public void run() {
