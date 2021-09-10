@@ -1,0 +1,109 @@
+name: ArmsRace
+main: com.lielamar.armsrace.Main
+version: 1.8
+api-version: 1.13
+author: Liel Amar
+website: www.lielamar.com
+description: The ArmsRace plugin made by Liel Amar
+softdepend: [Vault, PlaceholderAPI]
+
+commands:
+    armsrace:
+        description: Armsrace main command
+        aliases: [ar]
+        usage: /armsrace help
+    spawn:
+        description: Armsrace spawn command
+        usage: /spawn
+
+permissions:
+    armsrace.*:
+        description: Permissions to all commands & features in ArmsRace
+        default: op
+        children:
+            armsrace.commands.help: true
+            armsrace.commands.map.create: true
+            armsrace.commands.map.delete: true
+            armsrace.commands.map.list: true
+            armsrace.commands.map.addtier: true
+            armsrace.commands.map.settier: true
+            armsrace.commands.map.deletetier: true
+            armsrace.commands.map.listtier: true
+            armsrace.commands.map.loadtier: true
+            armsrace.commands.map.addlocation: true
+            armsrace.commands.map.setlocation: true
+            armsrace.commands.map.deletelocation: true
+            armsrace.commands.map.listlocations: true
+            armsrace.commands.map.teleportlocation: true
+            armsrace.commands.map.addpickuplocation: true
+            armsrace.commands.map.setpickuplocation: true
+            armsrace.commands.map.deletepickuplocation: true
+            armsrace.commands.map.listpickuplocations: true
+            armsrace.commands.map.teleportpickuplocation: true
+            armsrace.commands.join.*: true
+            armsrace.commands.leave: true
+            armsrace.commands.events: true
+            armsrace.commands.shop: true
+            armsrace.commands.reload: true
+            armsrace.commands.setspawn: true
+            armsrace.commands.spawn: true
+    armsrace.commands.join.*:
+        description: Permissions to join all maps
+        default: op
+    armsrace.commands.help:
+        description: Access to /armsrace help
+        default: op
+    armsrace.commands.map.create:
+        description: Access to create new maps
+        default: op
+    armsrace.commands.map.delete:
+        description: Access to delete existing maps
+        default: op
+    armsrace.commands.map.list:
+        description: Access to view the list of maps
+        default: op
+    armsrace.commands.map.addtier:
+        description: Access to add a new tier to a map
+        default: op
+    armsrace.commands.map.settier:
+        description: Access to set an existing tier to a map
+        default: op
+    armsrace.commands.map.deletetier:
+        description: Access to delete an existing tier of a map
+        default: op
+    armsrace.commands.map.listtier:
+        description: Access to list all tiers of a map
+        default: op
+    armsrace.commands.map.loadtier:
+        description: Access to load tiers of a map
+        default: op
+    armsrace.commands.map.addlocation:
+        description: Access to add a new location to a map
+        default: op
+    armsrace.commands.map.setlocation:
+        description: Access to set a location to a map
+        default: op
+    armsrace.commands.map.deletelocation:
+        description: Access to delete a location from a map
+        default: op
+    armsrace.commands.map.listlocations:
+        description: Access to list all locations of a map
+        default: op
+    armsrace.commands.map.teleportlocation:
+        description: Access to teleport to a locations of a map
+        default: op
+    armsrace.commands.events:
+        description: Access to start an event for a map
+        default: op
+    armsrace.commands.shop:
+        description: Access to the shop command
+        default: op
+    armsrace.commands.reload:
+        description: Access to the reload command
+        default: op
+    armsrace.commands.setspawn:
+        description: Access to the setspawn command
+        default: op
+    armsrace.commands.spawn:
+        description: Access to the spawn command
+        default: op

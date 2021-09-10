@@ -1,0 +1,13 @@
+rootProject.name = 'ArmsRace'
+include 'core'
+include 'api_v1_8_R3'
+include 'api_v1_9_R2'
+include 'api_v1_10_R1'
+include 'api_v1_11_R1'
+include 'api_v1_12_R1'
+include 'api_v1_13_R2'
+include 'api_v1_14_R1'
+include 'api_v1_15_R1'
+include 'api_v1_16_R3'
+include 'api_v1_17_R1'
+

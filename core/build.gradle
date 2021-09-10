@@ -1,0 +1,26 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+// Add shadow to collapsed compile
+group 'com.lielamar.armsrace'
+version '1.8'
+
+dependencies {
+    // Minecraft Dependencies
+    compileOnly("org.spigotmc:spigot:1.17.1-R0.1-SNAPSHOT")
+    // Maven dependencies
+    implementation 'com.github.cryptomorin:XSeries:8.4.0'
+    compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
+    compileOnly 'me.clip:placeholderapi:2.10.10'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        duplicatesStrategy DuplicatesStrategy.INCLUDE
+        include '**/*.yml'
+        filter(ReplaceTokens, tokens: [version: project.version])
+    }
+}
