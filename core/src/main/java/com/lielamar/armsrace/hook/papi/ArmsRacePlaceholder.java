@@ -1,15 +1,15 @@
-package com.lielamar.armsrace.hook;
+package com.lielamar.armsrace.hook.papi;
 
 import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.CustomPlayer;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 
-public class PlaceholderAPIHook extends PlaceholderExpansion {
+public class ArmsRacePlaceholder extends PlaceholderExpansion {
 
     private final Main plugin;
 
-    public PlaceholderAPIHook(Main plugin) {
+    public ArmsRacePlaceholder(Main plugin) {
         this.plugin = plugin;
     }
 

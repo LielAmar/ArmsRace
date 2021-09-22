@@ -1,6 +1,6 @@
 name: ArmsRace
 main: com.lielamar.armsrace.Main
-version: 1.8
+version: @version@
 api-version: 1.13
 author: Liel Amar
 website: www.lielamar.com

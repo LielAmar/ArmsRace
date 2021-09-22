@@ -61,7 +61,11 @@ dependencies {
 
 shadowJar {
     destinationDirectory = file("allFiles")
-    relocate 'com.cryptomorin.xseries', 'com.lielamar.armsrace.xseries'
+    relocate 'com.cryptomorin.xseries', relocated('xseries')
+}
+
+private static String relocated(String pattern) {
+    return "armsrace.libs.$pattern"
 }
 
 jar {

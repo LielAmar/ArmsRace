@@ -1,8 +1,12 @@
 package com.lielamar.armsrace;
 
+import com.lielamar.armsrace.bootstrap.Injector;
 import com.lielamar.armsrace.commands.ArmsRaceCommand;
 import com.lielamar.armsrace.commands.SpawnCommand;
-import com.lielamar.armsrace.hook.PlaceholderAPIHook;
+import com.lielamar.armsrace.dependency.DependencyData;
+import com.lielamar.armsrace.dependency.RelocationHandler;
+import com.lielamar.armsrace.dependency.Repository;
+import com.lielamar.armsrace.hook.ArmsRaceHook;
 import com.lielamar.armsrace.listeners.OnDurabilityChange;
 import com.lielamar.armsrace.listeners.OnPlayerDeath;
 import com.lielamar.armsrace.listeners.OnPlayerJoin;
@@ -19,7 +23,6 @@ import com.lielamar.armsrace.modules.CustomPlayer;
 import com.lielamar.armsrace.modules.map.Map;
 import com.lielamar.armsrace.modules.map.Pickup;
 import com.lielamar.armsrace.nms.NMS;
-import com.lielamar.armsrace.utility.APIUtils;
 import com.lielamar.armsrace.utility.Messages;
 import com.lielamar.armsrace.utility.NMSUtils;
 import com.lielamar.armsrace.utility.Utils;
@@ -33,6 +36,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class Main extends JavaPlugin {
 
     private BukkitFileManager bfm; // File manager
@@ -40,6 +50,12 @@ public class Main extends JavaPlugin {
 
     @Getter
     private NMS nmsHandler;
+
+    private static final DependencyData DEPENDENCIES = DependencyData.builder()
+
+            .dependency("com.github.cryptomorin", "XSeries", "8.4.0")
+            .relocate("com#cryptomorin#xseries", "xseries")
+            .build();
 
     private SettingsManager settingsManager; // Settings manager instance
     private ShopManager shopManager; // Shop Manager instance
@@ -49,6 +65,37 @@ public class Main extends JavaPlugin {
     private PlayerManager playerManager; // Player manager
     private ScoreboardManager scoreboardManager; // Scoreboard manager
     private CombatLogManager combatlogManager; // Combat Log Manager
+
+    private final Injector injector = Injector.Factory.create((URLClassLoader) getClassLoader());
+    private final RelocationHandler relocationHandler;
+    private final File librariesFolder = new File(getDataFolder(), "libraries");
+    private final boolean informAboutLibraries;
+
+    public void onLoad() {
+        try {
+            if (informAboutLibraries)
+                getLogger().info("Downloading libraries. Please give me a minute.");
+            DEPENDENCIES.load(librariesFolder, relocationHandler, injector);
+
+        } catch (Throwable e) {
+            throw new IllegalStateException("Unable to load ArmsRace", e);
+        }
+    }
+
+    public Main() {
+        try {
+            informAboutLibraries = !librariesFolder.exists();
+            librariesFolder.mkdirs();
+            Repository.MAVEN_CENTRAL.downloadFile(RelocationHandler.RELOCATOR, librariesFolder);
+            List<URL> urls = new ArrayList<>();
+            for (File file : Objects.requireNonNull(librariesFolder.listFiles(c -> c.getName().endsWith(".jar")))) {
+                urls.add(file.toURI().toURL());
+            }
+            relocationHandler = new RelocationHandler(urls.toArray(new URL[0]));
+        } catch (Throwable e) {
+            throw new IllegalStateException("Failed to download relocator", e);
+        }
+    }
 
     @Override
     public void onEnable() {
@@ -160,10 +207,7 @@ public class Main extends JavaPlugin {
     }
 
     private void registerHook() {
-        if (APIUtils.isPlaceholderAPI()) {
-            PlaceholderAPIHook placeholderAPIHook = new PlaceholderAPIHook(this);
-            placeholderAPIHook.register();
-        }
+        ArmsRaceHook.attemptHooks();
     }
 
     private void initPlayers() {
