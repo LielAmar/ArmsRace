@@ -42,7 +42,7 @@ public class PlayerManager {
 		this.swordlaunch = new LinkedHashMap<>();
 		this.swordlaunchAs = new LinkedHashMap<>();
 
-		this.players = new HashMap<>();
+		this.players = new LinkedHashMap<>();
 
 		for (Player pl : Bukkit.getOnlinePlayers()) {
 			addPlayer(pl);

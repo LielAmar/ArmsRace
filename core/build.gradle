@@ -2,7 +2,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 // Add shadow to collapsed compile
 group 'com.lielamar.armsrace'
-version '1.9'
+version '2.0'
 
 dependencies {
     // Minecraft Dependencies
@@ -11,10 +11,6 @@ dependencies {
     compileOnly 'com.github.cryptomorin:XSeries:8.4.0'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
     compileOnly 'me.clip:placeholderapi:2.10.10'
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
-    testCompileOnly 'org.projectlombok:lombok:1.18.20'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
 
 processResources {

@@ -1,6 +1,7 @@
 package com.lielamar.armsrace.listeners.skills;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.lielamar.armsrace.utility.MinecraftVersion;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
@@ -41,6 +42,7 @@ public class OnSwordLaunch implements Listener {
 				&& p.getItemInHand().getType() != Material.STONE_SWORD
 				&& p.getItemInHand().getType() != XMaterial.GOLDEN_SWORD.parseMaterial()
 				&& p.getItemInHand().getType() != XMaterial.WOODEN_SWORD.parseMaterial())
+			if (MinecraftVersion.atLeast(MinecraftVersion.V.v1_16) && p.getItemInHand().getType() != Material.NETHERITE_SWORD)
 			return;
 
 		if (cp.getSwordLaunch() == -1 || (System.currentTimeMillis() - cp.getSwordLaunch()) / 1000 > main.getSettingsManager().getSwordLaunchCooldown().get(cp.getSkillLevel("SWORD_LAUNCH"))) {

@@ -12,7 +12,6 @@ import org.bukkit.potion.PotionEffect;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -359,7 +358,7 @@ public class CustomPlayer {
      */
     public void save() {
         try {
-            Map<String, Object> values = new HashMap<>();
+            Map<String, Object> values = new LinkedHashMap<>();
             values.put("name", player.getName());
             values.put("skills", this.skills);
             values.put("kills", this.kills);
@@ -384,7 +383,6 @@ public class CustomPlayer {
     /**
      * Load the JSON file
      */
-    @SuppressWarnings("unchecked")
     public void load() {
         try {
             Gson gson = new Gson();
