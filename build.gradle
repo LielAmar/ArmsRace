@@ -23,7 +23,6 @@ allprojects {
         if (name.startsWith("api_")) {
             compileOnly(project(":core"))
         }
-        compileOnly 'org.spigotmc:spigot:1.17.1-R0.1-SNAPSHOT'
         compileOnly 'org.projectlombok:lombok:1.18.22'
         compileOnly 'me.clip:placeholderapi:2.10.10'
         compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
