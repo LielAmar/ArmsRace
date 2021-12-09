@@ -36,6 +36,7 @@ public class ArmsRaceCommand implements CommandExecutor {
         this.commands.add(new ShopCommand());
         this.commands.add(new SetSpawnCommand());
         this.commands.add(new ReloadCommand());
+        this.commands.add(new VerifyCommand());
     }
 
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {

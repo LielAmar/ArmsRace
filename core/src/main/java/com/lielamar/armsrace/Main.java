@@ -23,6 +23,7 @@ import com.lielamar.armsrace.modules.CustomPlayer;
 import com.lielamar.armsrace.modules.map.Map;
 import com.lielamar.armsrace.modules.map.Pickup;
 import com.lielamar.armsrace.nms.NMS;
+import com.lielamar.armsrace.premium.PremiumHandler;
 import com.lielamar.armsrace.utility.Messages;
 import com.lielamar.armsrace.utility.NMSUtils;
 import com.lielamar.armsrace.utility.Utils;
@@ -107,6 +108,12 @@ public class Main extends JavaPlugin {
         registerCommands();
         registerHook();
         initPlayers();
+
+        if (!PremiumHandler.isPremium()) {
+            System.out.print("This resource seems to be cracked. Please do not crack resources.");
+        } else {
+            System.out.print("Welcome back. Thanks for buying the plugin. User ID: " + PremiumHandler.getUserID());
+        }
     }
 
     @Override

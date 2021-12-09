@@ -6,7 +6,7 @@ plugins {
 
 // Add shadow to collapsed compile
 group 'com.lielamar.armsrace'
-version '2.1'
+version '2.2'
 
 allprojects {
     apply plugin: 'java'
@@ -68,6 +68,7 @@ dependencies {
 shadowJar {
     destinationDirectory = file("allFiles")
     relocate 'com.cryptomorin.xseries', relocated('xseries')
+    relocate 'xyz.xenondevs.particle', "com.lielamar.armsrace.libs.particle"
 }
 
 private static String relocated(String pattern) {

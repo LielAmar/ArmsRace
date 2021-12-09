@@ -4,11 +4,10 @@ import com.cryptomorin.xseries.XSound;
 import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.killeffects.KillEffect;
 import com.lielamar.armsrace.modules.shop.TrailData;
-import com.lielamar.armsrace.utility.ParticleEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Particle;
 import org.bukkit.entity.Player;
+import xyz.xenondevs.particle.ParticleEffect;
 
 import java.util.Random;
 
@@ -28,11 +27,7 @@ public class BlackMarkKillEffect implements KillEffect {
 		loc4 = new Location(loc.getWorld(), loc.getX() + rnd.nextDouble(), loc.getY() + 1 + rnd.nextDouble(), loc.getZ() + rnd.nextDouble());
 		loc5 = new Location(loc.getWorld(), loc.getX() + rnd.nextDouble(), loc.getY() + 1 + rnd.nextDouble(), loc.getZ() + rnd.nextDouble());
 		for (Player pl : Bukkit.getOnlinePlayers()) {
-			try {
-				ParticleEffect.SMOKE_LARGE.display(2.0f, 2.0f, 2.0f, 1.0f, 1, loc1, 10);
-			} catch (Exception ex) {
-				pl.spawnParticle(Particle.SMOKE_LARGE, loc1, 10,2.0, 2.0, 2.0 ,1.0);
-			}
+			ParticleEffect.SMOKE_LARGE.display(loc1, 2.0f, 2.0f, 2.0f, 1.0f, 10, null, Bukkit.getOnlinePlayers());
 			main.getNmsHandler().sendParticle(pl, "SMOKE_LARGE", loc1, td, 1);
 			main.getNmsHandler().sendParticle(pl, "SMOKE_LARGE", loc2, td, 1);
 			main.getNmsHandler().sendParticle(pl, "SMOKE_LARGE", loc3, td, 1);
