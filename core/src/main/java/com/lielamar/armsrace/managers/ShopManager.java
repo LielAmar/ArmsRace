@@ -47,6 +47,7 @@ public class ShopManager {
 	}
 
 	public void setup() {
+		shops.clear();
 		for (String shop : config.getConfigurationSection("shops").getKeys(false)) {
 			Shop tmpShop = new Shop((String) config.get("shops." + shop + ".name"), (boolean) config.get("shops." + shop + ".enabled"), (int) config.get("shops." + shop + ".rows"));
 			if (config.getConfigurationSection("shops." + shop + ".data") == null) continue;

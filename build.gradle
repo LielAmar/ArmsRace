@@ -6,7 +6,7 @@ plugins {
 
 // Add shadow to collapsed compile
 group 'com.lielamar.armsrace'
-version '2.2'
+version '2.3'
 
 allprojects {
     apply plugin: 'java'
@@ -30,8 +30,6 @@ allprojects {
             compileOnly(project(":core"))
         }
         compileOnly 'org.projectlombok:lombok:1.18.22'
-        compileOnly 'me.clip:placeholderapi:2.10.10'
-        compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
         annotationProcessor 'org.projectlombok:lombok:1.18.22'
         testCompileOnly 'org.projectlombok:lombok:1.18.22'
         testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'

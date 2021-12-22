@@ -4,6 +4,7 @@ import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.CustomPlayer;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class ArmsRacePlaceholder extends PlaceholderExpansion {
 
@@ -19,22 +20,22 @@ public class ArmsRacePlaceholder extends PlaceholderExpansion {
     }
 
     @Override
-    public String getIdentifier() {
+    public @NotNull String getIdentifier() {
         return "armsrace";
     }
 
     @Override
-    public String getAuthor() {
+    public @NotNull String getAuthor() {
         return "chochoco4777";
     }
 
     @Override
-    public String getVersion() {
+    public @NotNull String getVersion() {
         return plugin.getDescription().getVersion();
     }
 
     @Override
-    public String onPlaceholderRequest(Player player, String s) {
+    public String onPlaceholderRequest(Player player, @NotNull String s) {
         if (player == null) {
             return null;
         }
