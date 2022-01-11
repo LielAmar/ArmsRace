@@ -54,7 +54,6 @@ public class OnPlayerKill implements Listener {
 
 				e.setDamage(0);
 				handleKill(cpVic, null);
-				return;
 			}
 		}
 	}
@@ -102,7 +101,6 @@ public class OnPlayerKill implements Listener {
 					e.setDamage(0);
 					handleKill(cpVic, cpKiller);
 					main.getCombatLogManager().removeCombatLog(cpVic.getPlayer());
-					return;
 				} else {
 					cpVic.setLastDamager(cpKiller.getPlayer());
 					if (cpKiller.getSkillLevel("HEAD_SHOT") > 0) {
@@ -116,7 +114,6 @@ public class OnPlayerKill implements Listener {
 					}
 					if (main.getPlayerManager().containsOneTap(cpKiller.getPlayer())) {
 						handleKill(cpVic, cpKiller);
-						return;
 					}
 				}
 			}

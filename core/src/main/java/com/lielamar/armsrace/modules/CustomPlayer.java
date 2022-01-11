@@ -205,7 +205,7 @@ public class CustomPlayer {
     public int getKills(String mapName) {
         if (!this.kills.containsKey(mapName))
             this.kills.put(mapName, 0);
-        return this.kills.get(mapName);
+        return this.kills.get(mapName).intValue();
     }
 
     private void setKills(String mapName, int kills) {
@@ -329,7 +329,6 @@ public class CustomPlayer {
         }
         return sum;
     }
-
 
     /**
      * Sets up the player's data
