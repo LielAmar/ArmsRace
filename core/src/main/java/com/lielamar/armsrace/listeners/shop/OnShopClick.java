@@ -48,7 +48,7 @@ public class OnShopClick implements Listener {
 					if (item.getLevels().size() == 0) return;
 
 					SkillLevel nextPlayerLevel = null;
-					int playerLevel = cp.getSkillLevel(item.getSkillType());
+					double playerLevel = cp.getSkillLevel(item.getSkillType());
 
 					for (SkillLevel lvl : item.getLevels()) {
 						if (playerLevel + 1 == lvl.getLevel())

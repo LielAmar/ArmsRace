@@ -98,7 +98,7 @@ public class Shop {
             if (hasTrail)
                 nextPrice = 0;
         } else if (item.getType() == ItemType.SKILL) {
-            int nextLevel = cp.getSkillLevel(item.getSkillType()) + 1;
+            double nextLevel = cp.getSkillLevel(item.getSkillType()) + 1;
 
             for (SkillLevel lvl : item.getLevels()) {
                 if (lvl.getLevel() == nextLevel)

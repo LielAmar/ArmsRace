@@ -30,11 +30,11 @@ public class CustomPlayer {
     private Long swordLaunch;
 
     // Data Save Variables
-    private Map<String, Integer> kills = new LinkedHashMap<>();
-    private Map<String, Integer> deaths = new LinkedHashMap<>();
-    private Map<String, Integer> highTier = new LinkedHashMap<>();
+    private Map<String, Double> kills = new LinkedHashMap<>();
+    private Map<String, Double> deaths = new LinkedHashMap<>();
+    private Map<String, Double> highTier = new LinkedHashMap<>();
 
-    private Map<String, Integer> skills = new LinkedHashMap<>();
+    private Map<String, Double> skills = new LinkedHashMap<>();
 
     private String currentTrail, currentKillEffect;
     private Map<String, Boolean> trails = new LinkedHashMap<>();
@@ -113,7 +113,7 @@ public class CustomPlayer {
         return killstreak;
     }
 
-    public void setSkillLevel(String skill, int level) {
+    public void setSkillLevel(String skill, double level) {
         this.skills.put(skill, level);
         save();
     }
@@ -204,11 +204,11 @@ public class CustomPlayer {
 
     public int getKills(String mapName) {
         if (!this.kills.containsKey(mapName))
-            this.kills.put(mapName, 0);
+            this.kills.put(mapName, 0.0);
         return this.kills.get(mapName).intValue();
     }
 
-    private void setKills(String mapName, int kills) {
+    private void setKills(String mapName, double kills) {
         this.kills.put(mapName, kills);
         save();
     }
@@ -217,13 +217,13 @@ public class CustomPlayer {
         this.setKills(mapName, getKills(mapName) + 1);
     }
 
-    public int getDeaths(String mapName) {
+    public double getDeaths(String mapName) {
         if (!this.deaths.containsKey(mapName))
-            this.deaths.put(mapName, 0);
+            this.deaths.put(mapName, 0.0);
         return this.deaths.get(mapName);
     }
 
-    private void setDeaths(String mapName, int deaths) {
+    private void setDeaths(String mapName, double deaths) {
         this.deaths.put(mapName, deaths);
         save();
     }
@@ -236,11 +236,11 @@ public class CustomPlayer {
         return this.highTier.containsKey(mapName);
     }
 
-    public int getHighTier(String mapName) {
+    public double getHighTier(String mapName) {
         return this.highTier.get(mapName);
     }
 
-    public void setHighTier(String mapName, int tier) {
+    public void setHighTier(String mapName, double tier) {
         this.highTier.put(mapName, tier);
         save();
     }
@@ -249,9 +249,9 @@ public class CustomPlayer {
      * @param skill Name of skill
      * @return Level of a given skill
      */
-    public int getSkillLevel(String skill) {
+    public double getSkillLevel(String skill) {
         if (!this.skills.containsKey(skill)) {
-            this.skills.put(skill, 0);
+            this.skills.put(skill, 0.0);
         }
         return this.skills.get(skill);
     }
@@ -390,22 +390,22 @@ public class CustomPlayer {
 
             if (values.containsKey("kills")) {
                 this.kills.clear();
-                this.kills.putAll((Map<String, Integer>) values.get("kills"));
+                this.kills.putAll((Map<String, Double>) values.get("kills"));
             }
 
             if (values.containsKey("deaths")) {
                 this.deaths.clear();
-                this.deaths.putAll((Map<String, Integer>) values.get("deaths"));
+                this.deaths.putAll((Map<String, Double>) values.get("deaths"));
             }
 
             if (values.containsKey("hightier")) {
                 this.highTier.clear();
-                this.highTier.putAll((Map<String, Integer>) values.get("hightier"));
+                this.highTier.putAll((Map<String, Double>) values.get("hightier"));
             }
 
             if (values.containsKey("skills")) {
                 this.skills.clear();
-                this.skills.putAll((Map<String, Integer>) values.get("skills"));
+                this.skills.putAll((Map<String, Double>) values.get("skills"));
             }
 
             if (values.containsKey("currenttrail")) {

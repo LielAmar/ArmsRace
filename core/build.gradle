@@ -2,7 +2,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 // Add shadow to collapsed compile
 group 'com.lielamar.armsrace'
-version '2.3'
+version '2.4'
 
 dependencies {
     // Minecraft Dependencies
