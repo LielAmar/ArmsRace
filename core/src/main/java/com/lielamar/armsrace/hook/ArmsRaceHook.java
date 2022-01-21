@@ -1,5 +1,6 @@
 package com.lielamar.armsrace.hook;
 
+import com.lielamar.armsrace.hook.hooks.ArmsRaceHookPlaceholderAPIHook;
 import org.bukkit.Bukkit;
 
 import java.util.HashMap;
@@ -9,7 +10,7 @@ public abstract class ArmsRaceHook {
     private static final HashMap<String, ArmsRaceHook> hooks = new HashMap<>();
 
     static {
-        hooks.put("PlaceholderAPI", new ArmsRaceHookPlaceholderAPI());
+        hooks.put("PlaceholderAPI", new ArmsRaceHookPlaceholderAPIHook());
     }
 
     public static void attemptHooks() {

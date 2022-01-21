@@ -1,4 +1,4 @@
-package com.lielamar.armsrace.hook.papi;
+package com.lielamar.armsrace.placeholder;
 
 import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.CustomPlayer;
