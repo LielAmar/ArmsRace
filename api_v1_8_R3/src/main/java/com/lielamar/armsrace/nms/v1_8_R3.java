@@ -26,21 +26,7 @@ public class v1_8_R3 implements NMS {
         }
     }
 
-    public void sendTitle(Player player, String title, String subtitle, int fadeIn, int fade, int fadeOut) {
-        sendPacket(player, getTitlePacket(PacketPlayOutTitle.EnumTitleAction.TITLE, title, fadeIn, fade, fadeOut));
-        sendPacket(player, getTitlePacket(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, subtitle, fadeIn, fade, fadeOut));
-    }
-
-    public void sendActionBar(Player player, String message) {
-        sendPacket(player, new PacketPlayOutChat(new ChatComponentText(message), (byte) 2));
-    }
-
     private void sendPacket(Player player, Packet<?> packet) {
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
     }
-
-    private PacketPlayOutTitle getTitlePacket(PacketPlayOutTitle.EnumTitleAction titleAction, String text, int fadeIn, int fade, int fadeOut) {
-        return new PacketPlayOutTitle(titleAction, new ChatComponentText(text != null ? text : ""), fadeIn, fade, fadeOut);
-    }
-
 }

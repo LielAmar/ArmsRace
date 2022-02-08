@@ -3,6 +3,8 @@ package com.lielamar.armsrace.modules.map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.cryptomorin.xseries.messages.Titles;
 import com.lielamar.armsrace.api.events.PlayerJoinMapEvent;
 import com.lielamar.armsrace.api.events.PlayerLeaveMapEvent;
 import com.lielamar.armsrace.utility.Utils;
@@ -772,7 +774,7 @@ public class Map {
 				cp.getPlayer().getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE));
 		}
 
-		main.getNmsHandler().sendTitle(p, main.getMessages().joiningArena(), "", 20, 40, 20);
+		Titles.sendTitle(p, 5, 20, 5, main.getMessages().joiningArena(), "");
 
 		main.getScoreboardManager().removePlayer(cp);
 		main.getScoreboardManager().addPlayer(cp);
@@ -815,7 +817,7 @@ public class Map {
 			Utils.clearPlayer(main, p, 20, 20, maxHealth, gamemode);
 		}
 
-		main.getNmsHandler().sendTitle(p, main.getMessages().leavingArena(), "", 20, 40, 20);
+		Titles.sendTitle(p, 5, 20, 5, main.getMessages().leavingArena(), "");
 
 		main.getScoreboardManager().removePlayer(cp);
 		main.getScoreboardManager().addPlayer(cp);

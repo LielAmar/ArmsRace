@@ -1,6 +1,7 @@
 package com.lielamar.armsrace.listeners.map;
 
 import com.cryptomorin.xseries.XSound;
+import com.cryptomorin.xseries.messages.ActionBar;
 import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.CustomPlayer;
 import com.lielamar.armsrace.modules.map.Map;
@@ -55,7 +56,7 @@ public class OnPickup implements Listener {
 					if (health > 20)
 						health = 20.0;
 					p.setHealth(health);
-					main.getNmsHandler().sendActionBar(p, main.getMessages().healthPickedUp(map.getHealthPerPickup()));
+					ActionBar.sendActionBar(p, main.getMessages().healthPickedUp(map.getHealthPerPickup()));
 				} else if (pickup.getType() == PickupType.DOUBLE_DAMAGE) {
 					main.getPlayerManager().addDoubleDamage(p);
 
@@ -67,17 +68,17 @@ public class OnPickup implements Listener {
 							time = time - 0.1;
 							if (time <= 0) {
 								main.getPlayerManager().removeOneTap(p);
-								main.getNmsHandler().sendActionBar(p, main.getMessages().doubleDamageEnded());
+								ActionBar.sendActionBar(p, main.getMessages().doubleDamageEnded());
 								this.cancel();
 								return;
 							}
-							main.getNmsHandler().sendActionBar(p, main.getMessages().doubleDamagePickedUp(Utils.fixDecimal(time)));
+							ActionBar.sendActionBar(p, main.getMessages().doubleDamagePickedUp(Utils.fixDecimal(time)));
 						}
 					}.runTaskTimer(main, 2, 2);
 				} else if (pickup.getType() == PickupType.COINS) {
 					if (map.getCoinsPerPickup() > 0) {
 						cp.giveCoins(map.getCoinsPerPickup());
-						main.getNmsHandler().sendActionBar(p, main.getMessages().coinsPickedUp(map.getCoinsPerPickup()));
+						ActionBar.sendActionBar(p, main.getMessages().coinsPickedUp(map.getCoinsPerPickup()));
 					}
 				} else if (pickup.getType() == PickupType.SPEED) {
 					p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (int) map.getSpeedDuration() * 20, map.getSpeedLevel() - 1));
@@ -92,7 +93,7 @@ public class OnPickup implements Listener {
 								this.cancel();
 								return;
 							}
-							main.getNmsHandler().sendActionBar(p, main.getMessages().speedPickedUp(Utils.fixDecimal(time), map.getSpeedLevel()));
+							ActionBar.sendActionBar(p, main.getMessages().speedPickedUp(Utils.fixDecimal(time), map.getSpeedLevel()));
 						}
 					}.runTaskTimer(main, 2, 2);
 				} else if (pickup.getType() == PickupType.RESISTANCE) {
@@ -108,7 +109,7 @@ public class OnPickup implements Listener {
 								this.cancel();
 								return;
 							}
-							main.getNmsHandler().sendActionBar(p, main.getMessages().resistancePickedUp(Utils.fixDecimal(time), map.getResistanceLevel()));
+							ActionBar.sendActionBar(p, main.getMessages().resistancePickedUp(Utils.fixDecimal(time), map.getResistanceLevel()));
 						}
 					}.runTaskTimer(main, 2, 2);
 				} else if (pickup.getType() == PickupType.TIER_UP) {
@@ -127,7 +128,7 @@ public class OnPickup implements Listener {
 						counter++;
 					}
 
-					main.getNmsHandler().sendActionBar(p, main.getMessages().tiersupPickedUp(map.getTiersUpAmount()));
+					ActionBar.sendActionBar(p, main.getMessages().tiersupPickedUp(map.getTiersUpAmount()));
 				} else if (pickup.getType() == PickupType.ONE_TAP) {
 					main.getPlayerManager().addOneTap(p);
 
@@ -139,11 +140,11 @@ public class OnPickup implements Listener {
 							time = time - 0.1;
 							if (time <= 0) {
 								main.getPlayerManager().removeOneTap(p);
-								main.getNmsHandler().sendActionBar(p, main.getMessages().onetapEnded());
+								ActionBar.sendActionBar(p, main.getMessages().onetapEnded());
 								this.cancel();
 								return;
 							}
-							main.getNmsHandler().sendActionBar(p, main.getMessages().onetapPickedUp(Utils.fixDecimal(time)));
+							ActionBar.sendActionBar(p, main.getMessages().onetapPickedUp(Utils.fixDecimal(time)));
 						}
 					}.runTaskTimer(main, 2, 2);
 				}

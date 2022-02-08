@@ -1,5 +1,6 @@
 package com.lielamar.armsrace;
 
+import com.lielamar.armsrace.api.ArmsRaceAPI;
 import com.lielamar.armsrace.bootstrap.Injector;
 import com.lielamar.armsrace.commands.ArmsRaceCommand;
 import com.lielamar.armsrace.commands.SpawnCommand;
@@ -23,7 +24,6 @@ import com.lielamar.armsrace.modules.CustomPlayer;
 import com.lielamar.armsrace.modules.map.Map;
 import com.lielamar.armsrace.modules.map.Pickup;
 import com.lielamar.armsrace.nms.NMS;
-import com.lielamar.armsrace.premium.PremiumHandler;
 import com.lielamar.armsrace.utility.Messages;
 import com.lielamar.armsrace.utility.NMSUtils;
 import com.lielamar.armsrace.utility.Utils;
@@ -48,6 +48,9 @@ public class Main extends JavaPlugin {
 
     private BukkitFileManager bfm; // File manager
     private Messages messages; // Messages instance
+
+    @Getter
+    private static ArmsRaceAPI armsRaceAPI;
 
     @Getter
     private NMS nmsHandler;
@@ -103,17 +106,15 @@ public class Main extends JavaPlugin {
         if (!this.loadNMS()) {
             return;
         }
+
+        armsRaceAPI = new ArmsRaceAPI();
+
         registerManagers();
         registerEvents();
         registerCommands();
         registerHook();
         initPlayers();
 
-        if (!PremiumHandler.isPremium()) {
-            System.out.print("This resource seems to be cracked. Please do not crack resources.");
-        } else {
-            System.out.print("Welcome back. Thanks for buying the plugin. User ID: " + PremiumHandler.getUserID());
-        }
     }
 
     @Override
@@ -209,8 +210,8 @@ public class Main extends JavaPlugin {
     }
 
     private void registerCommands() {
-        getCommand("armsrace").setExecutor(new ArmsRaceCommand(this));
-        getCommand("spawn").setExecutor(new SpawnCommand(this));
+        Objects.requireNonNull(getCommand("armsrace")).setExecutor(new ArmsRaceCommand(this));
+        Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand(this));
     }
 
     private void registerHook() {

@@ -1,6 +1,7 @@
 package com.lielamar.armsrace.listeners.map;
 
 import com.cryptomorin.xseries.XSound;
+import com.cryptomorin.xseries.messages.ActionBar;
 import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.api.events.PlayerLeaveMapEvent;
 import com.lielamar.armsrace.api.events.PlayerTierDownEvent;
@@ -108,7 +109,7 @@ public class OnPlayerKill implements Listener {
 						int chance = rnd.nextInt(100 - 1 + 1) + 1;
 						if (chance <= main.getSettingsManager().getHeadShotRate().get(cpKiller.getSkillLevel("HEAD_SHOT"))) {
 							handleKill(cpVic, cpKiller);
-							main.getNmsHandler().sendActionBar(cpKiller.getPlayer(), ChatColor.GREEN + "Head Shotted " + cpVic.getPlayer().getName());
+							ActionBar.sendActionBar(cpKiller.getPlayer(), ChatColor.GREEN + "Head Shotted " + cpVic.getPlayer().getName());
 							return;
 						}
 					}
@@ -180,7 +181,7 @@ public class OnPlayerKill implements Listener {
 				cpVic.getPlayer().getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE));
 		}
 
-		main.getNmsHandler().sendActionBar(cpVic.getPlayer(), main.getMessages().death());
+		ActionBar.sendActionBar(cpVic.getPlayer(), main.getMessages().death());
 		cpVic.getPlayer().playSound(cpVic.getPlayer().getLocation(), XSound.BLOCK_FIRE_AMBIENT.parseSound(), 10, 2);
 
 		// Killer handler
@@ -252,7 +253,7 @@ public class OnPlayerKill implements Listener {
 				|| cpKiller.getCurrentTierId() > cpKiller.getHighTier(map.getName()))
 			cpKiller.setHighTier(map.getName(), cpKiller.getCurrentTierId());
 
-		main.getNmsHandler().sendActionBar(cpKiller.getPlayer(),
+		ActionBar.sendActionBar(cpKiller.getPlayer(),
 				main.getMessages().kill(cpVic.getPlayer().getName()));
 		cpKiller.getPlayer().playSound(cpKiller.getPlayer().getLocation(), XSound.ENTITY_ARROW_HIT_PLAYER.parseSound(), 10, 2);
 
