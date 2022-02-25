@@ -3,10 +3,8 @@ package com.lielamar.armsrace.managers;
 import com.lielamar.armsrace.modules.killeffects.KillEffect;
 import com.lielamar.armsrace.modules.killeffects.effects.*;
 import org.bukkit.entity.Entity;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 public class KillEffectsManager {
 
@@ -15,7 +13,7 @@ public class KillEffectsManager {
 	
 	public KillEffectsManager() {
 		this.killEffects = new LinkedHashMap<>();
-		this.entities = new ArrayList<>();
+		this.entities = new LinkedList<>();
 		
 		this.killEffects.put("SQUID_MISSILE", new SquidMissileKillEffect());
 		this.killEffects.put("FIREWORK", new FireworkKillEffect());

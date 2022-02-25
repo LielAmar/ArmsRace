@@ -22,7 +22,6 @@ public class SetSpawnCommand extends SubCommand {
 		main.getConfig().set("Spawn.world", p.getLocation().getWorld().getName());
 		main.saveConfig();
 		p.sendMessage(main.getMessages().spawnSet(p.getLocation()));
-		return;
 	}
 
 	@Override

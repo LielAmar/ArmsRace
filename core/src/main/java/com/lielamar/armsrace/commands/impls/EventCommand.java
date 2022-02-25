@@ -29,7 +29,7 @@ public class EventCommand extends SubCommand {
 				return;
 			}
 
-			boolean enabled = false;
+			boolean enabled;
 			if (eventName.equalsIgnoreCase("doublecoins"))
 				enabled = map.setDoubleCoinsEvent(!map.isDoubleCoinsEvent());
 			else if (eventName.equalsIgnoreCase("doubletiers"))
@@ -45,7 +45,6 @@ public class EventCommand extends SubCommand {
 				p.sendMessage(main.getMessages().eventDisabled(eventName));
 				Bukkit.broadcastMessage(main.getMessages().eventDisabledAnnounce(eventName));
 			}
-			return;
 		}
 	}
 

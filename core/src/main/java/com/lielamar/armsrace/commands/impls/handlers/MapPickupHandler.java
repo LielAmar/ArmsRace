@@ -186,10 +186,8 @@ public class MapPickupHandler {
 
 				p.teleport(cl.getLocation());
 				p.sendMessage(ChatColor.GREEN + "Teleporting to pickup location number " + id + " of map " + name + "!");
-				return;
 			} catch (Exception e) {
 				p.sendMessage(main.getMessages().invalidArgument());
-				return;
 			}
 		}
 	}

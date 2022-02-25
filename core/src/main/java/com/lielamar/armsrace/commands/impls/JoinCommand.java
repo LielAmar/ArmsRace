@@ -11,7 +11,6 @@ public class JoinCommand extends SubCommand {
 	public void onCommand(Main main, Player p, String[] args) {
 		if (args.length == 0) {
 			p.sendMessage(main.getMessages().invalidArgument());
-			return;
 		} else {
 			String mapName = args[0];
 
@@ -27,7 +26,6 @@ public class JoinCommand extends SubCommand {
 			}
 
 			map.addPlayer(p);
-			return;
 		}
 	}
 

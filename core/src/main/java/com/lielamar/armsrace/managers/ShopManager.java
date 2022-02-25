@@ -10,10 +10,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ShopManager {
 
@@ -98,7 +95,7 @@ public class ShopManager {
 
 
 		// Levels (skill levels if at all)
-		List<SkillLevel> levels = new ArrayList<>();
+		List<SkillLevel> levels = new LinkedList<>();
 		if (config.contains("shops." + shop + ".data." + id + ".levels")) {
 			for (String s : config.getConfigurationSection("shops." + shop + ".data." + id + ".levels").getKeys(false)) {
 				SkillLevel level = new SkillLevel(Integer.parseInt(s), (int) config.get("shops." + shop + ".data." + id + ".levels." + s + ".price"));

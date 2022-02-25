@@ -20,15 +20,12 @@ public class DebugCommand extends SubCommand {
 			if (args[0].equalsIgnoreCase("locations")) {
 				for (int i = 0; i < main.getGameManager().getMapManager().getMap(args[1].toLowerCase()).getLocations().size(); i++)
 					p.sendMessage("[ArmsRace Debug] i: " + i + ", " + main.getGameManager().getMapManager().getMap(args[1].toLowerCase()).getLocations().toString());
-				return;
 			} else if (args[0].equalsIgnoreCase("tiers")) {
 				for (int i = 0; i < main.getGameManager().getMapManager().getMap(args[1].toLowerCase()).getTiers().length; i++)
 					p.sendMessage("[ArmsRace Debug] i: " + i + ", " + main.getGameManager().getMapManager().getMap(args[1].toLowerCase()).getTiers()[i].toString());
-				return;
 			} else if (args[0].equalsIgnoreCase("pickuplocations")) {
 				for (int i = 0; i < main.getGameManager().getMapManager().getMap(args[1].toLowerCase()).getPickupLocations().size(); i++)
 					p.sendMessage("[ArmsRace Debug] i: " + i + ", " + main.getGameManager().getMapManager().getMap(args[1].toLowerCase()).getPickupLocations().toString());
-				return;
 			} else if (args[0].equalsIgnoreCase("shops")) {
 				p.openInventory(main.getShopManager().getShop(args[1].toLowerCase()).getInventory());
 			} else if (args[0].equalsIgnoreCase("spawnpickup")) {

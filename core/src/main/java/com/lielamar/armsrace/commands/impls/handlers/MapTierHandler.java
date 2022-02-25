@@ -173,10 +173,8 @@ public class MapTierHandler {
 				p.getInventory().setContents(map.getTiers()[tier].getContent());
 				p.getInventory().setArmorContents(map.getTiers()[tier].getArmor());
 				p.sendMessage(ChatColor.GREEN + "Loading tier " + tier + " of map " + name + "!");
-				return;
 			} catch (Exception e) {
 				p.sendMessage(main.getMessages().invalidArgument());
-				return;
 			}
 		}
 	}

@@ -40,7 +40,7 @@ public class OnProjectileShoot implements Listener {
 		if (main.getNmsHandler() == null) return;
 
 		new BukkitRunnable() {
-			String strippedTrail = ChatColor.stripColor(trail);
+			final String strippedTrail = ChatColor.stripColor(trail);
 
 			@Override
 			public void run() {

@@ -184,10 +184,8 @@ public class MapLocationHandler {
 
 				p.teleport(cl.getLocation());
 				p.sendMessage(ChatColor.GREEN + "Teleporting to location number " + id + " of map " + name + "!");
-				return;
 			} catch (Exception e) {
 				p.sendMessage(main.getMessages().invalidArgument());
-				return;
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 package com.lielamar.armsrace.modules.map;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -79,7 +80,7 @@ public class Map {
 		this.locations = locations;
 		this.pickupLocations = pickupLocations;
 		this.killstreak = killstreak;
-		this.pickups = new ArrayList<Pickup>();
+		this.pickups = new LinkedList<>();
 		this.tiers = tiers;
 		this.scoreboard = sb;
 

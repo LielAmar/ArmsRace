@@ -20,7 +20,6 @@ public class LeaveCommand extends SubCommand {
 			return;
 		}
 		map.removePlayer(p, PlayerLeaveMapEvent.LeaveReason.LEAVE_COMMAND);
-		return;
 	}
 
 	@Override

@@ -14,7 +14,6 @@ public class MapCommand extends SubCommand {
 	public void onCommand(Main main, Player p, String[] args) {
 		if (args.length <= 0) {
 			p.sendMessage(main.getMessages().invalidSubCommand());
-			return;
 		}
 
 		// ===========================================================================
@@ -63,7 +62,6 @@ public class MapCommand extends SubCommand {
 		// =============================================================================
 		else {
 			p.sendMessage(main.getMessages().invalidSubCommand());
-			return;
 		}
 	}
 

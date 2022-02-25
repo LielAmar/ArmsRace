@@ -42,7 +42,7 @@ public class OnSwordLaunch implements Listener {
 				&& p.getItemInHand().getType() != Material.STONE_SWORD
 				&& p.getItemInHand().getType() != XMaterial.GOLDEN_SWORD.parseMaterial()
 				&& p.getItemInHand().getType() != XMaterial.WOODEN_SWORD.parseMaterial())
-			if (MinecraftVersion.atLeast(MinecraftVersion.V.v1_16) && p.getItemInHand().getType() != Material.NETHERITE_SWORD)
+			if (MinecraftVersion.isAtLeastVersion(MinecraftVersion.MC1_16_R1) && p.getItemInHand().getType() != Material.NETHERITE_SWORD)
 			return;
 
 		if (cp.getSwordLaunch() == -1 || (System.currentTimeMillis() - cp.getSwordLaunch()) / 1000 > main.getSettingsManager().getSwordLaunchCooldown().get(cp.getSkillLevel("SWORD_LAUNCH"))) {
@@ -78,9 +78,9 @@ public class OnSwordLaunch implements Listener {
 			double x = current.getX();
 			double y = current.getY() + 1;
 			double z = current.getZ();
-			double xDiff = (eye.getX() - x) / 75;
-			double yDiff = (eye.getY() - y) / 75;
-			double zDiff = (eye.getZ() - z) / 75;
+			final double xDiff = (eye.getX() - x) / 75;
+			final double yDiff = (eye.getY() - y) / 75;
+			final double zDiff = (eye.getZ() - z) / 75;
 
 			@Override
 			public void run() {
@@ -112,7 +112,6 @@ public class OnSwordLaunch implements Listener {
 								if (main.getPlayerManager().containsOneTap(p)) {
 									((LivingEntity) ent).damage(ent.getMaxFireTicks(), p);
 								} else if (main.getPlayerManager().containsDoubleDamage(p)) {
-									multiplier = 2;
 								} else if (as.getItemInHand().getType() == XMaterial.WOODEN_SWORD.parseMaterial())
 									((LivingEntity) ent).damage(4 * multiplier, p);
 								else if (as.getItemInHand().getType() == XMaterial.GOLDEN_SWORD.parseMaterial())

@@ -111,7 +111,6 @@ public class MapCreationHandler {
 				skipper++;
 			}
 
-			return;
 		}
 	}
 }
