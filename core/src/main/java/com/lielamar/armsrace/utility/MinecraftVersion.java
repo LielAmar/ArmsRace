@@ -28,7 +28,8 @@ public enum MinecraftVersion {
     MC1_16_R2(1162),
     MC1_16_R3(1163),
     MC1_17_R1(1171),
-    MC1_18_R1(1181, true);
+    MC1_18_R1(1181, true),
+    MC1_18_R2(1182, true);
 
     private static MinecraftVersion version;
 

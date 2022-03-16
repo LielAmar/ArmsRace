@@ -1,11 +1,9 @@
 package com.lielamar.armsrace.utility;
 
+import com.lielamar.armsrace.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-
-import com.lielamar.armsrace.Main;
 
 public class Utils {
 
@@ -42,12 +40,4 @@ public class Utils {
     public static double fixDecimal(double number) {
         return Math.round(number * 100) / 100.0D;
     }
-
-    public static String color(String s) {
-        if (s == null) {
-            return null;
-        }
-        return ChatColor.translateAlternateColorCodes('&', s);
-    }
-
 }
