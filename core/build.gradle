@@ -8,7 +8,7 @@ dependencies {
     // Minecraft Dependencies
     compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
     // Maven dependencies
-    compileOnly 'com.github.cryptomorin:XSeries:8.6.2'
+    compileOnly 'com.github.cryptomorin:XSeries:8.7.0'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
     compileOnly 'me.clip:placeholderapi:2.11.1'
     compileOnly 'org.jetbrains:annotations:23.0.0'
