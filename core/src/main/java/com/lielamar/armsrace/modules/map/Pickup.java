@@ -9,7 +9,7 @@ import org.bukkit.util.Vector;
 
 public class Pickup {
 
-	private Map map;
+	private final Map map;
 	private Item pickup;
 	private PickupType type;
 	private Location loc;

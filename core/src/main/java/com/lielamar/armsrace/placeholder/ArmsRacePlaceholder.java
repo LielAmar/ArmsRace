@@ -26,7 +26,7 @@ public class ArmsRacePlaceholder extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getAuthor() {
-        return "chochoco4777";
+        return "yenil";
     }
 
     @Override

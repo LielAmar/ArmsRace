@@ -90,7 +90,6 @@ public class MapManager {
         // Load tiers
         List<Tier> tiers = new LinkedList<>();
         if (mapFile.getConfig().contains("Tiers")) {
-            int counter = 0;
             for (String s : mapFile.getConfig().getConfigurationSection("Tiers").getKeys(false)) {
                 ItemStack[] armor = ((List<ItemStack>) Objects.requireNonNull(mapFile.getConfig().get("Tiers." + s + ".armor"))).toArray(new ItemStack[0]);
                 ItemStack[] content = ((List<ItemStack>) Objects.requireNonNull(mapFile.getConfig().get("Tiers." + s + ".content"))).toArray(new ItemStack[0]);
