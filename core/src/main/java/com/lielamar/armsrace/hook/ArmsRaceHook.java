@@ -17,7 +17,7 @@ public abstract class ArmsRaceHook {
         hooks.values().forEach(ArmsRaceHook::hook);
     }
 
-    public static boolean getHook(String pluginName) {
+    public static boolean isAvailableHook(String pluginName) {
         if(hooks.get(pluginName) == null) {
             return false;
         }
