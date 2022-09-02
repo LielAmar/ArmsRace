@@ -64,5 +64,4 @@ public class PlayerLeaveMapEvent extends Event implements Cancellable {
     public enum LeaveReason {
         QUIT_GAME, LEAVE_COMMAND, FORCE, RELOAD, SPAWN
     }
-
 }

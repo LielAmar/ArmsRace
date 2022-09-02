@@ -21,7 +21,8 @@ public class OnFoodChange implements Listener {
 
 		if (main.getPlayerManager().getPlayer(p).getCurrentMap() == null) return;
 
-		if (!main.getPlayerManager().getPlayer(p).getCurrentMap().isFoodLevelChange())
+		if (!main.getPlayerManager().getPlayer(p).getCurrentMap().isFoodLevelChange()) {
 			e.setCancelled(true);
+		}
 	}
 }

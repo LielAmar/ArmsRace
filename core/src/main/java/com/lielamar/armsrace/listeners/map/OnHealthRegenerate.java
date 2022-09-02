@@ -22,7 +22,8 @@ public class OnHealthRegenerate implements Listener {
 
 		if (main.getPlayerManager().getPlayer(p).getCurrentMap() == null) return;
 
-		if (!main.getPlayerManager().getPlayer(p).getCurrentMap().isPlayersRegen())
+		if (!main.getPlayerManager().getPlayer(p).getCurrentMap().isPlayersRegen()) {
 			e.setCancelled(true);
+		}
 	}
 }

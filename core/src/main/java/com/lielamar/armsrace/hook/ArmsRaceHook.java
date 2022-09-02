@@ -3,20 +3,18 @@ package com.lielamar.armsrace.hook;
 import com.lielamar.armsrace.hook.hooks.ArmsRaceHookPlaceholderAPIHook;
 import org.bukkit.Bukkit;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public abstract class ArmsRaceHook {
 
-    private static final HashMap<String, ArmsRaceHook> hooks = new HashMap<>();
+    private static final LinkedHashMap<String, ArmsRaceHook> hooks = new LinkedHashMap<>();
 
     static {
         hooks.put("PlaceholderAPI", new ArmsRaceHookPlaceholderAPIHook());
     }
 
     public static void attemptHooks() {
-        hooks.values().forEach(hook -> {
-            hook.hook();
-        });
+        hooks.values().forEach(ArmsRaceHook::hook);
     }
 
     public static boolean getHook(String pluginName) {

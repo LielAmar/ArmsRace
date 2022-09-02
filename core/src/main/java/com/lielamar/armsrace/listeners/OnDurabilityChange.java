@@ -18,7 +18,8 @@ public class OnDurabilityChange implements Listener {
 	@EventHandler
 	public void onDurabilityChange(PlayerItemDamageEvent e) {
 		Player p = e.getPlayer();
-		if(main.getPlayerManager().getPlayer(p).getCurrentMap() != null)
+		if (main.getPlayerManager().getPlayer(p).getCurrentMap() != null) {
 			e.setCancelled(true);
+		}
 	}
 }

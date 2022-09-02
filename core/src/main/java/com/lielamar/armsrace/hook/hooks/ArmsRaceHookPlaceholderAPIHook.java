@@ -2,7 +2,7 @@ package com.lielamar.armsrace.hook.hooks;
 
 import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.hook.ArmsRaceHook;
-import com.lielamar.armsrace.placeholder.ArmsRacePlaceholder;
+import com.lielamar.armsrace.hook.hooks.papi.ArmsRaceExpansion;
 
 public class ArmsRaceHookPlaceholderAPIHook extends ArmsRaceHook {
 
@@ -12,6 +12,6 @@ public class ArmsRaceHookPlaceholderAPIHook extends ArmsRaceHook {
 
     @Override
     protected void runHookAction() {
-        new ArmsRacePlaceholder(Main.getPlugin(Main.class)).register();
+        new ArmsRaceExpansion(Main.getPlugin(Main.class)).register();
     }
 }

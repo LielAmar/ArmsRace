@@ -2,6 +2,7 @@ package com.lielamar.armsrace.listeners.trails;
 
 import com.lielamar.armsrace.Main;
 import com.lielamar.armsrace.modules.CustomPlayer;
+import com.lielamar.armsrace.utility.MinecraftVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -25,7 +26,6 @@ public class OnProjectileShoot implements Listener {
 
 	@EventHandler
 	public void onProjectile(ProjectileLaunchEvent e) {
-		String version = Bukkit.getVersion();
 		Projectile proj = e.getEntity();
 		if (!(proj.getShooter() instanceof Player)) return;
 
@@ -49,7 +49,7 @@ public class OnProjectileShoot implements Listener {
 				if (e.getEntity().isOnGround()) this.cancel();
 
 				for (Player pl : Bukkit.getOnlinePlayers()) {
-					if (version.contains("1.13") || version.contains("1.14") || version.contains("1.15") || version.contains("1.16") || version.contains("1.17")) {
+					if (MinecraftVersion.isAtLeastVersion(MinecraftVersion.MC1_13_R2)) {
 						if (trail.equalsIgnoreCase("redstone")) {
 							p.spawnParticle(Particle.REDSTONE, e.getEntity().getLocation(), 10, 0, 0, 0, new Particle.DustOptions(Color.RED, 1));
 						} else {

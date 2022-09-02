@@ -21,7 +21,7 @@ public class CookieFountainKillEffect implements KillEffect {
 
 		new BukkitRunnable() {
 			int counter = 30;
-			ItemStack cookie = new ItemStack(Material.COOKIE);
+			final ItemStack cookie = new ItemStack(Material.COOKIE);
 			ItemMeta meta;
 
 			@Override
