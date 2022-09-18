@@ -57,7 +57,7 @@ public class Main extends JavaPlugin {
 
     private static final DependencyData DEPENDENCIES = DependencyData.builder()
 
-            .dependency("com.github.cryptomorin", "XSeries", "9.0.0")
+            .dependency("com.github.cryptomorin", "XSeries", "9.1.0")
             .relocate("com#cryptomorin#xseries", "xseries")
             .build();
 
