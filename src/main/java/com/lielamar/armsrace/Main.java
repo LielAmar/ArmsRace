@@ -27,10 +27,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Objects;
 
 public class Main extends JavaPlugin {
 
@@ -62,11 +59,59 @@ public class Main extends JavaPlugin {
 
         armsRaceAPI = new ArmsRaceAPI();
 
-        registerManagers();
-        registerEvents();
-        registerCommands();
-        registerHook();
-        initPlayers();
+        saveDefaultConfig();
+
+        this.bfm = new BukkitFileManager(this);
+        this.messages = new Messages(this.bfm.getConfig("messages"));
+        this.settingsManager = new SettingsManager(this);
+        this.shopManager = new ShopManager(this, this.bfm.getConfig("shop"));
+        this.killEffectsManager = new KillEffectsManager();
+        this.mapsFileManager = new MapsFileManager(this);
+        this.gameManager = new GameManager(this);
+        this.gameManager.getMapManager().loadMaps();
+        this.playerManager = new PlayerManager(this);
+        this.scoreboardManager = new ScoreboardManager(this);
+        this.combatlogManager = new CombatLogManager(this);
+
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerQuit(this), this);
+
+        // General Events
+        getServer().getPluginManager().registerEvents(new OnDurabilityChange(this), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerDeath(this), this);
+
+        // Shop events
+        getServer().getPluginManager().registerEvents(new OnShopClick(this), this);
+
+        // Skills
+        getServer().getPluginManager().registerEvents(new OnSwordLaunch(this), this);
+
+        // Trails
+        getServer().getPluginManager().registerEvents(new OnProjectileShoot(this), this);
+
+        // Kill effects
+        getServer().getPluginManager().registerEvents(new OnTNTKillEffect(this), this);
+        getServer().getPluginManager().registerEvents(new OnCookiePickup(this), this);
+        getServer().getPluginManager().registerEvents(new OnPinataPickup(this), this);
+        getServer().getPluginManager().registerEvents(new OnDamageByLightning(this), this);
+        getServer().getPluginManager().registerEvents(new OnDamageByFirework(this), this);
+
+        // Per map events
+        getServer().getPluginManager().registerEvents(new OnBlock(this), this);
+        getServer().getPluginManager().registerEvents(new OnFoodChange(this), this);
+        getServer().getPluginManager().registerEvents(new OnHealthRegenerate(this), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerKill(this), this);
+        getServer().getPluginManager().registerEvents(new OnDrop(this), this);
+        getServer().getPluginManager().registerEvents(new OnPickup(this), this);
+        getServer().getPluginManager().registerEvents(new OnSpawnProtection(this), this);
+        getServer().getPluginManager().registerEvents(new OnDoubleDamage(this), this);
+
+        getCommand("armsrace").setExecutor(new ArmsRaceCommand(this));
+        getCommand("spawn").setExecutor(new SpawnCommand(this));
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(this, ArmsRaceHook::attemptHooks, 1L);
+
+        playerManager.getPlayers().values().forEach(this::initPlayer);
 
     }
 
@@ -85,79 +130,12 @@ public class Main extends JavaPlugin {
         destroyManagers();
     }
 
-    public void registerManagers() {
-        saveDefaultConfig();
-
-        this.bfm = new BukkitFileManager(this);
-        this.messages = new Messages(this.bfm.getConfig("messages"));
-        this.settingsManager = new SettingsManager(this);
-        this.shopManager = new ShopManager(this, this.bfm.getConfig("shop"));
-        this.killEffectsManager = new KillEffectsManager();
-        this.mapsFileManager = new MapsFileManager(this);
-        this.gameManager = new GameManager(this);
-        this.gameManager.getMapManager().loadMaps();
-        this.playerManager = new PlayerManager(this);
-        this.scoreboardManager = new ScoreboardManager(this);
-        this.combatlogManager = new CombatLogManager(this);
-    }
-
-    private void registerEvents() {
-        PluginManager manager = Bukkit.getPluginManager();
-
-        // Default Events
-        manager.registerEvents(new OnPlayerJoin(this), this);
-        manager.registerEvents(new OnPlayerQuit(this), this);
-
-        // General Events
-        manager.registerEvents(new OnDurabilityChange(this), this);
-        manager.registerEvents(new OnPlayerDeath(this), this);
-
-        // Shop events
-        manager.registerEvents(new OnShopClick(this), this);
-
-        // Skills
-        manager.registerEvents(new OnSwordLaunch(this), this);
-
-        // Trails
-        manager.registerEvents(new OnProjectileShoot(this), this);
-
-        // Kill effects
-        manager.registerEvents(new OnTNTKillEffect(this), this);
-        manager.registerEvents(new OnCookiePickup(this), this);
-        manager.registerEvents(new OnPinataPickup(this), this);
-        manager.registerEvents(new OnDamageByLightning(this), this);
-        manager.registerEvents(new OnDamageByFirework(this), this);
-
-        // Per map events
-        manager.registerEvents(new OnBlock(this), this);
-        manager.registerEvents(new OnFoodChange(this), this);
-        manager.registerEvents(new OnHealthRegenerate(this), this);
-        manager.registerEvents(new OnPlayerKill(this), this);
-        manager.registerEvents(new OnDrop(this), this);
-        manager.registerEvents(new OnPickup(this), this);
-        manager.registerEvents(new OnSpawnProtection(this), this);
-        manager.registerEvents(new OnDoubleDamage(this), this);
-    }
-
-    private void registerCommands() {
-        Objects.requireNonNull(getCommand("armsrace")).setExecutor(new ArmsRaceCommand(this));
-        Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand(this));
-    }
-
-    private void registerHook() {
-        ArmsRaceHook.attemptHooks();
-    }
-
-    private void initPlayers() {
-        playerManager.getPlayers().values().forEach(this::initPlayer);
-    }
-
     private void initPlayer(CustomPlayer customPlayer) {
         Location spawn = getSettingsManager().getSpawn();
         Player player = customPlayer.getPlayer();
 
         scoreboardManager.addPlayer(customPlayer);
-        Utils.clearPlayer(this, player, 20, 20, 20, GameMode.ADVENTURE);
+        Utils.clearPlayer(this, player, 20, 20, 20, GameMode.SURVIVAL);
 
         if (spawn != null) {
             player.teleport(spawn);
@@ -165,8 +143,6 @@ public class Main extends JavaPlugin {
     }
 
     private void destroyManagers() {
-        saveDefaultConfig();
-
         this.bfm = null;
         this.messages = null;
         this.settingsManager = null;

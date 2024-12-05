@@ -45,7 +45,7 @@ public class SpawnCommand implements CommandExecutor {
             customPlayer.getCurrentMap().removePlayer(player, PlayerLeaveMapEvent.LeaveReason.SPAWN);
         } else {
             customPlayer.getPlayer().teleport(spawnLocation);
-            Utils.clearPlayer(plugin, player, 20, 20, 20, GameMode.ADVENTURE);
+            Utils.clearPlayer(plugin, player, 20, 20, 20, GameMode.SURVIVAL);
         }
 
         player.sendMessage(plugin.getMessages().teleportingToSpawn());

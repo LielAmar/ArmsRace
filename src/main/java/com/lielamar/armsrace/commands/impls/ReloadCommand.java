@@ -30,7 +30,7 @@ public class ReloadCommand extends SubCommand {
 		}
 
 		main.onDisable();
-		main.registerManagers();
+		main.onEnable();
 		p.sendMessage(ChatColor.GREEN + "Reloaded config of ArmsRace!");
 	}
 

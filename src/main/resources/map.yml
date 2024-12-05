@@ -21,7 +21,7 @@ Settings:
     MaxPlayersHealth: 20
     
     # Players Game Mode
-    PlayersGameMode: ADVENTURE
+    PlayersGameMode: SURVIVAL
     
     # Coins per kill
     CoinsPerKill: 5.0

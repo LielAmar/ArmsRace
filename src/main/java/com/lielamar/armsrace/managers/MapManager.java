@@ -160,7 +160,7 @@ public class MapManager {
 
 
         if (!mapFile.getConfig().contains("Settings.PlayersGameMode"))
-            mapFile.getConfig().set("Settings.PlayersGameMode", "ADVENTURE");
+            mapFile.getConfig().set("Settings.PlayersGameMode", "SURVIVAL");
         
         GameMode gamemode = GameMode.valueOf(mapFile.getConfig().getString("Settings.PlayersGameMode"));
 
