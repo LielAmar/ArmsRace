@@ -1,78 +1,50 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
+    id 'java'
+    id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
 // Add shadow to collapsed compile
 group 'com.lielamar.armsrace'
-version '2.6'
+version '1.0'
 
-allprojects {
-    apply plugin: 'java'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        maven { url = 'https://repo.codemc.io/repository/maven-public/' }
-        maven { url = 'https://jitpack.io' }
-        maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-        maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
-        maven { url = 'https://repo.dmulloy2.net/nexus/repository/public/' }
-    }
-
-    dependencies {
-        if (name.startsWith("api_")) {
-            compileOnly(project(":core"))
-        }
-        compileOnly 'org.projectlombok:lombok:1.18.24'
-        annotationProcessor 'org.projectlombok:lombok:1.18.24'
-        testCompileOnly 'org.projectlombok:lombok:1.18.24'
-        testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
-    }
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url = 'https://repo.codemc.io/repository/maven-public/' }
+    maven { url = 'https://jitpack.io' }
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
+    maven { url = 'https://repo.dmulloy2.net/nexus/repository/public/' }
 }
 
 dependencies {
-    implementation project(':core')
-    implementation project(':api_v1_8_R3')
-    implementation project(':api_v1_9_R2')
-    implementation project(':api_v1_10_R1')
-    implementation project(':api_v1_11_R1')
-    implementation project(':api_v1_12_R1')
-    implementation project(':api_v1_13_R2')
-    implementation project(':api_v1_14_R1')
-    implementation project(':api_v1_15_R1')
-    implementation project(':api_v1_16_R3')
-    implementation project(':api_v1_17_R1')
-    implementation project(':api_v1_18_R2')
-    implementation project(':api_v1_19_R1')
-    shadow project(':core')
-    shadow project(':api_v1_8_R3')
-    shadow project(':api_v1_9_R2')
-    shadow project(':api_v1_10_R1')
-    shadow project(':api_v1_11_R1')
-    shadow project(':api_v1_12_R1')
-    shadow project(':api_v1_13_R2')
-    shadow project(':api_v1_14_R1')
-    shadow project(':api_v1_15_R1')
-    shadow project(':api_v1_16_R3')
-    shadow project(':api_v1_17_R1')
-    shadow project(':api_v1_18_R2')
-    shadow project(':api_v1_19_R1')
+    // Minecraft Dependencies
+    compileOnly("org.spigotmc:spigot:1.20.6-R0.1-SNAPSHOT")
+    // Maven dependencies
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    testCompileOnly 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+    compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
+    compileOnly 'me.clip:placeholderapi:2.11.6'
+    compileOnly 'org.jetbrains:annotations:24.0.0'
+    implementation 'com.github.cryptomorin:XSeries:12.0.0'
+    implementation 'xyz.xenondevs:particle:1.8.1'
 }
 
 shadowJar {
-    destinationDirectory = file("allFiles")
-    relocate 'com.cryptomorin.xseries', relocated('xseries')
+    minimize()
+    archiveBaseName.set('ArmsRace')
+    archiveVersion.set('')
+    archiveClassifier.set('')
+    relocate 'com.cryptomorin.xseries', "com.lielamar.armsrace.libs.xseries"
     relocate 'xyz.xenondevs.particle', "com.lielamar.armsrace.libs.particle"
-}
-
-private static String relocated(String pattern) {
-    return "armsrace.libs.$pattern"
-}
-
-jar {
-    finalizedBy(shadowJar)
 }
 
 tasks.withType(JavaCompile) {
