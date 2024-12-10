@@ -16,6 +16,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import xyz.xenondevs.particle.ParticleBuilder;
+import xyz.xenondevs.particle.ParticleEffect;
 
 public class OnProjectileShoot implements Listener {
 
@@ -48,11 +50,18 @@ public class OnProjectileShoot implements Listener {
 
 				for (Player pl : Bukkit.getOnlinePlayers()) {
 					if (trail.equalsIgnoreCase("redstone")) {
-						if (XReflection.supports(9)) {
-							p.spawnParticle(Particle.DUST, e.getEntity().getLocation(), 10, 0, 0, 0, new Particle.DustOptions(Color.RED, 1));
-						} else {
-							p.spawnParticle(Particle.valueOf("REDSTONE"), e.getEntity().getLocation(), 10, 0, 0, 0, new Particle.DustOptions(Color.RED, 1));
+						if (XReflection.supports(8)) {
+							new ParticleBuilder(ParticleEffect.REDSTONE)
+									.setAmount(10)
+									.setLocation(e.getEntity().getLocation())
+									.setOffset(0, 0, 0)
+									.setColor(java.awt.Color.RED)
+									.display(p);
 						}
+						if (XReflection.supports(9)) {
+							p.spawnParticle(Particle.valueOf("REDSTONE"), e.getEntity().getLocation(), 10, 0, 0, 0, new Particle.DustOptions(Color.RED, 1));
+						} else if (XReflection.supports(20, 5))
+							p.spawnParticle(Particle.DUST, e.getEntity().getLocation(), 10, 0, 0, 0, new Particle.DustOptions(Color.RED, 1));
 					} else {
 						if (trail.equalsIgnoreCase("reset")) {
 							return;
